@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>LoRA2 / QLoRA 超参实验 · 验收可视化</title>
+<style>
+:root { --bg:#f4f7f5; --panel:#fff; --ink:#14201c; --muted:#5b6b64; --line:#d5e0db; --accent:#0f766e; --accent-2:#b45309; --hl:#ecfdf5; --font:"IBM Plex Sans","Noto Sans SC",sans-serif; --mono:"IBM Plex Mono",Menlo,monospace; }
+*{box-sizing:border-box} body{margin:0;font-family:var(--font);color:var(--ink);background:radial-gradient(1200px 600px at 10% -10%,#d9f0ea 0%,transparent 55%),radial-gradient(900px 500px at 100% 0%,#f3e7d6 0%,transparent 50%),var(--bg);line-height:1.55}
+header.hero{padding:40px 28px 28px;max-width:1180px;margin:0 auto} h1{font-size:clamp(1.8rem,3vw,2.4rem);margin:0 0 8px} .brand{font-size:.85rem;font-weight:700;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+nav.tabs{position:sticky;top:0;z-index:10;backdrop-filter:blur(8px);background:rgba(244,247,245,.92);border-bottom:1px solid var(--line);display:flex;gap:4px;padding:10px 28px;max-width:1180px;margin:0 auto}
+nav.tabs button{border:1px solid transparent;background:transparent;color:var(--muted);padding:8px 14px;border-radius:8px;cursor:pointer;font:inherit;font-weight:600}
+nav.tabs button.active{background:var(--panel);border-color:var(--line);color:var(--ink)}
+main{max-width:1180px;margin:0 auto;padding:20px 28px 60px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:18px}
+.panel h2{margin:0 0 12px;font-size:1.15rem} .panel h3{margin:18px 0 10px;font-size:1rem;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.kpi{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fbfcfb}
+.kpi .label{color:var(--muted);font-size:.8rem} .kpi .value{font-size:1.55rem;font-weight:750;margin-top:4px} .kpi .sub{font-size:.78rem;color:var(--muted);margin-top:4px}
+.kpi.accent{border-color:#99d5ce;background:var(--hl)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px} @media(max-width:900px){.grid2{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:.86rem} th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left} th{color:var(--muted);font-size:.78rem}
+tr.hl{background:var(--hl)} code{font-family:var(--mono);font-size:.84em}
+.bars{display:flex;flex-direction:column;gap:8px} .bar-row{display:grid;grid-template-columns:190px 1fr 70px;gap:10px;align-items:center}
+.bar-track{height:10px;background:#e8efec;border-radius:999px;overflow:hidden} .bar-fill{height:100%;border-radius:999px} .bar-val{text-align:right;font-size:.85rem}
+.ok{color:var(--accent);font-weight:700} .warn{color:var(--accent-2);font-weight:700}
+.catalog{padding-left:1.1rem} .catalog li{margin:6px 0} .section{display:none} .section.active{display:block}
+.note{font-size:.85rem;color:var(--muted)} .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-family:var(--mono);font-size:.82rem}
+.flow span{background:#eef5f2;border:1px solid var(--line);padding:6px 10px;border-radius:8px} .flow .arrow{border:none;background:transparent;color:var(--muted)}
+footer{max-width:1180px;margin:0 auto 40px;padding:0 28px;color:var(--muted);font-size:.8rem}
+</style></head><body>
+<header class="hero"><div class="brand">Assignment A · SFT 进阶验收（精简脚本）</div>
+<h1>LoRA / QLoRA 超参数实验可视化</h1>
+<p>数据：<code>experiment_report.json</code>。脚本已去掉分批/看门狗/续跑编排，只保留 init→train→eval→report。</p></header>
+<nav class="tabs" id="tabs">
+<button class="active" data-tab="overview">总览与验收</button>
+<button data-tab="charts">图表对比</button>
+<button data-tab="tables">全部结果表</button>
+<button data-tab="scripts">脚本手册</button>
+</nav>
+<main>
+<section id="overview" class="section active">
+<div class="panel"><h2>关键指标</h2><div class="kpis">
+<div class="kpi"><div class="label">Baseline Full SFT pass@1</div><div class="value">3.11%</div><div class="sub">峰显存 19127 MiB · 0.86 步/秒</div></div>
+<div class="kpi accent"><div class="label">Phase1 最优 · r8_tqv_q4</div><div class="value">3.5%</div><div class="sub">rank=8 α=16 target=qv quant=4</div></div>
+<div class="kpi"><div class="label">Alpha sweep 最好</div><div class="value">3.89%</div><div class="sub">r8_tqv_q4_alpha_a1x → 3.89%</div></div>
+<div class="kpi"><div class="label">完成组数</div><div class="value">13/13</div><div class="sub">失败 0</div></div>
+</div></div>
+<div class="panel"><h2>最短流水线</h2>
+<div class="flow"><span>00_init</span><span class="arrow">→</span><span>01_train</span><span class="arrow">→</span><span>02_predict_eval</span><span class="arrow">→</span><span>03_report</span></div>
+<p class="note" style="margin-top:12px">一键：<code>GPU_ID=0 bash sft/lora2_exp_cgh/scripts/run_all.sh</code></p></div>
+<div class="panel"><h2>作业要求覆盖</h2>
+<table><thead><tr><th>要求</th><th>做法</th><th>状态</th></tr></thead><tbody>
+<tr><td>LoRA/QLoRA + 五参数</td><td>Phase1 网格 yaml / state params</td><td class="ok">已覆盖</td></tr>
+<tr><td>显存/速度/参数量/测试</td><td>resources + metrics</td><td class="ok">已覆盖</td></tr>
+<tr><td>对比 rank / alpha / epoch</td><td>Phase1/2/3</td><td class="ok">已覆盖</td></tr>
+<tr><td>对比 learning_rate</td><td>固定 1e-4</td><td class="warn">缺口</td></tr>
+</tbody></table></div>
+<div class="panel"><h2>最优组快照 · r8_tqv_q4</h2><div class="kpis">
+<div class="kpi"><div class="label">峰值显存</div><div class="value">11381</div><div class="sub">MiB</div></div>
+<div class="kpi"><div class="label">训练速度</div><div class="value">0.85</div><div class="sub">steps/sec</div></div>
+<div class="kpi"><div class="label">可训练参数</div><div class="value">786K</div><div class="sub">0.17%</div></div>
+<div class="kpi"><div class="label">pass@1</div><div class="value">3.5%</div><div class="sub">vs baseline 3.11%</div></div>
+</div></div>
+</section>
+<section id="charts" class="section">
+<div class="grid2"><div class="panel"><h2>pass@1</h2><div class="bars">
+<div class="bar-row"><div class="bar-lab"><code>r8_tqv_q4_alpha_a1x</code></div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#0f766e"></div></div><div class="bar-val">3.89%</div></div>
+<div class="bar-row best"><div class="bar-lab"><code>r8_tqv_q4</code></div><div class="bar-track"><div class="bar-fill" style="width:90.0%;background:#0f766e"></div></div><div class="bar-val">3.5%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tqv_q4_alpha_a2x</code></div><div class="bar-track"><div class="bar-fill" style="width:90.0%;background:#0f766e"></div></div><div class="bar-val">3.5%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tqv_q4_epoch_1</code></div><div class="bar-track"><div class="bar-fill" style="width:90.0%;background:#0f766e"></div></div><div class="bar-val">3.5%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>Full SFT</code></div><div class="bar-track"><div class="bar-fill" style="width:79.9%;background:#2563eb"></div></div><div class="bar-val">3.11%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r16_tall_q4</code></div><div class="bar-track"><div class="bar-fill" style="width:79.9%;background:#0f766e"></div></div><div class="bar-val">3.11%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tqv_qnone</code></div><div class="bar-track"><div class="bar-fill" style="width:79.9%;background:#0f766e"></div></div><div class="bar-val">3.11%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r16_tall_qnone</code></div><div class="bar-track"><div class="bar-fill" style="width:69.9%;background:#0f766e"></div></div><div class="bar-val">2.72%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r16_tqv_qnone</code></div><div class="bar-track"><div class="bar-fill" style="width:69.9%;background:#0f766e"></div></div><div class="bar-val">2.72%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tall_q4</code></div><div class="bar-track"><div class="bar-fill" style="width:69.9%;background:#0f766e"></div></div><div class="bar-val">2.72%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tall_qnone</code></div><div class="bar-track"><div class="bar-fill" style="width:69.9%;background:#0f766e"></div></div><div class="bar-val">2.72%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tqv_q4_alpha_a4x</code></div><div class="bar-track"><div class="bar-fill" style="width:69.9%;background:#0f766e"></div></div><div class="bar-val">2.72%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tqv_q4_epoch_5</code></div><div class="bar-track"><div class="bar-fill" style="width:69.9%;background:#0f766e"></div></div><div class="bar-val">2.72%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r16_tqv_q4</code></div><div class="bar-track"><div class="bar-fill" style="width:59.9%;background:#0f766e"></div></div><div class="bar-val">2.33%</div></div>
+</div></div>
+<div class="panel"><h2>峰值显存（Phase1）</h2><div class="bars">
+<div class="bar-row"><div class="bar-lab"><code>Full SFT</code></div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#2563eb"></div></div><div class="bar-val">19127</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r16_tall_qnone</code></div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#b45309"></div></div><div class="bar-val">19133</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tall_q4</code></div><div class="bar-track"><div class="bar-fill" style="width:74.6%;background:#b45309"></div></div><div class="bar-val">14271</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tall_qnone</code></div><div class="bar-track"><div class="bar-fill" style="width:63.4%;background:#b45309"></div></div><div class="bar-val">12125</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tqv_qnone</code></div><div class="bar-track"><div class="bar-fill" style="width:63.4%;background:#b45309"></div></div><div class="bar-val">12125</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r16_tqv_qnone</code></div><div class="bar-track"><div class="bar-fill" style="width:63.2%;background:#b45309"></div></div><div class="bar-val">12089</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r16_tall_q4</code></div><div class="bar-track"><div class="bar-fill" style="width:60.1%;background:#b45309"></div></div><div class="bar-val">11495</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r16_tqv_q4</code></div><div class="bar-track"><div class="bar-fill" style="width:59.6%;background:#b45309"></div></div><div class="bar-val">11395</div></div>
+<div class="bar-row best"><div class="bar-lab"><code>r8_tqv_q4</code></div><div class="bar-track"><div class="bar-fill" style="width:59.5%;background:#b45309"></div></div><div class="bar-val">11381</div></div>
+</div></div></div>
+<div class="grid2"><div class="panel"><h2>训练速度（Phase1）</h2><div class="bars">
+<div class="bar-row"><div class="bar-lab"><code>r8_tqv_qnone</code></div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#1d4ed8"></div></div><div class="bar-val">1.09</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r16_tqv_qnone</code></div><div class="bar-track"><div class="bar-fill" style="width:99.0%;background:#1d4ed8"></div></div><div class="bar-val">1.079</div></div>
+<div class="bar-row"><div class="bar-lab"><code>Full SFT</code></div><div class="bar-track"><div class="bar-fill" style="width:78.8%;background:#2563eb"></div></div><div class="bar-val">0.859</div></div>
+<div class="bar-row best"><div class="bar-lab"><code>r8_tqv_q4</code></div><div class="bar-track"><div class="bar-fill" style="width:78.1%;background:#1d4ed8"></div></div><div class="bar-val">0.851</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r16_tqv_q4</code></div><div class="bar-track"><div class="bar-fill" style="width:71.7%;background:#1d4ed8"></div></div><div class="bar-val">0.781</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tall_qnone</code></div><div class="bar-track"><div class="bar-fill" style="width:68.4%;background:#1d4ed8"></div></div><div class="bar-val">0.746</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r16_tall_q4</code></div><div class="bar-track"><div class="bar-fill" style="width:55.5%;background:#1d4ed8"></div></div><div class="bar-val">0.605</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tall_q4</code></div><div class="bar-track"><div class="bar-fill" style="width:49.4%;background:#1d4ed8"></div></div><div class="bar-val">0.539</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r16_tall_qnone</code></div><div class="bar-track"><div class="bar-fill" style="width:40.4%;background:#1d4ed8"></div></div><div class="bar-val">0.44</div></div>
+</div></div>
+<div class="panel"><h2>Alpha / Epoch</h2><h3>Alpha</h3><div class="bars">
+<div class="bar-row"><div class="bar-lab"><code>r8_tqv_q4_alpha_a1x</code></div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#0f766e"></div></div><div class="bar-val">3.89%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tqv_q4_alpha_a2x</code></div><div class="bar-track"><div class="bar-fill" style="width:90.0%;background:#0f766e"></div></div><div class="bar-val">3.5%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tqv_q4_alpha_a4x</code></div><div class="bar-track"><div class="bar-fill" style="width:69.9%;background:#0f766e"></div></div><div class="bar-val">2.72%</div></div>
+</div><h3>Epoch</h3><div class="bars">
+<div class="bar-row"><div class="bar-lab"><code>r8_tqv_q4_epoch_1</code></div><div class="bar-track"><div class="bar-fill" style="width:100.0%;background:#0f766e"></div></div><div class="bar-val">3.5%</div></div>
+<div class="bar-row"><div class="bar-lab"><code>r8_tqv_q4_epoch_5</code></div><div class="bar-track"><div class="bar-fill" style="width:77.7%;background:#0f766e"></div></div><div class="bar-val">2.72%</div></div>
+</div></div></div>
+</section>
+<section id="tables" class="section">
+<div class="panel"><h2>Phase1</h2><table><thead><tr><th>实验ID</th><th>阶段</th><th>类型</th><th>rank</th><th>alpha</th><th>target</th><th>quant</th><th>epoch</th><th>pass@1</th><th>峰值显存MiB</th><th>步/秒</th><th>可训练参数</th><th>train loss</th></tr></thead><tbody><tr class="hl"><td><code>r8_tqv_q4</code></td><td>grid</td><td>qlora</td><td>8</td><td>16</td><td>qv</td><td>4</td><td>3.0</td><td><strong>3.50%</strong></td><td>11381</td><td>0.851</td><td>786K (0.17%)</td><td>0.847</td></tr>
+<tr><td><code>Full SFT</code></td><td>baseline</td><td>full</td><td>—</td><td>—</td><td>—</td><td>—</td><td>3.0</td><td><strong>3.11%</strong></td><td>19127</td><td>0.859</td><td>全部 (100%)</td><td>0.626</td></tr>
+<tr><td><code>r16_tall_q4</code></td><td>grid</td><td>qlora</td><td>16</td><td>32</td><td>all</td><td>4</td><td>3.0</td><td><strong>3.11%</strong></td><td>11495</td><td>0.605</td><td>7.57M (1.61%)</td><td>0.753</td></tr>
+<tr><td><code>r8_tqv_qnone</code></td><td>grid</td><td>lora</td><td>8</td><td>16</td><td>qv</td><td>none</td><td>3.0</td><td><strong>3.11%</strong></td><td>12125</td><td>1.090</td><td>786K (0.17%)</td><td>0.825</td></tr>
+<tr><td><code>r16_tall_qnone</code></td><td>grid</td><td>lora</td><td>16</td><td>32</td><td>all</td><td>none</td><td>3.0</td><td><strong>2.72%</strong></td><td>19133</td><td>0.440</td><td>7.57M (1.61%)</td><td>0.738</td></tr>
+<tr><td><code>r16_tqv_qnone</code></td><td>grid</td><td>lora</td><td>16</td><td>32</td><td>qv</td><td>none</td><td>3.0</td><td><strong>2.72%</strong></td><td>12089</td><td>1.079</td><td>1.57M (0.34%)</td><td>0.811</td></tr>
+<tr><td><code>r8_tall_q4</code></td><td>grid</td><td>qlora</td><td>8</td><td>16</td><td>all</td><td>4</td><td>3.0</td><td><strong>2.72%</strong></td><td>14271</td><td>0.539</td><td>3.78M (0.81%)</td><td>0.781</td></tr>
+<tr><td><code>r8_tall_qnone</code></td><td>grid</td><td>lora</td><td>8</td><td>16</td><td>all</td><td>none</td><td>3.0</td><td><strong>2.72%</strong></td><td>12125</td><td>0.746</td><td>3.78M (0.81%)</td><td>0.764</td></tr>
+<tr><td><code>r16_tqv_q4</code></td><td>grid</td><td>qlora</td><td>16</td><td>32</td><td>qv</td><td>4</td><td>3.0</td><td><strong>2.33%</strong></td><td>11395</td><td>0.781</td><td>1.57M (0.34%)</td><td>0.832</td></tr></tbody></table></div>
+<div class="panel"><h2>Phase2 Alpha</h2><table><thead><tr><th>实验ID</th><th>阶段</th><th>类型</th><th>rank</th><th>alpha</th><th>target</th><th>quant</th><th>epoch</th><th>pass@1</th><th>峰值显存MiB</th><th>步/秒</th><th>可训练参数</th><th>train loss</th></tr></thead><tbody><tr><td><code>r8_tqv_q4_alpha_a1x</code></td><td>alpha_sweep</td><td>qlora</td><td>8</td><td>8</td><td>qv</td><td>4</td><td>3.0</td><td><strong>3.89%</strong></td><td>11381</td><td>0.853</td><td>786K (0.17%)</td><td>0.857</td></tr>
+<tr><td><code>r8_tqv_q4_alpha_a2x</code></td><td>alpha_sweep</td><td>qlora</td><td>8</td><td>16</td><td>qv</td><td>4</td><td>3.0</td><td><strong>3.50%</strong></td><td>11381</td><td>0.851</td><td>786K (0.17%)</td><td>0.847</td></tr>
+<tr><td><code>r8_tqv_q4_alpha_a4x</code></td><td>alpha_sweep</td><td>qlora</td><td>8</td><td>32</td><td>qv</td><td>4</td><td>3.0</td><td><strong>2.72%</strong></td><td>11381</td><td>0.853</td><td>786K (0.17%)</td><td>0.835</td></tr></tbody></table></div>
+<div class="panel"><h2>Phase3 Epoch</h2><table><thead><tr><th>实验ID</th><th>阶段</th><th>类型</th><th>rank</th><th>alpha</th><th>target</th><th>quant</th><th>epoch</th><th>pass@1</th><th>峰值显存MiB</th><th>步/秒</th><th>可训练参数</th><th>train loss</th></tr></thead><tbody><tr><td><code>r8_tqv_q4_epoch_1</code></td><td>epoch_sweep</td><td>qlora</td><td>8</td><td>16</td><td>qv</td><td>4</td><td>1.0</td><td><strong>3.50%</strong></td><td>11379</td><td>0.747</td><td>786K (0.17%)</td><td>0.882</td></tr>
+<tr><td><code>r8_tqv_q4_epoch_5</code></td><td>epoch_sweep</td><td>qlora</td><td>8</td><td>16</td><td>qv</td><td>4</td><td>5.0</td><td><strong>2.72%</strong></td><td>11381</td><td>0.849</td><td>786K (0.17%)</td><td>0.826</td></tr></tbody></table></div>
+<div class="panel"><h2>全部</h2><table><thead><tr><th>实验ID</th><th>阶段</th><th>类型</th><th>rank</th><th>alpha</th><th>target</th><th>quant</th><th>epoch</th><th>pass@1</th><th>峰值显存MiB</th><th>步/秒</th><th>可训练参数</th><th>train loss</th></tr></thead><tbody><tr><td><code>r8_tqv_q4_alpha_a1x</code></td><td>alpha_sweep</td><td>qlora</td><td>8</td><td>8</td><td>qv</td><td>4</td><td>3.0</td><td><strong>3.89%</strong></td><td>11381</td><td>0.853</td><td>786K (0.17%)</td><td>0.857</td></tr>
+<tr class="hl"><td><code>r8_tqv_q4</code></td><td>grid</td><td>qlora</td><td>8</td><td>16</td><td>qv</td><td>4</td><td>3.0</td><td><strong>3.50%</strong></td><td>11381</td><td>0.851</td><td>786K (0.17%)</td><td>0.847</td></tr>
+<tr><td><code>r8_tqv_q4_alpha_a2x</code></td><td>alpha_sweep</td><td>qlora</td><td>8</td><td>16</td><td>qv</td><td>4</td><td>3.0</td><td><strong>3.50%</strong></td><td>11381</td><td>0.851</td><td>786K (0.17%)</td><td>0.847</td></tr>
+<tr><td><code>r8_tqv_q4_epoch_1</code></td><td>epoch_sweep</td><td>qlora</td><td>8</td><td>16</td><td>qv</td><td>4</td><td>1.0</td><td><strong>3.50%</strong></td><td>11379</td><td>0.747</td><td>786K (0.17%)</td><td>0.882</td></tr>
+<tr><td><code>Full SFT</code></td><td>baseline</td><td>full</td><td>—</td><td>—</td><td>—</td><td>—</td><td>3.0</td><td><strong>3.11%</strong></td><td>19127</td><td>0.859</td><td>全部 (100%)</td><td>0.626</td></tr>
+<tr><td><code>r16_tall_q4</code></td><td>grid</td><td>qlora</td><td>16</td><td>32</td><td>all</td><td>4</td><td>3.0</td><td><strong>3.11%</strong></td><td>11495</td><td>0.605</td><td>7.57M (1.61%)</td><td>0.753</td></tr>
+<tr><td><code>r8_tqv_qnone</code></td><td>grid</td><td>lora</td><td>8</td><td>16</td><td>qv</td><td>none</td><td>3.0</td><td><strong>3.11%</strong></td><td>12125</td><td>1.090</td><td>786K (0.17%)</td><td>0.825</td></tr>
+<tr><td><code>r16_tall_qnone</code></td><td>grid</td><td>lora</td><td>16</td><td>32</td><td>all</td><td>none</td><td>3.0</td><td><strong>2.72%</strong></td><td>19133</td><td>0.440</td><td>7.57M (1.61%)</td><td>0.738</td></tr>
+<tr><td><code>r16_tqv_qnone</code></td><td>grid</td><td>lora</td><td>16</td><td>32</td><td>qv</td><td>none</td><td>3.0</td><td><strong>2.72%</strong></td><td>12089</td><td>1.079</td><td>1.57M (0.34%)</td><td>0.811</td></tr>
+<tr><td><code>r8_tall_q4</code></td><td>grid</td><td>qlora</td><td>8</td><td>16</td><td>all</td><td>4</td><td>3.0</td><td><strong>2.72%</strong></td><td>14271</td><td>0.539</td><td>3.78M (0.81%)</td><td>0.781</td></tr>
+<tr><td><code>r8_tall_qnone</code></td><td>grid</td><td>lora</td><td>8</td><td>16</td><td>all</td><td>none</td><td>3.0</td><td><strong>2.72%</strong></td><td>12125</td><td>0.746</td><td>3.78M (0.81%)</td><td>0.764</td></tr>
+<tr><td><code>r8_tqv_q4_alpha_a4x</code></td><td>alpha_sweep</td><td>qlora</td><td>8</td><td>32</td><td>qv</td><td>4</td><td>3.0</td><td><strong>2.72%</strong></td><td>11381</td><td>0.853</td><td>786K (0.17%)</td><td>0.835</td></tr>
+<tr><td><code>r8_tqv_q4_epoch_5</code></td><td>epoch_sweep</td><td>qlora</td><td>8</td><td>16</td><td>qv</td><td>4</td><td>5.0</td><td><strong>2.72%</strong></td><td>11381</td><td>0.849</td><td>786K (0.17%)</td><td>0.826</td></tr>
+<tr><td><code>r16_tqv_q4</code></td><td>grid</td><td>qlora</td><td>16</td><td>32</td><td>qv</td><td>4</td><td>3.0</td><td><strong>2.33%</strong></td><td>11395</td><td>0.781</td><td>1.57M (0.34%)</td><td>0.832</td></tr></tbody></table></div>
+</section>
+<section id="scripts" class="section">
+<div class="panel"><h2>Shell（精简后仅这些）</h2><ul class='catalog'><li><code>common.sh</code> — 路径、环境变量、日志、GPU 显存监控启停</li><li><code>00_init.sh</code> — 准备 data + 生成 Phase1 yaml/manifest/state</li><li><code>01_train_run.sh</code> — 训练一组 LoRA/QLoRA，写 resources</li><li><code>02_predict_eval_run.sh</code> — 预测 + MBPP 评测，写 metrics</li><li><code>03_report.sh</code> — 生成 md/json/html 报告</li><li><code>run_all.sh</code> — Phase1→alpha→epoch→报告 一键串起来</li><li><code>monitor_gpu.sh</code> — 写 gpu_memory.csv（验收显存指标）</li></ul></div>
+<div class="panel"><h2>common.sh 函数</h2><ul class='catalog'><li><code>log_master</code> — 写 master.log</li><li><code>run_dir / run_log_dir / ensure_run_log_dir</code> — 目录辅助</li><li><code>start_gpu_monitor / stop_gpu_monitor</code> — 显存采集</li><li><code>cd_project_root</code> — 切到项目根</li></ul></div>
+<div class="panel"><h2>Python</h2><h4><code>setup_data.py</code></h4><ul class='catalog'><li><code>main</code> — 拷贝数据并写 dataset_info</li></ul><h4><code>generate_manifest.py</code></h4><ul class='catalog'><li><code>alpha_for_rank / run_id / build_train_config / build_predict_config / initial_run_state / exp_paths / main</code> — 生成 Phase1 8 组配置</li></ul><h4><code>generate_sweep_runs.py</code></h4><ul class='catalog'><li><code>create_sweep_run / main</code> — 基于最优配置生成 alpha/epoch sweep</li></ul><h4><code>pick_best_run.py</code></h4><ul class='catalog'><li><code>pick_best / main</code> — Phase1 选 pass@1 最高</li></ul><h4><code>update_state.py</code></h4><ul class='catalog'><li><code>recompute_overall / main</code> — 更新 train/predict/eval 状态与指标</li></ul><h4><code>collect_train_stats.py</code></h4><ul class='catalog'><li><code>parse_* / main</code> — 汇总显存、速度、参数量</li></ul><h4><code>prune_checkpoints.py</code></h4><ul class='catalog'><li><code>prune / main</code> — 训完删多余 checkpoint</li></ul><h4><code>generate_report.py</code></h4><ul class='catalog'><li><code>build_report / main</code> — 写 experiment_report.md/.json</li></ul><h4><code>gen_results_html.py</code></h4><ul class='catalog'><li><code>main</code> — 写 results.html</li></ul></div>
+</section>
+</main>
+<footer>sft/lora2_exp_cgh/reports/lora2_acceptance_dashboard.html · 运维/分批/看门狗脚本已移除</footer>
+<script>
+document.querySelectorAll('nav.tabs button').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('main .section').forEach(s=>s.classList.remove('active'));
+  btn.classList.add('active'); document.getElementById(btn.dataset.tab).classList.add('active');
+}));
+</script></body></html>

@@ -1,0 +1,142 @@
+{
+  "overview": {
+    "title": "SFT 代码能力优化闭环",
+    "subtitle": "Baseline -> LoRA/QLoRA SFT -> 错误分析 -> 代码修复 SFT -> 前端验收展示",
+    "status": "已完成",
+    "metrics": [
+      {
+        "label": "Repair SFT 样本总数",
+        "value": "248",
+        "note": "来自 MBPP 失败评测样本"
+      },
+      {
+        "label": "训练 / 验证",
+        "value": "223 / 25",
+        "note": "当前 sft_cgh2 数据划分"
+      },
+      {
+        "label": "训练方式",
+        "value": "QLoRA",
+        "note": "rank=8, alpha=16, 4bit · 3 epoch"
+      },
+      {
+        "label": "repair_pass@1",
+        "value": "12%",
+        "note": "验证集 25 条，修对 3 条"
+      }
+    ]
+  },
+  "stages": [
+    {
+      "name": "Baseline",
+      "description": "评测基座模型的原始代码生成能力，作为所有优化的参照。",
+      "deliverables": ["Base MBPP 结果", "典型成功/失败样例", "初始错误类型分布"]
+    },
+    {
+      "name": "LoRA / QLoRA 实验",
+      "description": "比较不同 rank、target module、量化方式对代码生成能力和资源占用的影响。",
+      "deliverables": ["实验矩阵", "pass@1 对比", "显存和训练时间统计", "最佳配置推荐"]
+    },
+    {
+      "name": "错误分析与优化",
+      "description": "把模型失败样本按错误类型拆解，定位主要瓶颈，再进行数据和 prompt 优化。",
+      "deliverables": ["错误类别分布", "失败案例 TopN", "优化建议", "修复前后对比"]
+    },
+    {
+      "name": "代码修复 SFT",
+      "description": "将失败样本转成“题目 + 错误代码 + 报错 -> 修复代码”的监督微调任务。",
+      "deliverables": ["Repair SFT 数据", "独立 adapter", "repair_pass@1", "修复案例展示"]
+    }
+  ],
+  "errorDistribution": [
+    {
+      "type": "name_error",
+      "label": "函数名/变量名错误",
+      "count": 218,
+      "color": "#6366f1"
+    },
+    {
+      "type": "syntax_error",
+      "label": "语法错误",
+      "count": 13,
+      "color": "#f97316"
+    },
+    {
+      "type": "assertion_failure",
+      "label": "逻辑断言失败",
+      "count": 11,
+      "color": "#22c55e"
+    },
+    {
+      "type": "type_error",
+      "label": "类型错误",
+      "count": 4,
+      "color": "#ec4899"
+    },
+    {
+      "type": "runtime_error",
+      "label": "运行时错误",
+      "count": 2,
+      "color": "#64748b"
+    }
+  ],
+  "experiments": [
+    {
+      "model": "Base",
+      "input": "题目描述",
+      "goal": "原始代码生成能力",
+      "status": "已完成"
+    },
+    {
+      "model": "Best SFT / QLoRA",
+      "input": "题目描述",
+      "goal": "提升代码生成 pass@1",
+      "status": "已完成"
+    },
+    {
+      "model": "Repair SFT",
+      "input": "题目 + 错误代码 + 失败测试/报错",
+      "goal": "根据执行反馈修复代码",
+      "status": "已完成 · repair_pass@1 = 12%"
+    }
+  ],
+  "repairCases": [
+    {
+      "taskId": 394,
+      "errorType": "name_error",
+      "problem": "Write a function to check if given tuple contains no duplicates.",
+      "buggyCode": "def checkNoDuplicates(tup):\n    seen = set()\n    for item in tup:\n        if item not in seen:\n            seen.add(item)\n    return len(seen) == len(tup)",
+      "feedback": "Passed 0 / 3 tests. NameError: name 'check_distinct' is not defined. Failed assertion: assert check_distinct((1, 4, 5, 6, 1, 4)) == False",
+      "fixedCode": "def check_distinct(tup):\n    seen = set()\n    for item in tup:\n        if item not in seen:\n            seen.add(item)\n    return len(seen) == len(tup)",
+      "before": "0 / 3",
+      "after": "3 / 3"
+    },
+    {
+      "taskId": 418,
+      "errorType": "name_error",
+      "problem": "Write a python function to find the element of a list having maximum length.",
+      "buggyCode": "def find_max_length(list):\n    max_length = 0\n    max_element = None\n    for element in list:\n        if len(element) > max_length:\n            max_length = len(element)\n            max_element = element\n    return max_element",
+      "feedback": "Passed 0 / 3 tests. NameError: name 'Find_Max' is not defined. Failed assertion: assert Find_Max([['A'],['A','B'],['A','B','C']]) == ['A','B','C']",
+      "fixedCode": "def Find_Max(list):\n    max_length = 0\n    max_element = None\n    for element in list:\n        if len(element) > max_length:\n            max_length = len(element)\n            max_element = element\n    return max_element",
+      "before": "0 / 3",
+      "after": "3 / 3"
+    },
+    {
+      "taskId": 249,
+      "errorType": "name_error",
+      "problem": "Write a function to find the intersection of two arrays.",
+      "buggyCode": "def intersection(arr1, arr2):\n    result = []\n    for i in range(len(arr1)):\n        for j in range(len(arr2)):\n            if arr1[i] == arr2[j]:\n                result.append(arr1[i])\n    return result",
+      "feedback": "Passed 0 / 3 tests. NameError: name 'intersection_array' is not defined. Failed assertion: assert intersection_array([1, 2, 3, 5, 7, 8, 9, 10],[1, 2, 4, 8, 9])==[1, 2, 8, 9]",
+      "fixedCode": "def intersection_array(arr1, arr2):\n    result = []\n    for i in range(len(arr1)):\n        for j in range(len(arr2)):\n            if arr1[i] == arr2[j]:\n                result.append(arr1[i])\n    return result",
+      "before": "0 / 3",
+      "after": "3 / 3"
+    }
+  ],
+  "nextSteps": [
+    "Repair SFT 数据构建完成（248 条）",
+    "QLoRA 训练完成（3 epoch，adapter 已保存）",
+    "验证集预测与 repair_pass@1 评测完成（12%）",
+    "前端推理台与 /repair 接口已就绪",
+    "验收展示：修复案例 + 交互推理可用"
+  ]
+}

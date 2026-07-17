@@ -1,0 +1,189 @@
+{
+  "config": {
+    "min_output_chars": 60,
+    "max_output_chars": 2500,
+    "prefer_output_min": 80,
+    "prefer_output_max": 1200,
+    "require_function_def": true,
+    "reject_stub_only": true,
+    "require_balanced_brackets": true,
+    "reject_trailing_incomplete": true,
+    "dedup_exact": true,
+    "dedup_instruction": true,
+    "dedup_code_fingerprint": true,
+    "enable_balance": true,
+    "target_train_size": 6000,
+    "max_per_type": 0,
+    "min_per_type": 50,
+    "seed": 42,
+    "splits": {
+      "train": "code_sft_train.json",
+      "valid": "code_sft_valid.json",
+      "test": "code_sft_test.json"
+    },
+    "balance_splits": [
+      "train"
+    ]
+  },
+  "splits": [
+    {
+      "split": "train",
+      "input_count": 16750,
+      "hard_pass": 10010,
+      "after_dedup": 9847,
+      "final_count": 4265,
+      "keep_ratio": 0.2546,
+      "hard_reject_reasons": {
+        "no_function_def": 3631,
+        "syntax_error": 1856,
+        "output_too_long": 296,
+        "output_too_short": 942,
+        "stub_only": 12,
+        "trailing_incomplete": 3
+      },
+      "dedup_reasons": {
+        "code_fingerprint_dup": 144,
+        "instruction_dup": 19
+      },
+      "task_type_before_balance": {
+        "string": 3698,
+        "math_number": 1504,
+        "list_array": 3208,
+        "algo_search": 157,
+        "other": 363,
+        "file_io": 319,
+        "class_oop": 376,
+        "dict_set": 313,
+        "date_time": 63,
+        "regex": 9
+      },
+      "task_type_after": {
+        "string": 900,
+        "math_number": 900,
+        "list_array": 900,
+        "algo_search": 155,
+        "other": 359,
+        "file_io": 315,
+        "class_oop": 353,
+        "dict_set": 311,
+        "date_time": 63,
+        "regex": 9
+      },
+      "balance": {
+        "cap_per_type": 900,
+        "before_by_type": {
+          "algo_search": 155,
+          "class_oop": 353,
+          "date_time": 63,
+          "dict_set": 311,
+          "file_io": 315,
+          "list_array": 3158,
+          "math_number": 1448,
+          "other": 359,
+          "regex": 9,
+          "string": 3676
+        },
+        "after_by_type": {
+          "algo_search": 155,
+          "class_oop": 353,
+          "date_time": 63,
+          "dict_set": 311,
+          "file_io": 315,
+          "list_array": 900,
+          "math_number": 900,
+          "other": 359,
+          "regex": 9,
+          "string": 900
+        },
+        "before_total": 9847,
+        "after_total": 4265
+      },
+      "mean_quality": 3.628,
+      "mean_output_len": 336.9
+    },
+    {
+      "split": "valid",
+      "input_count": 930,
+      "hard_pass": 556,
+      "after_dedup": 556,
+      "final_count": 556,
+      "keep_ratio": 0.5978,
+      "hard_reject_reasons": {
+        "output_too_short": 51,
+        "output_too_long": 23,
+        "no_function_def": 210,
+        "syntax_error": 88,
+        "trailing_incomplete": 1,
+        "stub_only": 1
+      },
+      "dedup_reasons": {},
+      "task_type_before_balance": {
+        "string": 213,
+        "math_number": 86,
+        "list_array": 157,
+        "dict_set": 24,
+        "other": 20,
+        "class_oop": 18,
+        "algo_search": 9,
+        "file_io": 25,
+        "regex": 2,
+        "date_time": 2
+      },
+      "task_type_after": {
+        "string": 213,
+        "math_number": 86,
+        "list_array": 157,
+        "dict_set": 24,
+        "other": 20,
+        "class_oop": 18,
+        "algo_search": 9,
+        "file_io": 25,
+        "regex": 2,
+        "date_time": 2
+      },
+      "balance": null,
+      "mean_quality": 3.507,
+      "mean_output_len": 336.3
+    },
+    {
+      "split": "test",
+      "input_count": 932,
+      "hard_pass": 575,
+      "after_dedup": 575,
+      "final_count": 575,
+      "keep_ratio": 0.617,
+      "hard_reject_reasons": {
+        "no_function_def": 197,
+        "syntax_error": 96,
+        "output_too_long": 13,
+        "output_too_short": 51
+      },
+      "dedup_reasons": {},
+      "task_type_before_balance": {
+        "class_oop": 30,
+        "string": 208,
+        "math_number": 100,
+        "other": 22,
+        "dict_set": 18,
+        "list_array": 170,
+        "algo_search": 8,
+        "file_io": 18,
+        "date_time": 1
+      },
+      "task_type_after": {
+        "class_oop": 30,
+        "string": 208,
+        "math_number": 100,
+        "other": 22,
+        "dict_set": 18,
+        "list_array": 170,
+        "algo_search": 8,
+        "file_io": 18,
+        "date_time": 1
+      },
+      "balance": null,
+      "mean_quality": 3.508,
+      "mean_output_len": 345.2
+    }
+  ]
+}

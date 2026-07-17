@@ -1,0 +1,288 @@
+{
+  "metrics": {
+    "repair_pass_at_1": 0.12,
+    "baseline_pass_at_1": 0.0,
+    "syntax_pass_rate": 0.92,
+    "avg_test_pass_rate": 0.2105,
+    "num_samples": 25,
+    "repaired_count": 3,
+    "train_loss": 1.347,
+    "eval_loss": 1.298,
+    "eval_token_accuracy": 0.717,
+    "by_category": {
+      "assertion_failure": {
+        "n": 1,
+        "repair": 0,
+        "before": 0,
+        "avg_tests_after": 0.0,
+        "repair_rate": 0.0
+      },
+      "name_error": {
+        "n": 22,
+        "repair": 3,
+        "before": 0,
+        "avg_tests_after": 0.235,
+        "repair_rate": 0.13636363636363635
+      },
+      "syntax_error": {
+        "n": 2,
+        "repair": 0,
+        "before": 0,
+        "avg_tests_after": 0.0,
+        "repair_rate": 0.0
+      }
+    }
+  },
+  "cases": [
+    {
+      "task_id": 100,
+      "category": "assertion_failure",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.063
+    },
+    {
+      "task_id": 135,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.222
+    },
+    {
+      "task_id": 394,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": true,
+      "syntax_ok": true,
+      "passed_tests": 3,
+      "total_tests": 3,
+      "token_f1_ref": 0.543
+    },
+    {
+      "task_id": 259,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.268
+    },
+    {
+      "task_id": 256,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.642
+    },
+    {
+      "task_id": 405,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 1,
+      "total_tests": 3,
+      "token_f1_ref": 0.737
+    },
+    {
+      "task_id": 58,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 2,
+      "total_tests": 4,
+      "token_f1_ref": 0.333
+    },
+    {
+      "task_id": 304,
+      "category": "syntax_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": false,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.242
+    },
+    {
+      "task_id": 426,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.356
+    },
+    {
+      "task_id": 247,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.278
+    },
+    {
+      "task_id": 16,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.412
+    },
+    {
+      "task_id": 108,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.322
+    },
+    {
+      "task_id": 137,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 2,
+      "total_tests": 3,
+      "token_f1_ref": 0.575
+    },
+    {
+      "task_id": 418,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": true,
+      "syntax_ok": true,
+      "passed_tests": 3,
+      "total_tests": 3,
+      "token_f1_ref": 0.48
+    },
+    {
+      "task_id": 438,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.621
+    },
+    {
+      "task_id": 164,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 2,
+      "total_tests": 3,
+      "token_f1_ref": 0.282
+    },
+    {
+      "task_id": 436,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.558
+    },
+    {
+      "task_id": 71,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.162
+    },
+    {
+      "task_id": 249,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": true,
+      "syntax_ok": true,
+      "passed_tests": 3,
+      "total_tests": 3,
+      "token_f1_ref": 0.375
+    },
+    {
+      "task_id": 237,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.261
+    },
+    {
+      "task_id": 424,
+      "category": "syntax_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": false,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.449
+    },
+    {
+      "task_id": 473,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.373
+    },
+    {
+      "task_id": 120,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.42
+    },
+    {
+      "task_id": 83,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.505
+    },
+    {
+      "task_id": 262,
+      "category": "name_error",
+      "before_passed": false,
+      "after_passed": false,
+      "syntax_ok": true,
+      "passed_tests": 0,
+      "total_tests": 3,
+      "token_f1_ref": 0.545
+    }
+  ]
+}

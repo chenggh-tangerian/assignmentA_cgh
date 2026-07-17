@@ -1,0 +1,53 @@
+{
+  "method": "tree_of_thoughts",
+  "num_tasks": 257,
+  "branch_factor": 3,
+  "beam_width": 2,
+  "depth": 2,
+  "num_generations": 2313,
+  "generation": {
+    "num_generations": 2313,
+    "input_tokens": 750594,
+    "output_tokens": 452465,
+    "total_tokens": 1203059,
+    "avg_input_tokens_per_task": 2920.5992217898834,
+    "avg_output_tokens_per_task": 1760.5642023346304,
+    "avg_total_tokens_per_task": 4681.163424124514
+  },
+  "per_task_avg_generation": {
+    "num_generations": 9.0,
+    "input_tokens": 2920.5992217898834,
+    "output_tokens": 1760.5642023346304,
+    "total_tokens": 4681.163424124514,
+    "avg_input_tokens_per_task": 2920.5992217898834,
+    "avg_output_tokens_per_task": 1760.5642023346304,
+    "avg_total_tokens_per_task": 4681.163424124514
+  },
+  "by_phase": {
+    "thought": {
+      "count": 771,
+      "input_tokens": 148005,
+      "output_tokens": 159905,
+      "total_tokens": 307910,
+      "seconds": 1945.1064000000006
+    },
+    "code": {
+      "count": 1542,
+      "input_tokens": 602589,
+      "output_tokens": 292560,
+      "total_tokens": 895149,
+      "seconds": 4429.277599999998
+    }
+  },
+  "final_answer": {
+    "num_generations": 257,
+    "input_tokens": 101261,
+    "output_tokens": 44014,
+    "total_tokens": 145275,
+    "avg_input_tokens_per_task": 394.011673151751,
+    "avg_output_tokens_per_task": 171.26070038910507,
+    "avg_total_tokens_per_task": 565.272373540856
+  },
+  "estimated_cost_usd": null,
+  "note": "ToT counts every LLM call: thought proposals, optional value scoring, and code expansions under surviving beams."
+}

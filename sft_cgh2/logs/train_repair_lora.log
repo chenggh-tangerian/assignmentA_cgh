@@ -1,0 +1,641 @@
+/opt/conda/envs/chenggh-sft/lib/python3.11/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+[WARNING|2026-07-13 09:00:00] llamafactory.hparams.parser:149 >> We recommend enable `upcast_layernorm` in quantized training.
+[INFO|2026-07-13 09:00:00] llamafactory.hparams.parser:523 >> Process rank: 0, world size: 1, device: cuda:0, distributed training: False, compute dtype: torch.float16
+[INFO|hub.py:364] 2026-07-13 09:00:00,904 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-13 09:00:00,904 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:847] 2026-07-13 09:00:00,909 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:364] 2026-07-13 09:00:00,909 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1592] 2026-07-13 09:00:00,911 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-13 09:00:01,263 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-13 09:00:01,263 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-13 09:00:01,263 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-13 09:00:01,263 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-13 09:00:01,263 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-13 09:00:01,263 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-13 09:00:01,263 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:847] 2026-07-13 09:00:01,265 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:364] 2026-07-13 09:00:01,266 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-13 09:00:01,266 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:847] 2026-07-13 09:00:01,267 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:364] 2026-07-13 09:00:01,267 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1592] 2026-07-13 09:00:01,268 >> Offline mode: forcing local_files_only=True
+[INFO|2026-07-13 09:00:01] llamafactory.data.loader:144 >> Loading dataset repair_sft_train.json...
+Setting num_proc from 8 back to 1 for the train split to disable multiprocessing as it only contains one shard.
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 223 examples [00:00, 16296.36 examples/s]
+Converting format of dataset (num_proc=8):   0%|          | 0/223 [00:00<?, ? examples/s]Converting format of dataset (num_proc=8):  50%|█████     | 112/223 [00:00<00:00, 1083.52 examples/s]Converting format of dataset (num_proc=8): 100%|██████████| 223/223 [00:00<00:00, 1104.93 examples/s]
+[INFO|2026-07-13 09:00:01] llamafactory.data.loader:144 >> Loading dataset repair_sft_valid.json...
+Setting num_proc from 8 back to 1 for the train split to disable multiprocessing as it only contains one shard.
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 25 examples [00:00, 3180.97 examples/s]
+Converting format of dataset (num_proc=8):   0%|          | 0/25 [00:00<?, ? examples/s]Converting format of dataset (num_proc=8):  52%|█████▏    | 13/25 [00:00<00:00, 129.39 examples/s]Converting format of dataset (num_proc=8): 100%|██████████| 25/25 [00:00<00:00, 116.91 examples/s]
+Running tokenizer on dataset (num_proc=8):   0%|          | 0/223 [00:00<?, ? examples/s]Running tokenizer on dataset (num_proc=8):  13%|█▎        | 28/223 [00:02<00:16, 11.79 examples/s]Running tokenizer on dataset (num_proc=8):  25%|██▌       | 56/223 [00:04<00:12, 13.88 examples/s]Running tokenizer on dataset (num_proc=8):  38%|███▊      | 84/223 [00:05<00:09, 14.49 examples/s]Running tokenizer on dataset (num_proc=8):  50%|█████     | 112/223 [00:07<00:07, 14.33 examples/s]Running tokenizer on dataset (num_proc=8):  63%|██████▎   | 140/223 [00:09<00:05, 14.90 examples/s]Running tokenizer on dataset (num_proc=8):  75%|███████▌  | 168/223 [00:11<00:03, 15.26 examples/s]Running tokenizer on dataset (num_proc=8):  88%|████████▊ | 196/223 [00:13<00:01, 15.54 examples/s]Running tokenizer on dataset (num_proc=8): 100%|██████████| 223/223 [00:14<00:00, 15.53 examples/s]Running tokenizer on dataset (num_proc=8): 100%|██████████| 223/223 [00:15<00:00, 14.82 examples/s]
+training example:
+input_ids:
+[151644, 8948, 198, 2610, 525, 1207, 16948, 11, 3465, 553, 54364, 14817, 13, 1446, 525, 264, 10950, 17847, 13, 151645, 198, 151644, 872, 198, 25958, 279, 79311, 13027, 2038, 773, 429, 432, 67901, 279, 15473, 3383, 323, 16211, 279, 21394, 7032, 13, 3411, 1172, 279, 35965, 13027, 2038, 624, 14374, 22079, 198, 7985, 264, 10135, 729, 311, 1477, 279, 8028, 315, 1378, 5109, 382, 14374, 425, 60232, 6119, 198, 73594, 12669, 198, 750, 1308, 3575, 23241, 32964, 2877, 11, 293, 982, 262, 421, 264, 366, 293, 510, 286, 470, 264, 198, 262, 770, 510, 286, 470, 293, 198, 13874, 19324, 14374, 434, 14277, 20150, 608, 4600, 26729, 198, 64723, 220, 15, 608, 220, 18, 7032, 13, 4600, 5582, 25, 829, 4096, 382, 2271, 220, 16, 25, 15592, 4096, 198, 36422, 510, 220, 2887, 3521, 5173, 14, 3096, 602, 21296, 11751, 15, 16, 391, 17, 79, 2899, 17050, 4452, 7197, 497, 1555, 220, 16, 15, 11, 304, 366, 4352, 397, 262, 2060, 8028, 7, 16, 11, 17, 8, 621, 220, 16, 198, 675, 1454, 25, 829, 364, 37988, 6, 374, 537, 4512, 271, 44364, 2271, 220, 17, 25, 15592, 4096, 198, 36422, 510, 220, 2887, 3521, 5173, 14, 3096, 602, 21296, 62, 17, 19310, 19, 84, 19, 79, 2899, 17050, 4452, 7197, 497, 1555, 220, 16, 15, 11, 304, 366, 4352, 397, 262, 2060, 8028, 4080, 20, 4999, 19, 8, 621, 481, 20, 198, 675, 1454, 25, 829, 364, 37988, 6, 374, 537, 4512, 271, 44364, 2271, 220, 18, 25, 15592, 4096, 198, 36422, 510, 220, 2887, 3521, 5173, 14, 3096, 602, 21296, 62, 16, 87, 22252, 8316, 17, 82, 2899, 17050, 4452, 7197, 497, 1555, 220, 16, 15, 11, 304, 366, 4352, 397, 262, 2060, 8028, 7, 15, 11, 15, 8, 621, 220, 15, 198, 675, 1454, 25, 829, 364, 37988, 6, 374, 537, 4512, 151645, 198, 151644, 77091, 198, 750, 8028, 2877, 8402, 1648, 5872, 262, 421, 264, 2651, 293, 25, 715, 286, 470, 264, 715, 262, 770, 25, 715, 286, 470, 293, 151645, 198]
+inputs:
+<|im_start|>system
+You are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>
+<|im_start|>user
+Fix the buggy Python code so that it satisfies the programming task and passes the failing tests. Return only the corrected Python code.
+### Problem
+Write a python function to find the minimum of two numbers.
+
+### Buggy Code
+```python
+def min_of_two_numbers(a, b):
+    if a < b:
+        return a
+    else:
+        return b
+```
+
+### Failing Tests / Error Messages
+Passed 0 / 3 tests. Error category: name_error.
+
+Test 1: runtime_error
+stderr:
+  File "/tmp/mbpp_eval_le01ap2p/candidate_test.py", line 10, in <module>
+    assert minimum(1,2) == 1
+NameError: name 'minimum' is not defined
+
+---
+
+Test 2: runtime_error
+stderr:
+  File "/tmp/mbpp_eval_2iah4u4p/candidate_test.py", line 10, in <module>
+    assert minimum(-5,-4) == -5
+NameError: name 'minimum' is not defined
+
+---
+
+Test 3: runtime_error
+stderr:
+  File "/tmp/mbpp_eval_1xrpfc2s/candidate_test.py", line 10, in <module>
+    assert minimum(0,0) == 0
+NameError: name 'minimum' is not defined<|im_end|>
+<|im_start|>assistant
+def minimum(a,b):   
+    if a <= b: 
+        return a 
+    else: 
+        return b<|im_end|>
+
+label_ids:
+[-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 750, 8028, 2877, 8402, 1648, 5872, 262, 421, 264, 2651, 293, 25, 715, 286, 470, 264, 715, 262, 770, 25, 715, 286, 470, 293, 151645, 198]
+labels:
+def minimum(a,b):   
+    if a <= b: 
+        return a 
+    else: 
+        return b<|im_end|>
+
+Running tokenizer on dataset (num_proc=8):   0%|          | 0/25 [00:00<?, ? examples/s]Running tokenizer on dataset (num_proc=8):  16%|█▌        | 4/25 [00:02<00:12,  1.66 examples/s]Running tokenizer on dataset (num_proc=8):  28%|██▊       | 7/25 [00:04<00:10,  1.69 examples/s]Running tokenizer on dataset (num_proc=8):  40%|████      | 10/25 [00:05<00:08,  1.71 examples/s]Running tokenizer on dataset (num_proc=8):  52%|█████▏    | 13/25 [00:07<00:07,  1.71 examples/s]Running tokenizer on dataset (num_proc=8):  64%|██████▍   | 16/25 [00:09<00:05,  1.71 examples/s]Running tokenizer on dataset (num_proc=8):  76%|███████▌  | 19/25 [00:11<00:03,  1.73 examples/s]Running tokenizer on dataset (num_proc=8):  88%|████████▊ | 22/25 [00:12<00:01,  1.73 examples/s]Running tokenizer on dataset (num_proc=8): 100%|██████████| 25/25 [00:14<00:00,  1.73 examples/s]Running tokenizer on dataset (num_proc=8): 100%|██████████| 25/25 [00:14<00:00,  1.70 examples/s]
+[INFO|hub.py:364] 2026-07-13 09:00:35,573 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-13 09:00:35,574 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:847] 2026-07-13 09:00:35,576 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+eval example:
+input_ids:
+[151644, 8948, 198, 2610, 525, 1207, 16948, 11, 3465, 553, 54364, 14817, 13, 1446, 525, 264, 10950, 17847, 13, 151645, 198, 151644, 872, 198, 25958, 279, 79311, 13027, 2038, 773, 429, 432, 67901, 279, 15473, 3383, 323, 16211, 279, 21394, 7032, 13, 3411, 1172, 279, 35965, 13027, 2038, 624, 14374, 22079, 198, 7985, 264, 729, 311, 1477, 279, 1790, 24632, 73097, 315, 264, 5189, 7546, 11, 5927, 438, 458, 7546, 382, 14374, 425, 60232, 6119, 198, 73594, 12669, 198, 750, 1790, 15874, 19236, 73310, 36058, 1445, 982, 262, 671, 9008, 279, 24632, 73097, 311, 279, 2661, 1372, 198, 262, 24632, 73310, 36058, 284, 308, 7213, 262, 671, 54340, 1526, 279, 5109, 504, 220, 16, 311, 308, 198, 262, 369, 600, 304, 2088, 7, 17, 11, 308, 10, 16, 982, 286, 671, 4248, 421, 279, 1372, 374, 264, 73097, 198, 286, 421, 607, 1956, 8, 621, 607, 1956, 6620, 40635, 16, 10343, 310, 671, 1416, 432, 374, 11, 2647, 279, 24632, 73097, 198, 310, 24632, 73310, 36058, 284, 600, 7213, 262, 470, 24632, 73310, 36058, 198, 13874, 19324, 14374, 434, 14277, 20150, 608, 4600, 26729, 198, 64723, 220, 15, 608, 220, 18, 7032, 13, 4600, 5582, 25, 27419, 43618, 382, 2271, 220, 16, 25, 15592, 4096, 198, 36422, 510, 220, 2887, 3521, 5173, 14, 3096, 602, 21296, 62, 4246, 81, 15, 22, 15, 20, 84, 2899, 17050, 4452, 7197, 497, 1555, 220, 16, 22, 11, 304, 366, 4352, 397, 262, 2060, 1790, 15874, 19236, 73310, 36058, 7, 24, 24, 15348, 16, 15, 16, 198, 68639, 1454, 271, 44364, 2271, 220, 17, 25, 15592, 4096, 198, 36422, 510, 220, 2887, 3521, 5173, 14, 3096, 602, 21296, 10714, 92955, 18080, 17, 72, 2899, 17050, 4452, 7197, 497, 1555, 220, 16, 22, 11, 304, 366, 4352, 397, 262, 2060, 1790, 15874, 19236, 73310, 36058, 7, 16, 17, 17, 16, 15348, 16, 18, 18, 16, 198, 68639, 1454, 271, 44364, 2271, 220, 18, 25, 15592, 4096, 198, 36422, 510, 220, 2887, 3521, 5173, 14, 3096, 602, 21296, 1670, 15, 79, 23815, 73, 18, 67, 2899, 17050, 4452, 7197, 497, 1555, 220, 16, 22, 11, 304, 366, 4352, 397, 262, 2060, 1790, 15874, 19236, 73310, 36058, 7, 16, 17, 15, 15348, 16, 17, 16, 198, 68639, 1454, 151645, 198, 151644, 77091, 198, 474, 5708, 198, 750, 1790, 15874, 19236, 73310, 36058, 8068, 982, 262, 1629, 495, 284, 607, 8068, 340, 262, 369, 600, 304, 2088, 8068, 10, 16, 11, 7791, 6678, 2141, 982, 286, 421, 607, 1956, 8, 621, 607, 1956, 6620, 40635, 16, 10343, 310, 470, 600, 151645, 198]
+inputs:
+<|im_start|>system
+You are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>
+<|im_start|>user
+Fix the buggy Python code so that it satisfies the programming task and passes the failing tests. Return only the corrected Python code.
+### Problem
+Write a function to find the next smallest palindrome of a specified integer, returned as an integer.
+
+### Buggy Code
+```python
+def next_smallest_palindrome(n):
+    # Initialize the smallest palindrome to the given number
+    smallest_palindrome = n
+    
+    # Iterate through the numbers from 1 to n
+    for i in range(2, n+1):
+        # Check if the number is a palindrome
+        if str(i) == str(i)[::-1]:
+            # If it is, update the smallest palindrome
+            smallest_palindrome = i
+    
+    return smallest_palindrome
+```
+
+### Failing Tests / Error Messages
+Passed 0 / 3 tests. Error category: assertion_failure.
+
+Test 1: runtime_error
+stderr:
+  File "/tmp/mbpp_eval_zyr0705u/candidate_test.py", line 17, in <module>
+    assert next_smallest_palindrome(99)==101
+AssertionError
+
+---
+
+Test 2: runtime_error
+stderr:
+  File "/tmp/mbpp_eval_eqxznb2i/candidate_test.py", line 17, in <module>
+    assert next_smallest_palindrome(1221)==1331
+AssertionError
+
+---
+
+Test 3: runtime_error
+stderr:
+  File "/tmp/mbpp_eval_w0pzhj3d/candidate_test.py", line 17, in <module>
+    assert next_smallest_palindrome(120)==121
+AssertionError<|im_end|>
+<|im_start|>assistant
+import sys
+def next_smallest_palindrome(num):
+    numstr = str(num)
+    for i in range(num+1,sys.maxsize):
+        if str(i) == str(i)[::-1]:
+            return i<|im_end|>
+
+label_ids:
+[-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 474, 5708, 198, 750, 1790, 15874, 19236, 73310, 36058, 8068, 982, 262, 1629, 495, 284, 607, 8068, 340, 262, 369, 600, 304, 2088, 8068, 10, 16, 11, 7791, 6678, 2141, 982, 286, 421, 607, 1956, 8, 621, 607, 1956, 6620, 40635, 16, 10343, 310, 470, 600, 151645, 198]
+labels:
+import sys
+def next_smallest_palindrome(num):
+    numstr = str(num)
+    for i in range(num+1,sys.maxsize):
+        if str(i) == str(i)[::-1]:
+            return i<|im_end|>
+
+[INFO|2026-07-13 09:00:35] llamafactory.model.model_utils.quantization:144 >> Quantizing model to 4 bit with bitsandbytes.
+[INFO|2026-07-13 09:00:35] llamafactory.model.model_utils.kv_cache:144 >> KV cache is disabled during training.
+[INFO|modeling_utils.py:748] 2026-07-13 09:00:37,773 >> loading weights file ./Qwen1.5-0.5B-Chat/model.safetensors
+[INFO|modeling_utils.py:821] 2026-07-13 09:00:37,773 >> Will use dtype=torch.bfloat16 as defined in model's config object
+[INFO|configuration_utils.py:1027] 2026-07-13 09:00:37,774 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "eos_token_id": 151645,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "use_cache": false
+}
+
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   1%|          | 2/291 [00:00<00:20, 14.45it/s]Loading weights:  10%|█         | 30/291 [00:00<00:01, 148.34it/s]Loading weights:  43%|████▎     | 126/291 [00:00<00:00, 485.24it/s]Loading weights:  77%|███████▋  | 224/291 [00:00<00:00, 669.34it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 575.11it/s]
+[INFO|configuration_utils.py:978] 2026-07-13 09:00:38,740 >> loading configuration file ./Qwen1.5-0.5B-Chat/generation_config.json
+[INFO|configuration_utils.py:1027] 2026-07-13 09:00:38,740 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "do_sample": true,
+  "eos_token_id": [
+    151645,
+    151643
+  ],
+  "pad_token_id": 151643,
+  "repetition_penalty": 1.1,
+  "top_p": 0.8
+}
+
+[INFO|dynamic_module_utils.py:406] 2026-07-13 09:00:38,741 >> Could not locate the custom_generate/generate.py inside ./Qwen1.5-0.5B-Chat.
+[INFO|2026-07-13 09:00:38] llamafactory.model.model_utils.checkpointing:144 >> Gradient checkpointing enabled.
+[INFO|2026-07-13 09:00:38] llamafactory.model.model_utils.attention:144 >> Using torch SDPA for faster training and inference.
+[INFO|2026-07-13 09:00:38] llamafactory.model.adapter:144 >> Upcasting trainable params to float32.
+[INFO|2026-07-13 09:00:38] llamafactory.model.adapter:144 >> Fine-tuning method: LoRA
+[INFO|2026-07-13 09:00:38] llamafactory.model.loader:144 >> trainable params: 786,432 || all params: 464,774,144 || trainable%: 0.1692
+[WARNING|trainer_utils.py:1238] 2026-07-13 09:00:38,855 >> The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+[INFO|trainer.py:1469] 2026-07-13 09:00:39,148 >> ***** Running training *****
+[INFO|trainer.py:1470] 2026-07-13 09:00:39,148 >>   Num examples = 223
+[INFO|trainer.py:1471] 2026-07-13 09:00:39,148 >>   Num Epochs = 3
+[INFO|trainer.py:1472] 2026-07-13 09:00:39,148 >>   Num update steps per epoch = 28
+[INFO|trainer.py:1473] 2026-07-13 09:00:39,148 >>   Instantaneous batch size per device = 1
+[INFO|trainer.py:1476] 2026-07-13 09:00:39,148 >>   Total train batch size (w. parallel, distributed & accumulation) = 8
+[INFO|trainer.py:1477] 2026-07-13 09:00:39,148 >>   Gradient Accumulation steps = 8
+[INFO|trainer.py:1478] 2026-07-13 09:00:39,148 >>   Total optimization steps = 84
+[INFO|trainer.py:1479] 2026-07-13 09:00:39,151 >>   Number of trainable parameters = 786,432
+  0%|          | 0/84 [00:00<?, ?it/s]  1%|          | 1/84 [00:04<05:57,  4.31s/it]  2%|▏         | 2/84 [00:07<05:05,  3.72s/it]  4%|▎         | 3/84 [00:12<05:38,  4.19s/it]  5%|▍         | 4/84 [00:15<04:50,  3.63s/it]  6%|▌         | 5/84 [00:18<04:38,  3.53s/it]                                                6%|▌         | 5/84 [00:18<04:38,  3.53s/it]  7%|▋         | 6/84 [00:21<04:14,  3.27s/it]  8%|▊         | 7/84 [00:24<04:22,  3.41s/it] 10%|▉         | 8/84 [00:29<04:36,  3.63s/it] 11%|█         | 9/84 [00:33<04:45,  3.81s/it] 12%|█▏        | 10/84 [00:37<04:40,  3.79s/it]                                                12%|█▏        | 10/84 [00:37<04:40,  3.79s/it] 13%|█▎        | 11/84 [00:39<04:11,  3.44s/it] 14%|█▍        | 12/84 [00:42<03:51,  3.21s/it] 15%|█▌        | 13/84 [00:45<03:49,  3.23s/it] 17%|█▋        | 14/84 [00:49<04:00,  3.43s/it] 18%|█▊        | 15/84 [00:55<04:46,  4.15s/it]                                                18%|█▊        | 15/84 [00:55<04:46,  4.15s/it] 19%|█▉        | 16/84 [00:58<04:27,  3.93s/it] 20%|██        | 17/84 [01:01<04:04,  3.65s/it] 21%|██▏       | 18/84 [01:04<03:41,  3.36s/it] 23%|██▎       | 19/84 [01:09<04:07,  3.81s/it] 24%|██▍       | 20/84 [01:12<03:59,  3.74s/it]                                                24%|██▍       | 20/84 [01:12<03:59,  3.74s/it] 25%|██▌       | 21/84 [01:16<03:59,  3.81s/it] 26%|██▌       | 22/84 [01:20<04:02,  3.91s/it] 27%|██▋       | 23/84 [01:47<10:45, 10.58s/it] 29%|██▊       | 24/84 [02:12<15:09, 15.15s/it] 30%|██▉       | 25/84 [02:31<15:52, 16.14s/it]                                                30%|██▉       | 25/84 [02:31<15:52, 16.14s/it] 31%|███       | 26/84 [02:59<18:57, 19.62s/it] 32%|███▏      | 27/84 [03:28<21:28, 22.61s/it] 33%|███▎      | 28/84 [03:55<22:13, 23.80s/it]{'loss': '1.906', 'grad_norm': '1.186', 'learning_rate': '9.996e-05', 'epoch': '0.1794'}
+{'loss': '1.876', 'grad_norm': '1.214', 'learning_rate': '9.865e-05', 'epoch': '0.3587'}
+{'loss': '1.652', 'grad_norm': '1.114', 'learning_rate': '9.552e-05', 'epoch': '0.5381'}
+{'loss': '1.469', 'grad_norm': '1.358', 'learning_rate': '9.068e-05', 'epoch': '0.7175'}
+{'loss': '1.425', 'grad_norm': '0.9782', 'learning_rate': '8.431e-05', 'epoch': '0.8969'}
+ 35%|███▍      | 29/84 [04:30<25:00, 27.29s/it] 36%|███▌      | 30/84 [05:02<25:53, 28.77s/it]                                                36%|███▌      | 30/84 [05:02<25:53, 28.77s/it] 37%|███▋      | 31/84 [05:40<27:41, 31.35s/it] 38%|███▊      | 32/84 [06:20<29:31, 34.07s/it] 39%|███▉      | 33/84 [07:01<30:38, 36.05s/it] 40%|████      | 34/84 [07:41<31:02, 37.25s/it] 42%|████▏     | 35/84 [08:12<28:59, 35.49s/it]                                                42%|████▏     | 35/84 [08:12<28:59, 35.49s/it] 43%|████▎     | 36/84 [08:46<28:02, 35.06s/it] 44%|████▍     | 37/84 [09:26<28:31, 36.41s/it] 45%|████▌     | 38/84 [09:56<26:33, 34.64s/it] 46%|████▋     | 39/84 [10:28<25:19, 33.76s/it] 48%|████▊     | 40/84 [11:00<24:18, 33.14s/it]                                                48%|████▊     | 40/84 [11:00<24:18, 33.14s/it] 49%|████▉     | 41/84 [11:34<23:51, 33.29s/it] 50%|█████     | 42/84 [12:12<24:26, 34.92s/it] 51%|█████     | 43/84 [12:46<23:38, 34.60s/it] 52%|█████▏    | 44/84 [13:22<23:14, 34.85s/it] 54%|█████▎    | 45/84 [13:53<21:57, 33.77s/it]                                                54%|█████▎    | 45/84 [13:53<21:57, 33.77s/it] 55%|█████▍    | 46/84 [14:19<20:01, 31.61s/it] 56%|█████▌    | 47/84 [14:43<17:56, 29.10s/it] 57%|█████▋    | 48/84 [15:08<16:53, 28.14s/it] 58%|█████▊    | 49/84 [15:35<16:08, 27.67s/it] 60%|█████▉    | 50/84 [15:55<14:24, 25.41s/it]                                                60%|█████▉    | 50/84 [15:55<14:24, 25.41s/it] 61%|██████    | 51/84 [16:23<14:20, 26.07s/it] 62%|██████▏   | 52/84 [16:46<13:26, 25.22s/it] 63%|██████▎   | 53/84 [17:10<12:45, 24.71s/it] 64%|██████▍   | 54/84 [17:35<12:29, 24.97s/it] 65%|██████▌   | 55/84 [17:59<11:53, 24.62s/it]                                                65%|██████▌   | 55/84 [17:59<11:53, 24.62s/it] 67%|██████▋   | 56/84 [18:18<10:44, 23.00s/it]{'loss': '1.369', 'grad_norm': '1.12', 'learning_rate': '7.666e-05', 'epoch': '1.072'}
+{'loss': '1.26', 'grad_norm': '0.6587', 'learning_rate': '6.801e-05', 'epoch': '1.251'}
+{'loss': '1.225', 'grad_norm': '0.8528', 'learning_rate': '5.868e-05', 'epoch': '1.43'}
+{'loss': '1.323', 'grad_norm': '0.8967', 'learning_rate': '4.903e-05', 'epoch': '1.61'}
+{'loss': '1.169', 'grad_norm': '0.8491', 'learning_rate': '3.941e-05', 'epoch': '1.789'}
+{'loss': '1.153', 'grad_norm': '0.831', 'learning_rate': '3.02e-05', 'epoch': '1.969'}
+ 68%|██████▊   | 57/84 [18:43<10:37, 23.60s/it] 69%|██████▉   | 58/84 [19:09<10:29, 24.20s/it] 70%|███████   | 59/84 [19:36<10:28, 25.16s/it] 71%|███████▏  | 60/84 [20:02<10:06, 25.25s/it]                                                71%|███████▏  | 60/84 [20:02<10:06, 25.25s/it] 73%|███████▎  | 61/84 [20:24<09:23, 24.52s/it] 74%|███████▍  | 62/84 [20:57<09:51, 26.89s/it] 75%|███████▌  | 63/84 [21:20<08:59, 25.69s/it] 76%|███████▌  | 64/84 [21:51<09:05, 27.29s/it] 77%|███████▋  | 65/84 [22:16<08:24, 26.57s/it]                                                77%|███████▋  | 65/84 [22:16<08:24, 26.57s/it] 79%|███████▊  | 66/84 [22:33<07:09, 23.85s/it] 80%|███████▉  | 67/84 [22:54<06:29, 22.90s/it] 81%|████████  | 68/84 [23:15<05:59, 22.46s/it] 82%|████████▏ | 69/84 [23:44<06:04, 24.33s/it] 83%|████████▎ | 70/84 [24:17<06:17, 26.98s/it]                                                83%|████████▎ | 70/84 [24:17<06:17, 26.98s/it] 85%|████████▍ | 71/84 [24:43<05:48, 26.79s/it] 86%|████████▌ | 72/84 [25:02<04:52, 24.33s/it] 87%|████████▋ | 73/84 [25:28<04:34, 24.92s/it] 88%|████████▊ | 74/84 [25:48<03:53, 23.30s/it] 89%|████████▉ | 75/84 [26:14<03:37, 24.12s/it]                                                89%|████████▉ | 75/84 [26:14<03:37, 24.12s/it] 90%|█████████ | 76/84 [26:43<03:24, 25.61s/it] 92%|█████████▏| 77/84 [27:06<02:53, 24.75s/it] 93%|█████████▎| 78/84 [27:34<02:34, 25.79s/it] 94%|█████████▍| 79/84 [27:54<02:00, 24.05s/it] 95%|█████████▌| 80/84 [28:19<01:37, 24.48s/it]                                                95%|█████████▌| 80/84 [28:19<01:37, 24.48s/it] 96%|█████████▋| 81/84 [28:44<01:13, 24.63s/it] 98%|█████████▊| 82/84 [29:15<00:52, 26.28s/it] 99%|█████████▉| 83/84 [29:30<00:22, 22.94s/it]100%|██████████| 84/84 [29:53<00:00, 22.94s/it][INFO|trainer.py:2668] 2026-07-13 09:30:32,298 >> 
+***** Running Evaluation *****
+[INFO|trainer.py:2670] 2026-07-13 09:30:32,298 >>   Num examples = 25
+[INFO|trainer.py:2673] 2026-07-13 09:30:32,298 >>   Batch size = 1
+{'loss': '1.159', 'grad_norm': '0.7711', 'learning_rate': '2.172e-05', 'epoch': '2.143'}
+{'loss': '1.234', 'grad_norm': '0.7866', 'learning_rate': '1.43e-05', 'epoch': '2.323'}
+{'loss': '1.121', 'grad_norm': '0.633', 'learning_rate': '8.226e-06', 'epoch': '2.502'}
+{'loss': '1.077', 'grad_norm': '0.7863', 'learning_rate': '3.714e-06', 'epoch': '2.682'}
+{'loss': '1.203', 'grad_norm': '0.8641', 'learning_rate': '9.372e-07', 'epoch': '2.861'}
+
+  0%|          | 0/25 [00:00<?, ?it/s][A
+  8%|▊         | 2/25 [00:00<00:03,  5.78it/s][A
+ 12%|█▏        | 3/25 [00:02<00:19,  1.15it/s][A
+ 16%|█▌        | 4/25 [00:02<00:14,  1.48it/s][A
+ 20%|██        | 5/25 [00:02<00:10,  1.90it/s][A
+ 24%|██▍       | 6/25 [00:05<00:21,  1.12s/it][A
+ 28%|██▊       | 7/25 [00:06<00:22,  1.23s/it][A
+ 32%|███▏      | 8/25 [00:06<00:16,  1.04it/s][A
+ 36%|███▌      | 9/25 [00:07<00:11,  1.36it/s][A
+ 40%|████      | 10/25 [00:07<00:08,  1.70it/s][A
+ 44%|████▍     | 11/25 [00:09<00:12,  1.12it/s][A
+ 48%|████▊     | 12/25 [00:09<00:09,  1.30it/s][A
+ 52%|█████▏    | 13/25 [00:10<00:11,  1.02it/s][A
+ 56%|█████▌    | 14/25 [00:12<00:12,  1.16s/it][A
+ 60%|██████    | 15/25 [00:12<00:09,  1.09it/s][A
+ 64%|██████▍   | 16/25 [00:13<00:06,  1.38it/s][A
+ 68%|██████▊   | 17/25 [00:15<00:09,  1.16s/it][A
+ 72%|███████▏  | 18/25 [00:16<00:08,  1.27s/it][A
+ 76%|███████▌  | 19/25 [00:17<00:05,  1.04it/s][A
+ 80%|████████  | 20/25 [00:19<00:07,  1.44s/it][A
+ 84%|████████▍ | 21/25 [00:19<00:04,  1.09s/it][A
+ 88%|████████▊ | 22/25 [00:20<00:02,  1.16it/s][A
+ 92%|█████████▏| 23/25 [00:22<00:02,  1.23s/it][A
+ 96%|█████████▌| 24/25 [00:24<00:01,  1.44s/it][A
+100%|██████████| 25/25 [00:26<00:00,  1.55s/it][A                                               
+                                               [A100%|██████████| 84/84 [30:19<00:00, 22.94s/it]
+100%|██████████| 25/25 [00:26<00:00,  1.55s/it][A
+                                               [A[INFO|trainer.py:3815] 2026-07-13 09:30:58,764 >> Saving model checkpoint to ./sft_cgh2/outputs/qwen15_repair_lora/checkpoint-84
+[INFO|hub.py:364] 2026-07-13 09:30:58,909 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-13 09:30:58,909 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:847] 2026-07-13 09:30:58,911 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|tokenization_utils_base.py:3278] 2026-07-13 09:30:58,922 >> chat template saved in ./sft_cgh2/outputs/qwen15_repair_lora/checkpoint-84/chat_template.jinja
+[INFO|tokenization_utils_base.py:2111] 2026-07-13 09:30:58,922 >> tokenizer config file saved in ./sft_cgh2/outputs/qwen15_repair_lora/checkpoint-84/tokenizer_config.json
+[INFO|trainer.py:1823] 2026-07-13 09:30:59,044 >> 
+
+Training completed. Do not forget to share your model on huggingface.co/models =)
+
+
+                                               100%|██████████| 84/84 [30:19<00:00, 22.94s/it]100%|██████████| 84/84 [30:19<00:00, 21.67s/it]
+[INFO|trainer.py:3815] 2026-07-13 09:30:59,045 >> Saving model checkpoint to ./sft_cgh2/outputs/qwen15_repair_lora
+[INFO|hub.py:364] 2026-07-13 09:30:59,187 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-13 09:30:59,188 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:847] 2026-07-13 09:30:59,189 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|tokenization_utils_base.py:3278] 2026-07-13 09:30:59,198 >> chat template saved in ./sft_cgh2/outputs/qwen15_repair_lora/chat_template.jinja
+[INFO|tokenization_utils_base.py:2111] 2026-07-13 09:30:59,199 >> tokenizer config file saved in ./sft_cgh2/outputs/qwen15_repair_lora/tokenizer_config.json
+[INFO|trainer.py:2668] 2026-07-13 09:30:59,650 >> 
+***** Running Evaluation *****
+[INFO|trainer.py:2670] 2026-07-13 09:30:59,650 >>   Num examples = 25
+[INFO|trainer.py:2673] 2026-07-13 09:30:59,650 >>   Batch size = 1
+{'eval_loss': '1.298', 'eval_accuracy': '0.7168', 'eval_runtime': '26.47', 'eval_samples_per_second': '0.945', 'eval_steps_per_second': '0.945', 'epoch': '3'}
+{'train_runtime': '1820', 'train_samples_per_second': '0.368', 'train_steps_per_second': '0.046', 'train_loss': '1.347', 'epoch': '3'}
+***** train metrics *****
+  epoch                    =        3.0
+  total_flos               =   513388GF
+  train_loss               =     1.3473
+  train_runtime            = 0:30:19.89
+  train_samples_per_second =      0.368
+  train_steps_per_second   =      0.046
+Figure saved at: ./sft_cgh2/outputs/qwen15_repair_lora/training_loss.png
+Figure saved at: ./sft_cgh2/outputs/qwen15_repair_lora/training_eval_loss.png
+Figure saved at: ./sft_cgh2/outputs/qwen15_repair_lora/training_eval_accuracy.png
+  0%|          | 0/25 [00:00<?, ?it/s] 12%|█▏        | 3/25 [00:00<00:00, 22.69it/s] 24%|██▍       | 6/25 [00:05<00:19,  1.04s/it] 28%|██▊       | 7/25 [00:07<00:22,  1.27s/it] 32%|███▏      | 8/25 [00:09<00:23,  1.37s/it] 36%|███▌      | 9/25 [00:09<00:17,  1.09s/it] 40%|████      | 10/25 [00:09<00:13,  1.12it/s] 44%|████▍     | 11/25 [00:11<00:16,  1.15s/it] 48%|████▊     | 12/25 [00:13<00:16,  1.31s/it] 52%|█████▏    | 13/25 [00:13<00:13,  1.11s/it] 56%|█████▌    | 14/25 [00:14<00:09,  1.12it/s] 60%|██████    | 15/25 [00:16<00:14,  1.42s/it] 64%|██████▍   | 16/25 [00:17<00:10,  1.15s/it] 68%|██████▊   | 17/25 [00:17<00:06,  1.14it/s] 72%|███████▏  | 18/25 [00:17<00:04,  1.52it/s] 76%|███████▌  | 19/25 [00:20<00:07,  1.26s/it] 80%|████████  | 20/25 [00:22<00:07,  1.43s/it] 84%|████████▍ | 21/25 [00:22<00:04,  1.07s/it] 88%|████████▊ | 22/25 [00:22<00:02,  1.21it/s] 92%|█████████▏| 23/25 [00:23<00:01,  1.54it/s] 96%|█████████▌| 24/25 [00:25<00:01,  1.15s/it]100%|██████████| 25/25 [00:25<00:00,  1.09it/s]100%|██████████| 25/25 [00:25<00:00,  1.03s/it]
+[INFO|modelcard.py:263] 2026-07-13 09:31:25,634 >> Dropping the following result as it does not have all the necessary fields:
+{'task': {'name': 'Causal Language Modeling', 'type': 'text-generation'}, 'metrics': [{'name': 'Accuracy', 'type': 'accuracy', 'value': 0.7167516914268623}]}
+***** eval metrics *****
+  epoch                   =        3.0
+  eval_accuracy           =     0.7168
+  eval_loss               =     1.2979
+  eval_runtime            = 0:00:25.98
+  eval_samples_per_second =      0.962
+  eval_steps_per_second   =      0.962

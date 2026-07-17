@@ -1,0 +1,605 @@
+{
+  "generated_at": "2026-07-12T06:49:49.454942+00:00",
+  "source": {
+    "cases_file": "/root/siton-tmp/assignment_A/sft_cgh_dataop3/outputs/eval/mbpp_cases.jsonl",
+    "metrics_file": "/root/siton-tmp/assignment_A/sft_cgh_dataop3/outputs/eval/mbpp_metrics.json"
+  },
+  "summary": {
+    "num_cases_analyzed": 257,
+    "num_passed": 61,
+    "num_failed": 196,
+    "partial_pass_cases": 33,
+    "pass_at_1_from_metrics": 0.23735408560311283,
+    "syntax_pass_rate_from_metrics": 0.9649805447470817,
+    "note": "Cases file may be a subset (evaluate_code_predictions.py default case_limit=200). Compare num_cases_analyzed with metrics num_tasks for coverage."
+  },
+  "category_distribution": [
+    {
+      "category": "assertion_failure",
+      "label_zh": "逻辑错误(断言失败)",
+      "count": 98,
+      "ratio_in_all": 0.3813,
+      "ratio_in_failed": 0.5,
+      "improvement_hint": "核心逻辑错误：增加相似算法题解、分步推理数据，或做 execution-based 微调/DPO。"
+    },
+    {
+      "category": "pass_all",
+      "label_zh": "全部通过",
+      "count": 61,
+      "ratio_in_all": 0.2374,
+      "ratio_in_failed": 0.3112,
+      "improvement_hint": "保持当前策略，可作为正例加入训练集。"
+    },
+    {
+      "category": "partial_pass",
+      "label_zh": "部分测试通过",
+      "count": 32,
+      "ratio_in_all": 0.1245,
+      "ratio_in_failed": 0.1633,
+      "improvement_hint": "分析未通过的 assert 模式，针对失败用例做 targeted 数据增强。"
+    },
+    {
+      "category": "type_error",
+      "label_zh": "类型错误",
+      "count": 27,
+      "ratio_in_all": 0.1051,
+      "ratio_in_failed": 0.1378,
+      "improvement_hint": "增加类型边界样例（空列表、None、混合类型）；加强 docstring/参数说明。"
+    },
+    {
+      "category": "other_runtime",
+      "label_zh": "其他运行时错误",
+      "count": 12,
+      "ratio_in_all": 0.0467,
+      "ratio_in_failed": 0.0612,
+      "improvement_hint": "人工抽查 stderr，归入更细类别后补充规则。"
+    },
+    {
+      "category": "function_name_mismatch",
+      "label_zh": "函数名不匹配",
+      "count": 10,
+      "ratio_in_all": 0.0389,
+      "ratio_in_failed": 0.051,
+      "improvement_hint": "训练数据与评测对齐函数命名（MBPP 要求与题目一致）；prompt 中显式给出函数签名；DPO 可用「错名/对名」偏好对。"
+    },
+    {
+      "category": "syntax_error",
+      "label_zh": "语法错误",
+      "count": 8,
+      "ratio_in_all": 0.0311,
+      "ratio_in_failed": 0.0408,
+      "improvement_hint": "增加语法正确的代码样本；训练时强调完整函数体与闭合括号；检查 max_new_tokens 是否过小。"
+    },
+    {
+      "category": "attribute_error",
+      "label_zh": "属性错误",
+      "count": 4,
+      "ratio_in_all": 0.0156,
+      "ratio_in_failed": 0.0204,
+      "improvement_hint": "检查是否误用对象属性或 API；补充相关 API 用法示例。"
+    },
+    {
+      "category": "boundary_error",
+      "label_zh": "边界条件错误",
+      "count": 3,
+      "ratio_in_all": 0.0117,
+      "ratio_in_failed": 0.0153,
+      "improvement_hint": "针对空输入、单元素、越界等边界构造专项训练样本；可用 hard negative 做 DPO。"
+    },
+    {
+      "category": "truncation_or_repetition",
+      "label_zh": "代码截断/重复生成",
+      "count": 1,
+      "ratio_in_all": 0.0039,
+      "ratio_in_failed": 0.0051,
+      "improvement_hint": "增大 max_new_tokens；加入截断惩罚或重复惩罚；SFT 数据避免过长重复模式。"
+    },
+    {
+      "category": "timeout",
+      "label_zh": "运行超时",
+      "count": 1,
+      "ratio_in_all": 0.0039,
+      "ratio_in_failed": 0.0051,
+      "improvement_hint": "优化算法复杂度相关训练数据；评测可适当放宽 timeout 以区分 TLE vs 逻辑错。"
+    }
+  ],
+  "subcategory_distribution": [
+    {
+      "key": "partial_pass/partial",
+      "count": 32
+    },
+    {
+      "key": "function_name_mismatch/defined_vs_expected",
+      "count": 10
+    },
+    {
+      "key": "other_runtime/name_error_other",
+      "count": 8
+    },
+    {
+      "key": "syntax_error/ast_parse_failed",
+      "count": 8
+    },
+    {
+      "key": "truncation_or_repetition/unclosed_bracket_at_eof",
+      "count": 1
+    },
+    {
+      "key": "type_error/partial",
+      "count": 1
+    }
+  ],
+  "top_examples_by_category": {
+    "assertion_failure": [
+      {
+        "task_id": 12,
+        "prompt": "Write a function to sort a given matrix in ascending order according to the sum of its rows.",
+        "defined_functions": [
+          "sort_matrix"
+        ],
+        "expected_functions": [
+          "sort_matrix"
+        ],
+        "code_preview": "def sort_matrix(M):\n    # sort matrix in ascending order according to the sum of its rows\n    N = len(M)\n    for i in range(N):\n        for j in range(N):\n            if M[j][i] > M[j][i-1]:\n                M[j][i], M[j][i-1] = M[j][i-1], M[j][i]\n    return M",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_g1akzra2/candidate_test.py\", line 13, in <module>\n    assert sort_matrix([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssert",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 14,
+        "prompt": "Write a python function to find the volume of a triangular prism.",
+        "defined_functions": [
+          "find_Volume"
+        ],
+        "expected_functions": [
+          "find_Volume"
+        ],
+        "code_preview": "def find_Volume(l, b, h):\n    return (l * b * h) / 4\n\nvolume = find_Volume(3, 4, 5)\nprint(\"Volume of the triangular prism is: \", volume)",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_4k3wxz31/candidate_test.py\", line 10, in <module>\n    assert find_Volume(10,8,6) == 240\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 17,
+        "prompt": "Write a function that returns the perimeter of a square given its side length as input.",
+        "defined_functions": [
+          "square_perimeter"
+        ],
+        "expected_functions": [
+          "square_perimeter"
+        ],
+        "code_preview": "def square_perimeter(a):\n    perimeter = a + a + a\n    return perimeter",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_7ftrrb3z/candidate_test.py\", line 8, in <module>\n    assert square_perimeter(10)==40\n           ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+        "passed_tests": 0,
+        "total_tests": 3
+      }
+    ],
+    "partial_pass": [
+      {
+        "task_id": 16,
+        "prompt": "Write a function to that returns true if the input string contains sequences of lowercase letters joined with an underscore and false otherwise.",
+        "defined_functions": [
+          "text_lowercase_underscore"
+        ],
+        "expected_functions": [
+          "text_lowercase_underscore"
+        ],
+        "code_preview": "def text_lowercase_underscore(text):\n    return any(c.islower() for c in text.split('_'))",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_76fjjf_k/candidate_test.py\", line 7, in <module>\n    assert text_lowercase_underscore(\"aab_Abbbc\")==(False)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+        "passed_tests": 1,
+        "total_tests": 3
+      },
+      {
+        "task_id": 58,
+        "prompt": "Write a python function to check whether the given two integers have opposite sign or not.",
+        "defined_functions": [
+          "opposite_Signs"
+        ],
+        "expected_functions": [
+          "opposite_Signs"
+        ],
+        "code_preview": "def opposite_Signs(x, y):\n    if x > 0 and y < 0:\n        return False\n    elif x < 0 and y > 0:\n        return False\n    elif x < 0 and y < 0:\n        return False\n    elif x > 0 and y < 0:\n        return True\n    else:\n        return False",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_0q2k14o3/candidate_test.py\", line 16, in <module>\n    assert opposite_Signs(1,-2) == True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+        "passed_tests": 2,
+        "total_tests": 4
+      },
+      {
+        "task_id": 67,
+        "prompt": "Write a function to find the number of ways to partition a set of Bell numbers.",
+        "defined_functions": [
+          "bell_number"
+        ],
+        "expected_functions": [
+          "bell_number"
+        ],
+        "code_preview": "def bell_number(n):\n    if n == 0:\n        return 1\n    else:\n        num_of_ways = 0\n        for i in range(1, n+1):\n            if n % i == 0:\n                num_of_ways += 1\n        return num_of_ways",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_hsvb98wh/candidate_test.py\", line 14, in <module>\n    assert bell_number(10)==115975\n           ^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+        "passed_tests": 1,
+        "total_tests": 3
+      }
+    ],
+    "other_runtime": [
+      {
+        "task_id": 18,
+        "prompt": "Write a function to remove characters from the first string which are present in the second string.",
+        "defined_functions": [
+          "str_to_list"
+        ],
+        "expected_functions": [
+          "get_char_count_array",
+          "lst_to_string",
+          "remove_dirty_chars",
+          "str_to_list"
+        ],
+        "code_preview": "def str_to_list(string):\n    return list(string)",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_gylijual/candidate_test.py\", line 7, in <module>\n    assert remove_dirty_chars(\"probasscurve\", \"pros\") == 'bacuve'\n           ^^^^^^^^^^^^^^^^^^\nNameError: name 'remove_dirty_chars' is not defined\n",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 56,
+        "prompt": "Write a python function to check if a given number is one less than twice its reverse.",
+        "defined_functions": [
+          "rev",
+          "is_one_less_than_reverse"
+        ],
+        "expected_functions": [
+          "check",
+          "rev"
+        ],
+        "code_preview": "def rev(num): \n    if num == 0: \n        return 0\n    return num - 1\n\ndef is_one_less_than_reverse(num): \n    return rev(num) == num",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_zu7p_d48/candidate_test.py\", line 12, in <module>\n    assert check(70) == False\n           ^^^^^\nNameError: name 'check' is not defined\n",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 70,
+        "prompt": "Write a function to find whether all the given tuples have equal length or not.",
+        "defined_functions": [
+          "find_equal_tuple"
+        ],
+        "expected_functions": [
+          "find_equal_tuple",
+          "get_equal"
+        ],
+        "code_preview": "def find_equal_tuple(Input):\n    if len(Input) != len(set(Input)):\n        return False\n    else:\n        return True",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_h3gxs5r8/candidate_test.py\", line 10, in <module>\n    assert get_equal([(11, 22, 33), (44, 55, 66)]) == True\n           ^^^^^^^^^\nNameError: name 'get_equal' is not defined\n",
+        "passed_tests": 0,
+        "total_tests": 3
+      }
+    ],
+    "function_name_mismatch": [
+      {
+        "task_id": 57,
+        "prompt": "Write a python function to find the largest number that can be formed with the given list of digits.",
+        "defined_functions": [
+          "find"
+        ],
+        "expected_functions": [
+          "find_Max_Num"
+        ],
+        "code_preview": "def find(Max_Num):\n    max_num = 0\n    for num in arr:\n        if num > max_num:\n            max_num = num\n    return max_num",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_e4nklbxw/candidate_test.py\", line 11, in <module>\n    assert find_Max_Num([1,2,3]) == 321\n           ^^^^^^^^^^^^\nNameError: name 'find_Max_Num' is not defined\n",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 61,
+        "prompt": "Write a python function to count the number of substrings with the sum of digits equal to their length.",
+        "defined_functions": [
+          "count"
+        ],
+        "expected_functions": [
+          "count_Substrings"
+        ],
+        "code_preview": "def count(Substrings):\n    count = 0\n    for i in range(len(s)):\n        for j in range(i+1, len(s)+1):\n            substr = s[i:j]\n            if sum(int(digit) for digit in substr) == len(substr):\n                count += 1\n    return count",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_gfpri1sh/candidate_test.py\", line 13, in <module>\n    assert count_Substrings('112112') == 6\n           ^^^^^^^^^^^^^^^^\nNameError: name 'count_Substrings' is not defined\n",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 74,
+        "prompt": "Write a function to check whether it follows the sequence given in the patterns array.",
+        "defined_functions": [
+          "is_same_patterns"
+        ],
+        "expected_functions": [
+          "is_samepatterns"
+        ],
+        "code_preview": "def is_same_patterns(colors, patterns):\n    for i in range(len(patterns)):\n        if i != 0:\n            if not colors[i] == patterns[i]:\n                return False\n    return True",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_77gose2u/candidate_test.py\", line 11, in <module>\n    assert is_samepatterns([\"red\",\"green\",\"green\"], [\"a\", \"b\", \"b\"])==True\n           ^^^^^^^^^^^^^^^\nNameError: name 'is_samepatterns' is not defined. Did you mean: 'is_same_patterns'?\n",
+        "passed_tests": 0,
+        "total_tests": 3
+      }
+    ],
+    "type_error": [
+      {
+        "task_id": 63,
+        "prompt": "Write a function to find the maximum difference between available pairs in the given tuple list.",
+        "defined_functions": [
+          "max_difference"
+        ],
+        "expected_functions": [
+          "max_difference"
+        ],
+        "code_preview": "def max_difference(test_list):\n    max_difference = 0\n    for i in range(len(test_list)):\n        for j in range(i+1, len(test_list)):\n            diff = test_list[i] - test_list[j]\n            if diff > max_difference:\n                max_difference = diff\n    return max_difference",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_wfjij54_/candidate_test.py\", line 13, in <module>\n    assert max_difference([(3, 5), (1, 7), (10, 3), (1, 2)]) == 7\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/mbpp_eval_wfjij54_/candidate_test.py\", line 8, in ma",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 65,
+        "prompt": "Write a function to flatten a list and sum all of its elements.",
+        "defined_functions": [
+          "recursive_list_sum",
+          "sum_list_elements"
+        ],
+        "expected_functions": [
+          "recursive_list_sum"
+        ],
+        "code_preview": "def recursive_list_sum(data_list):\n    if len(data_list) == 0:\n        return 0\n    else:\n        return data_list[0] + recursive_list_sum(data_list[1:])\n\ndef sum_list_elements(data_list):\n    return sum(data_list)",
+        "stderr_snippet": "  File \"/tmp/mbpp_eval_9hrjd93t/candidate_test.py\", line 8, in recursive_list_sum\n    return data_list[0] + recursive_list_sum(data_list[1:])\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/mbpp_eval_9hrjd93t/candidate_test.py\", line 8, in recursive_list_sum\n    return data_",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 75,
+        "prompt": "Write a function to find tuples which have all elements divisible by k from the given list of tuples.",
+        "defined_functions": [
+          "find_tuples"
+        ],
+        "expected_functions": [
+          "find_tuples"
+        ],
+        "code_preview": "def find_tuples(test_list, K):\n    result = []\n    for i in range(len(test_list)):\n        for j in range(i + 1, len(test_list)):\n            for k in range(j + 1, len(test_list)):\n                if test_list[i] % K == 0 and test_list[j] % K == 0 and test_list[k] % K == 0:\n                    resul",
+        "stderr_snippet": "aceback (most recent call last):\n  File \"/tmp/mbpp_eval__rsp0t2y/candidate_test.py\", line 13, in <module>\n    assert find_tuples([(6, 24, 12), (7, 9, 6), (12, 18, 21)], 6) == [(6, 24, 12)]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/mbpp_eval__rsp0t2y/candidate_tes",
+        "passed_tests": 0,
+        "total_tests": 3
+      }
+    ],
+    "boundary_error": [
+      {
+        "task_id": 64,
+        "prompt": "Write a function to sort a list of tuples using the second value of each tuple.",
+        "defined_functions": [
+          "subject_marks"
+        ],
+        "expected_functions": [
+          "subject_marks"
+        ],
+        "code_preview": "def subject_marks(subjectmarks):\n    marks = []\n    for i in range(len(subjectmarks)):\n        marks.append(min(subjectmarks[i],marks[i+1]))\n    return marks",
+        "stderr_snippet": "n <module>\n    assert subject_marks([('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)])==[('Social sciences', 82), ('English', 88), ('Science', 90), ('Maths', 97)]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tm",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 119,
+        "prompt": "Write a python function to find the element that appears only once in a sorted array.",
+        "defined_functions": [
+          "search"
+        ],
+        "expected_functions": [
+          "search"
+        ],
+        "code_preview": "def search(arr):\n    n = len(arr)\n    result = -1\n    for i in range(n):\n        if arr[i] == arr[i+1]:\n            result = i\n    return result",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_7dn7nt68/candidate_test.py\", line 12, in <module>\n    assert search([1,1,2,2,3]) == 3\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/mbpp_eval_7dn7nt68/candidate_test.py\", line 8, in search\n    if arr[i] == arr[i+1]:\n                 ~~~^^^^^\nIn",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 124,
+        "prompt": "Write a function to get the angle of a complex number.",
+        "defined_functions": [
+          "angle_complex"
+        ],
+        "expected_functions": [
+          "angle_complex"
+        ],
+        "code_preview": "def angle_complex(a, b):\n    \"\"\"\n    Returns the angle of a complex number\n    \"\"\"\n    return math.acos((b**2) - (a**2))\n\nif __name__ == '__main__':\n    a = 1\n    b = 2\n    print(angle_complex(a, b))",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_uhmgk3i_/candidate_test.py\", line 15, in <module>\n    print(angle_complex(a, b))\n          ^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/mbpp_eval_uhmgk3i_/candidate_test.py\", line 10, in angle_complex\n    return math.acos((b**2) - (a**2))\n           ^^^^",
+        "passed_tests": 0,
+        "total_tests": 3
+      }
+    ],
+    "syntax_error": [
+      {
+        "task_id": 83,
+        "prompt": "Write a python function to find the character made by adding the ASCII value of all the characters of the given string modulo 26.",
+        "defined_functions": [
+          "get_Char"
+        ],
+        "expected_functions": [
+          "get_Char"
+        ],
+        "code_preview": "def get_Char(strr):\n    result = \"\"\n    for ch in strr:\n        result += chr(ord(ch) + ord('a') - 1))\n    return result",
+        "stderr_snippet": "",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 95,
+        "prompt": "Write a python function to find the length of the smallest list in a list of lists.",
+        "defined_functions": [],
+        "expected_functions": [
+          "Find_Min_Length"
+        ],
+        "code_preview": "def FindMinMax Length(lst):\n    min_length = 0\n    for i in range(len(lst)):\n        for j in range(i+1, len(lst)):\n            if lst[i] < lst[j]:\n                min_length = min(min_length, len(lst[i]))\n    return min_length",
+        "stderr_snippet": "",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 108,
+        "prompt": "Write a function to merge three lists into a single sorted list.",
+        "defined_functions": [
+          "merge_sorted_list"
+        ],
+        "expected_functions": [
+          "merge_sorted_list"
+        ],
+        "code_preview": "def merge_sorted_list(num1, num2, num3):\n    # create a list to store the result\n    result = []\n    # loop through the lists\n    i = 0\n    j = 0\n    k = 0\n\n    # while there are elements in all three lists\n    while i < len(num1) and j < len(num2) and k < len(num3):\n        # if element in first li",
+        "stderr_snippet": "",
+        "passed_tests": 0,
+        "total_tests": 3
+      }
+    ],
+    "truncation_or_repetition": [
+      {
+        "task_id": 100,
+        "prompt": "Write a function to find the next smallest palindrome of a specified integer, returned as an integer.",
+        "defined_functions": [
+          "next_smallest_palindrome"
+        ],
+        "expected_functions": [
+          "next_smallest_palindrome"
+        ],
+        "code_preview": "def next_smallest_palindrome(num):\n    # Create a list of all possible substrings of length 1\n    substrings = [str(num)[0]]\n    for i in range(1, int(num**0.5)+1):\n        substrings.append(str(num)[i])\n    # Create a list of all possible substrings of length 2\n    substrings_2 = [str(num)[i], str(",
+        "stderr_snippet": "",
+        "passed_tests": 0,
+        "total_tests": 3
+      }
+    ],
+    "attribute_error": [
+      {
+        "task_id": 130,
+        "prompt": "Write a function to find the item with maximum frequency in a given list.",
+        "defined_functions": [
+          "max_occurrences"
+        ],
+        "expected_functions": [
+          "max_occurrences"
+        ],
+        "code_preview": "def max_occurrences(nums):\n    max_occurrences = 0\n    max_item = None\n    for i in range(len(nums)):\n        curr_frequency = nums[i].count()\n        if curr_frequency > max_frequency:\n            max_frequency = curr_frequency\n            max_item = nums[i]\n    return max_item",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_5p4va6zt/candidate_test.py\", line 14, in <module>\n    assert max_occurrences([2,3,8,4,7,9,8,2,6,5,1,6,1,2,3,2,4,6,9,1,2])==2\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/mbpp_eval_5p4va6zt/candidate_tes",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 308,
+        "prompt": "Write a function to find the specified number of largest products from two given lists, selecting one factor from each list.",
+        "defined_functions": [
+          "large_product"
+        ],
+        "expected_functions": [
+          "large_product"
+        ],
+        "code_preview": "def large_product(nums1, nums2, N):\n    nums1_set = set(nums1)\n    nums2_set = set(nums2)\n    nums1_set.difference_set(nums2_set)\n    return max(nums1_set, nums2_set, key = nums1_set.count)",
+        "stderr_snippet": "Traceback (most recent call last):\n  File \"/tmp/mbpp_eval_rm4z121s/candidate_test.py\", line 10, in <module>\n    assert large_product([1, 2, 3, 4, 5, 6],[3, 6, 8, 9, 10, 6],3)==[60, 54, 50]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/mbpp_eval_rm4z121s/candidate_te",
+        "passed_tests": 0,
+        "total_tests": 3
+      },
+      {
+        "task_id": 437,
+        "prompt": "Write a function to remove odd characters in a string.",
+        "defined_functions": [
+          "remove_odd"
+        ],
+        "expected_functions": [
+          "remove_odd"
+        ],
+        "code_preview": "def remove_odd(str1):\n    str1 = ''.join([c for c in str1 if c.isodd()])\n    return str1",
+        "stderr_snippet": ".py\", line 8, in <module>\n    assert remove_odd(\"python\")==(\"yhn\")\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/mbpp_eval_i8czhgi1/candidate_test.py\", line 5, in remove_odd\n    str1 = ''.join([c for c in str1 if c.isodd()])\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/mbpp_eval_i8c",
+        "passed_tests": 0,
+        "total_tests": 3
+      }
+    ],
+    "timeout": [
+      {
+        "task_id": 389,
+        "prompt": "Write a function to find the n'th lucas number.",
+        "defined_functions": [
+          "find_lucas"
+        ],
+        "expected_functions": [
+          "find_lucas"
+        ],
+        "code_preview": "def find_lucas(n):\n    # Returns the nth Lucas number\n    # http://www.youtube.com/watch?v=VHcOOGdStmI\n    # It can be calculated using the following algorithm:\n    # 1. Find the nth smallest positive integer\n    # 2. Divide the integer by 2 and square the result\n    # 3. Add the result to 1\n    # 4",
+        "stderr_snippet": "Command '['/opt/conda/envs/chenggh-sft/bin/python', '/tmp/mbpp_eval_rscwcsn7/candidate_test.py']' timed out after 5.0 seconds",
+        "passed_tests": 0,
+        "total_tests": 3
+      }
+    ]
+  },
+  "actionable_priorities": [
+    {
+      "priority": "P0",
+      "category": "assertion_failure",
+      "label_zh": "逻辑错误(断言失败)",
+      "count": 98,
+      "share_of_failures": 0.5,
+      "recommended_action": "核心逻辑错误：增加相似算法题解、分步推理数据，或做 execution-based 微调/DPO。"
+    },
+    {
+      "priority": "P1",
+      "category": "partial_pass",
+      "label_zh": "部分测试通过",
+      "count": 32,
+      "share_of_failures": 0.1633,
+      "recommended_action": "分析未通过的 assert 模式，针对失败用例做 targeted 数据增强。"
+    },
+    {
+      "priority": "P2",
+      "category": "type_error",
+      "label_zh": "类型错误",
+      "count": 27,
+      "share_of_failures": 0.1378,
+      "recommended_action": "增加类型边界样例（空列表、None、混合类型）；加强 docstring/参数说明。"
+    },
+    {
+      "priority": "P2",
+      "category": "other_runtime",
+      "label_zh": "其他运行时错误",
+      "count": 12,
+      "share_of_failures": 0.0612,
+      "recommended_action": "人工抽查 stderr，归入更细类别后补充规则。"
+    },
+    {
+      "priority": "P2",
+      "category": "function_name_mismatch",
+      "label_zh": "函数名不匹配",
+      "count": 10,
+      "share_of_failures": 0.051,
+      "recommended_action": "训练数据与评测对齐函数命名（MBPP 要求与题目一致）；prompt 中显式给出函数签名；DPO 可用「错名/对名」偏好对。"
+    },
+    {
+      "priority": "P3",
+      "category": "syntax_error",
+      "label_zh": "语法错误",
+      "count": 8,
+      "share_of_failures": 0.0408,
+      "recommended_action": "增加语法正确的代码样本；训练时强调完整函数体与闭合括号；检查 max_new_tokens 是否过小。"
+    },
+    {
+      "priority": "P3",
+      "category": "attribute_error",
+      "label_zh": "属性错误",
+      "count": 4,
+      "share_of_failures": 0.0204,
+      "recommended_action": "检查是否误用对象属性或 API；补充相关 API 用法示例。"
+    },
+    {
+      "priority": "P3",
+      "category": "boundary_error",
+      "label_zh": "边界条件错误",
+      "count": 3,
+      "share_of_failures": 0.0153,
+      "recommended_action": "针对空输入、单元素、越界等边界构造专项训练样本；可用 hard negative 做 DPO。"
+    },
+    {
+      "priority": "P3",
+      "category": "truncation_or_repetition",
+      "label_zh": "代码截断/重复生成",
+      "count": 1,
+      "share_of_failures": 0.0051,
+      "recommended_action": "增大 max_new_tokens；加入截断惩罚或重复惩罚；SFT 数据避免过长重复模式。"
+    },
+    {
+      "priority": "P3",
+      "category": "timeout",
+      "label_zh": "运行超时",
+      "count": 1,
+      "share_of_failures": 0.0051,
+      "recommended_action": "优化算法复杂度相关训练数据；评测可适当放宽 timeout 以区分 TLE vs 逻辑错。"
+    }
+  ]
+}

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A5 个人模块验收 — Greedy / CoT / ToT</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --surface: #1a2332;
+      --surface2: #243044;
+      --border: #2d3a4f;
+      --text: #e7ecf3;
+      --muted: #8b9cb3;
+      --accent: #3b82f6;
+      --accent2: #06b6d4;
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --purple: #a855f7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #60a5fa, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .subtitle { color: var(--muted); margin-top: 0.5rem; font-size: 1.05rem; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+    .badge {
+      display: inline-flex; align-items: center;
+      padding: 0.3rem 0.75rem; border-radius: 999px;
+      font-size: 0.82rem; font-weight: 500;
+      border: 1px solid var(--border); background: var(--surface);
+    }
+    .badge.primary { border-color: #2563eb55; background: #1e3a5f44; color: #93c5fd; }
+    .badge.green { border-color: #16a34a55; background: #14532d44; color: #86efac; }
+    .badge.amber { border-color: #d9770655; background: #78350f44; color: #fcd34d; }
+
+    h2 {
+      font-size: 1.35rem; margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: #cbd5e1;
+    }
+    h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: #94a3b8; }
+    p { margin-bottom: 0.85rem; color: #c8d3e0; }
+    ul, ol { margin: 0.5rem 0 1rem 1.25rem; color: #c8d3e0; }
+    li { margin-bottom: 0.35rem; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem;
+    }
+    .card.highlight {
+      border-color: #2563eb66;
+      background: linear-gradient(135deg, #1e293b 0%, #17255433 100%);
+    }
+    .card-title {
+      font-weight: 600; font-size: 1rem; margin-bottom: 0.6rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .dot.blue { background: var(--accent); }
+    .dot.cyan { background: var(--accent2); }
+    .dot.green { background: var(--green); }
+    .dot.purple { background: var(--purple); }
+    .dot.amber { background: var(--amber); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 1rem 0; }
+    th, td { padding: 0.65rem 0.85rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th {
+      background: var(--surface2); color: #94a3b8; font-weight: 600;
+      font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    tr:hover td { background: #ffffff06; }
+    .num { font-variant-numeric: tabular-nums; font-family: "Cascadia Code", "Fira Code", monospace; }
+    .best { color: var(--green); font-weight: 600; }
+    .ok { color: var(--green); }
+    .warn { color: var(--amber); }
+
+    code, .path {
+      font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+      font-size: 0.84rem; background: #0d1117;
+      padding: 0.15rem 0.45rem; border-radius: 4px; color: #79c0ff;
+    }
+    pre {
+      background: #0d1117; border: 1px solid var(--border); border-radius: 8px;
+      padding: 1rem 1.15rem; overflow-x: auto; font-size: 0.82rem;
+      line-height: 1.5; margin: 0.75rem 0 1rem; color: #c9d1d9;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } h1 { font-size: 1.5rem; } }
+
+    .toc {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 2rem;
+    }
+    .toc ol { margin-bottom: 0; }
+    .toc a { color: var(--accent2); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    .req-table th:first-child { width: 140px; }
+    .req-check { color: var(--green); font-weight: 600; }
+
+    .flow {
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: 0.5rem; margin: 1rem 0; font-size: 0.88rem;
+    }
+    .flow-box {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.5rem 0.85rem;
+    }
+    .flow-arrow { color: var(--muted); }
+
+    .ref-only { opacity: 0.75; font-size: 0.92rem; }
+
+    footer {
+      margin-top: 3rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>A5 个人模块验收</h1>
+    <p class="subtitle">Greedy 基线 · CoT 思维链 · Tree of Thoughts · 效果与成本对比</p>
+    <div class="meta-row">
+      <span class="badge primary">负责：Greedy / CoT / ToT</span>
+      <span class="badge green">MBPP test · 257 题 · checkpoint-1304</span>
+      <span class="badge amber">目录：a5_cgh/ · tts/</span>
+      <span class="badge">更新：2026-07-13</span>
+    </div>
+  </header>
+
+  <nav class="toc">
+    <strong style="color:#94a3b8;">目录</strong>
+    <ol>
+      <li><a href="#acceptance">个人模块验收对照（1.2）</a></li>
+      <li><a href="#compare">实验对比（Greedy vs CoT vs ToT）</a></li>
+      <li><a href="#io">独立输入输出</a></li>
+      <li><a href="#run">独立运行与演示</a></li>
+      <li><a href="#code">独立代码验收</a></li>
+      <li><a href="#integrate">可集成接口</a></li>
+      <li><a href="#modules">模块说明</a></li>
+      <li><a href="#refs">关联模块（仅引用）</a></li>
+    </ol>
+  </nav>
+
+  <!-- ========== ACCEPTANCE CHECKLIST ========== -->
+  <section id="acceptance">
+    <h2>1. 个人模块验收对照（1.2）</h2>
+    <p>对照课程「个人模块要求」，本模块（A5 · Greedy / CoT / ToT）逐项说明如下：</p>
+    <table class="req-table">
+      <thead>
+        <tr><th>要求</th><th>说明</th><th>本模块对应</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>独立输入输出</strong></td>
+          <td>输入输出定义清晰，如输入 prompt 输出模型回复，或输入任务描述输出调用轨迹</td>
+          <td class="ok">✓ 见 <a href="#io" style="color:#22d3ee">§3</a>：每策略有明确 Input / Output / Trace 定义</td>
+        </tr>
+        <tr>
+          <td><strong>独立运行</strong></td>
+          <td>有独立脚本、Notebook、CLI 命令或 Web Demo</td>
+          <td class="ok">✓ <code>scripts/eval_greedy.sh</code> · <code>eval_cot.sh</code> · <code>eval_tot.sh</code></td>
+        </tr>
+        <tr>
+          <td><strong>独立演示</strong></td>
+          <td>验收时本人现场运行、讲解、展示结果</td>
+          <td class="ok">✓ 见 <a href="#run" style="color:#22d3ee">§4</a> 演示流程与可展示产物</td>
+        </tr>
+        <tr>
+          <td><strong>独立代码验收</strong></td>
+          <td>提交本人负责代码、README、配置、运行日志、截图或视频</td>
+          <td class="ok">✓ 见 <a href="#code" style="color:#22d3ee">§5</a> 代码清单 + 日志 + JSON 指标</td>
+        </tr>
+        <tr>
+          <td><strong>可集成</strong></td>
+          <td>提供函数、API、JSON、命令行或中间文件接口供他人调用</td>
+          <td class="ok">✓ 见 <a href="#integrate" style="color:#22d3ee">§6</a> CLI + JSON/JSONL 中间产物</td>
+        </tr>
+        <tr>
+          <td><strong>有实验或对比</strong></td>
+          <td>至少包含 baseline 对比、训练前后对比、参数对比、错误分析或 case 分析之一</td>
+          <td class="ok">✓ 见 <a href="#compare" style="color:#22d3ee">§2</a>：三策略同模型同数据集 pass@1 / Token / 耗时对比</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== COMPARISON ========== -->
+  <section id="compare">
+    <h2>2. 实验对比（同模型 · 同数据集）</h2>
+    <p>
+      统一条件：模型 <code>rl/outputs/train_lora_ppo_full/checkpoint-1304</code>，
+      评测集 MBPP sanitized test（257 题），对比三种本人负责策略的<strong>准确率 vs Token 成本 vs 墙钟耗时</strong>。
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>策略</th>
+          <th>pass@1</th>
+          <th>通过题数</th>
+          <th>syntax</th>
+          <th>avg tokens / task</th>
+          <th>avg 耗时 / task</th>
+          <th>LLM 调用 / task</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Greedy</strong></td>
+          <td class="num best">12.45%</td>
+          <td class="num best">32 / 257</td>
+          <td class="num">82.9%</td>
+          <td class="num">278</td>
+          <td class="num">2.1 s</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td><strong>CoT</strong></td>
+          <td class="num">10.12%</td>
+          <td class="num">26 / 257</td>
+          <td class="num">81.3%</td>
+          <td class="num">379</td>
+          <td class="num">3.4 s</td>
+          <td class="num">1</td>
+        </tr>
+        <tr>
+          <td><strong>ToT</strong></td>
+          <td class="num">6.23%</td>
+          <td class="num">16 / 257</td>
+          <td class="num best">98.4%</td>
+          <td class="num">4,681</td>
+          <td class="num">26.1 s</td>
+          <td class="num">~9</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <div class="card-title"><span class="dot amber"></span>对比结论</div>
+      <ul>
+        <li><strong>Greedy 准确率最高</strong>（12.45%），成本最低（278 tokens / 2.1 s），作为 TTS 成本下界</li>
+        <li><strong>CoT 未带来 pass@1 提升</strong>（10.12% &lt; Greedy），但输出更长（+36% tokens），可能因 Final code 抽取失败或推理链干扰</li>
+        <li><strong>ToT 语法率最高</strong>（98.4%），计划→代码两阶段有效；但 pass@1 最低且成本约为 Greedy 的 <strong>17× tokens / 12× 耗时</strong></li>
+        <li>在当前 PPO checkpoint 上，<strong>简单 greedy 解码优于复杂 Test-Time 搜索</strong>，性价比需按场景权衡</li>
+      </ul>
+    </div>
+
+    <h3>2.1 产物路径（互不影响）</h3>
+    <table>
+      <thead><tr><th>策略</th><th>指标文件</th><th>运行日志</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Greedy</td>
+          <td class="path">a5_cgh/outputs/eval_greedy/mbpp_metrics_greedy.json</td>
+          <td class="path">a5_cgh/outputs/logs/eval_greedy_cot_pipeline.log</td>
+        </tr>
+        <tr>
+          <td>CoT</td>
+          <td class="path">a5_cgh/outputs/eval_cot/mbpp_metrics_cot.json</td>
+          <td class="path">a5_cgh/outputs/logs/eval_greedy_cot_pipeline.log</td>
+        </tr>
+        <tr>
+          <td>ToT</td>
+          <td class="path">a5_cgh/outputs/eval_tot/mbpp_metrics_tot.json</td>
+          <td class="path">a5_cgh/outputs/logs/eval_tot.log</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== IO ========== -->
+  <section id="io">
+    <h2>3. 独立输入输出</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title"><span class="dot blue"></span>Greedy</div>
+        <p><strong>Input</strong></p>
+        <ul>
+          <li>MBPP 任务行（prompt + test_list）</li>
+          <li>官方 MBPP Prompt 模板（[BEGIN]/[DONE]）</li>
+          <li>模型 checkpoint 路径</li>
+        </ul>
+        <p><strong>Output</strong></p>
+        <ul>
+          <li><code>mbpp_metrics_greedy.json</code> — pass@1、token、timing</li>
+          <li><code>mbpp_cases_greedy.jsonl</code> — 逐题代码 + 测试结果</li>
+          <li><code>mbpp_greedy_records.jsonl</code> — 原始 completion</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="dot cyan"></span>CoT</div>
+        <p><strong>Input</strong></p>
+        <ul>
+          <li>MBPP 任务描述 + 测试用例</li>
+          <li>CoT 结构化 Prompt（Reasoning / Key steps / Final code）</li>
+          <li>模型 checkpoint 路径</li>
+        </ul>
+        <p><strong>Output</strong></p>
+        <ul>
+          <li><code>mbpp_metrics_cot.json</code></li>
+          <li><code>mbpp_cases_cot.jsonl</code> — 含完整 CoT 回复 + 抽取代码</li>
+          <li><code>mbpp_cot_records.jsonl</code></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="dot purple"></span>ToT — 含调用轨迹</div>
+      <p><strong>Input</strong>：MBPP 任务 + 搜索超参（branch_factor / beam_width / depth）</p>
+      <p><strong>Output</strong>：</p>
+      <ul>
+        <li><code>mbpp_metrics_tot.json</code> — 汇总指标</li>
+        <li><code>mbpp_tot_records.jsonl</code> — 每题完整搜索记录</li>
+        <li><code>mbpp_nodes_tot.jsonl</code> — <strong>调用轨迹</strong>：thought 节点 → code 候选 → 打分 → 选优路径</li>
+      </ul>
+      <div class="flow">
+        <span class="flow-box">task prompt</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">3× thought 提案</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">beam 剪枝 (2)</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">2×2 code 展开</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">verifier 打分</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-box">最优 code</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RUN & DEMO ========== -->
+  <section id="run">
+    <h2>4. 独立运行与演示</h2>
+
+    <h3>4.1 一键运行（CLI）</h3>
+    <pre>cd /root/siton-tmp/assignment_A
+
+# Greedy 全量（~9 min）
+bash a5_cgh/scripts/eval_greedy.sh
+
+# CoT 全量（~15 min，默认无 few-shot）
+bash a5_cgh/scripts/eval_cot.sh
+
+# ToT 全量（~110 min）
+bash a5_cgh/scripts/eval_tot.sh
+
+# Smoke test（验收演示推荐，2 题）
+LIMIT=2 bash a5_cgh/scripts/eval_greedy.sh
+LIMIT=2 bash a5_cgh/scripts/eval_cot.sh</pre>
+
+    <h3>4.2 现场演示建议流程</h3>
+    <ol>
+      <li>展示对比表（§2）— 三策略 pass@1 / 成本差异</li>
+      <li>运行 <code>LIMIT=2 bash a5_cgh/scripts/eval_cot.sh</code>，展示终端生成进度</li>
+      <li>打开 <code>mbpp_cases_cot.jsonl</code> 展示 CoT 完整回复与 Final code 抽取</li>
+      <li>打开 <code>mbpp_nodes_tot.jsonl</code> 展示 ToT 搜索树与调用轨迹</li>
+      <li>对比 Greedy vs CoT 同一 task_id 的 pass/fail 差异（case 分析）</li>
+    </ol>
+
+    <h3>4.3 环境变量</h3>
+    <table>
+      <thead><tr><th>变量</th><th>默认</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><code>MODEL_PATH</code></td><td class="path">rl/outputs/train_lora_ppo_full/checkpoint-1304</td><td>模型 checkpoint</td></tr>
+        <tr><td><code>OUTPUT_DIR</code></td><td>eval_greedy / eval_cot / eval_tot</td><td>输出目录（互不覆盖）</td></tr>
+        <tr><td><code>LIMIT</code></td><td>0（全量）</td><td>限制题数，演示用 2</td></tr>
+        <tr><td><code>GPU_ID</code></td><td>0</td><td>GPU 编号</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== CODE ACCEPTANCE ========== -->
+  <section id="code">
+    <h2>5. 独立代码验收</h2>
+
+    <h3>5.1 本人负责代码</h3>
+    <table>
+      <thead><tr><th>文件</th><th>功能</th></tr></thead>
+      <tbody>
+        <tr><td class="path">a5_cgh/mbpp_eval_baseline.py</td><td>Greedy / CoT 评测主入口（--method greedy|cot）</td></tr>
+        <tr><td class="path">a5_cgh/cot_code_example.py</td><td>CoT Prompt 模板 + extract_final_code()（与 tts/ 同名对齐）</td></tr>
+        <tr><td class="path">a5_cgh/baseline_common.py</td><td>单路径生成 + Token/Timing 统计</td></tr>
+        <tr><td class="path">a5_cgh/mbpp_eval_tot.py</td><td>ToT 评测主入口</td></tr>
+        <tr><td class="path">a5_cgh/tree_of_thoughts.py</td><td>ToT 搜索：thought → beam → code → 选优</td></tr>
+        <tr><td class="path">a5_cgh/token_stats.py</td><td>单次 generate 的 Token 计数</td></tr>
+        <tr><td class="path">a5_cgh/tree_of_thoughts.py · baseline_common.py</td><td>ToT / 单路径的 Timing 与 Token 成本汇总</td></tr>
+        <tr><td class="path">a5_cgh/scripts/eval_greedy.sh · eval_cot.sh · eval_tot.sh</td><td>CLI 运行脚本</td></tr>
+        <tr><td class="path">a5_cgh/README.md</td><td>模块说明与复现指南</td></tr>
+        <tr><td class="path">tts/cot_code_example.py</td><td>CoT Prompt 原型（a5_cgh 对齐复用）</td></tr>
+      </tbody>
+    </table>
+
+    <h3>5.2 配置与日志</h3>
+    <table>
+      <thead><tr><th>类型</th><th>路径</th></tr></thead>
+      <tbody>
+        <tr><td>默认超参</td><td>shell 脚本内环境变量（MODEL_PATH / BATCH_SIZE / MAX_NEW_TOKENS 等）</td></tr>
+        <tr><td>Greedy+CoT 运行日志</td><td class="path">a5_cgh/outputs/logs/eval_greedy_cot_pipeline.log</td></tr>
+        <tr><td>ToT 运行日志</td><td class="path">a5_cgh/outputs/logs/eval_tot.log</td></tr>
+        <tr><td>指标 JSON</td><td class="path">outputs/eval_*/mbpp_metrics_*.json</td></tr>
+        <tr><td>逐题 case</td><td class="path">outputs/eval_*/mbpp_cases_*.jsonl</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ========== INTEGRATION ========== -->
+  <section id="integrate">
+    <h2>6. 可集成接口</h2>
+    <p>其他组员可通过以下方式调用或消费本模块产物：</p>
+
+    <table>
+      <thead><tr><th>接口类型</th><th>说明</th><th>示例</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>CLI 命令</strong></td>
+          <td>环境变量配置，stdout 打印 metrics JSON</td>
+          <td><code>bash a5_cgh/scripts/eval_greedy.sh</code></td>
+        </tr>
+        <tr>
+          <td><strong>Python 入口</strong></td>
+          <td>可被其他脚本 import 或直接调用</td>
+          <td><code>python a5_cgh/mbpp_eval_baseline.py --method cot</code></td>
+        </tr>
+        <tr>
+          <td><strong>JSON 指标</strong></td>
+          <td>统一 schema：pass@1 + token_cost + timing</td>
+          <td><code>mbpp_metrics_greedy.json</code></td>
+        </tr>
+        <tr>
+          <td><strong>JSONL 中间文件</strong></td>
+          <td>逐题生成记录 / case / ToT 节点，供下游分析或可视化</td>
+          <td><code>mbpp_*_records.jsonl</code> · <code>mbpp_nodes_tot.jsonl</code></td>
+        </tr>
+        <tr>
+          <td><strong>可复用函数</strong></td>
+          <td>Prompt 构建与代码抽取</td>
+          <td><code>cot_code_example.build_chat_messages()</code> · <code>extract_final_code()</code></td>
+        </tr>
+        <tr>
+          <td><strong>评测底座</strong></td>
+          <td>MBPP 加载、代码执行、assert 评测（复用 dpo 模块）</td>
+          <td><code>dpo/scripts/mbpp_eval_dpo.py</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <div class="card-title"><span class="dot green"></span>集成示例：读取 Greedy 指标</div>
+      <pre>import json
+from pathlib import Path
+
+metrics = json.loads(
+    Path("a5_cgh/outputs/eval_greedy/mbpp_metrics_greedy.json").read_text()
+)
+print(metrics["pass_at_1"], metrics["token_cost"]["generation"]["avg_total_tokens_per_task"])</pre>
+    </div>
+  </section>
+
+  <!-- ========== MODULE DETAILS ========== -->
+  <section id="modules">
+    <h2>7. 模块说明</h2>
+
+    <h3>7.1 Greedy 基线</h3>
+    <div class="card">
+      <p>MBPP 官方 Prompt（<code>[BEGIN]</code> / <code>[DONE]</code>），temperature=0 单次解码，每题 1 次 LLM 调用。</p>
+      <ul>
+        <li>代码抽取：<code>extract_candidate_code()</code>（mbpp_eval_dpo）</li>
+        <li>全量结果：pass@1 <strong>12.45%</strong>，278 tokens/task，2.1 s/task</li>
+      </ul>
+    </div>
+
+    <h3>7.2 CoT 基线</h3>
+    <div class="card">
+      <pre>Reasoning:   — 解题思路
+Key steps:   — 实现步骤
+Final code:  — ```python ... ```  （仅此区块参与评测）</pre>
+      <ul>
+        <li>默认：无 few-shot，greedy 解码，max_new_tokens=768</li>
+        <li>全量结果：pass@1 <strong>10.12%</strong>，379 tokens/task，3.4 s/task</li>
+      </ul>
+    </div>
+
+    <h3>7.3 Tree of Thoughts</h3>
+    <div class="card">
+      <p>两阶段 beam 搜索（BF=3, BW=2, D=2）：计划提案 → 剪枝 → 代码展开 → verifier 选优。</p>
+      <ul>
+        <li>全量结果：pass@1 <strong>6.23%</strong>，4681 tokens/task，26.1 s/task，syntax 98.4%</li>
+        <li>ToT Token 分解：thought 307K + code 895K = 合计 1.2M tokens</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== REFS ========== -->
+  <section id="refs" class="ref-only">
+    <h2>8. 关联模块（仅引用，非本人负责）</h2>
+    <div class="card">
+      <ul>
+        <li><strong>SFT / DPO / PPO 训练</strong> — 提供 checkpoint-1304 基座模型</li>
+        <li><strong>Self-Consistency / Best-of-N / Reflexion</strong> — 组内其他 TTS 策略，本报告不展开</li>
+        <li><strong>MBPP 数据集</strong> — 统一评测集</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    文件路径：<code>a5_cgh/A5验收清单.html</code> ·
+    项目根目录：<code>/root/siton-tmp/assignment_A</code> ·
+    实验日期：2026-07-12 ~ 2026-07-13
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "benchmark": "MBPP",
+  "config": "sanitized",
+  "split": "test",
+  "predictions": "sft/outputs/qwen15_code_base_predict/generated_predictions.jsonl",
+  "mbpp_dir": "/root/siton-tmp/mbpp",
+  "num_tasks": 257,
+  "pass_at_1": 0.0038910505836575876,
+  "syntax_pass_rate": 0.5836575875486382,
+  "avg_test_pass_rate": 0.005154639175257732,
+  "exact_match": 0.0,
+  "avg_code_token_f1": 0.25207030752238685,
+  "passed_tasks": 1,
+  "total_tests": 776,
+  "passed_tests": 4,
+  "note": "Reports pass@1 using MBPP sanitized task tests and execution outputs."
+}

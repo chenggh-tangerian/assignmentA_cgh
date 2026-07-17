@@ -1,0 +1,39 @@
+# 功能: 公平对比——v2 模型但对无签名 MBPP 预测（设置同 baseline）
+# 输入: v2 模型 + mbpp_sanitized_test（无签名）
+# 输出: sft/outputs_cgh/predict_v2_fair_compare/
+### Fair comparison with baseline predict config — only model differs.
+### baseline predict: sft/configs/qwen15_code_full_predict.yaml
+### baseline model: sft/outputs/qwen15_code_full_sft
+### this run model: sft/outputs_cgh/qwen15_sft_with_signature
+
+### model
+model_name_or_path: ./sft/outputs_cgh/qwen15_sft_with_signature
+trust_remote_code: true
+
+### method
+stage: sft
+do_predict: true
+finetuning_type: full
+
+### dataset  (same as baseline: original MBPP prompt, NO function signature)
+dataset_dir: ./sft/data_cgh
+eval_dataset: mbpp_sanitized_test
+template: qwen
+cutoff_len: 2048
+overwrite_cache: true
+preprocessing_num_workers: 8
+dataloader_num_workers: 2
+
+### output
+output_dir: ./sft/outputs_cgh/predict_v2_fair_compare
+overwrite_output_dir: true
+report_to: none
+
+### generation  (identical to baseline)
+per_device_eval_batch_size: 2
+predict_with_generate: true
+max_new_tokens: 768
+do_sample: false
+num_beams: 1
+fp16: true
+ddp_timeout: 180000000

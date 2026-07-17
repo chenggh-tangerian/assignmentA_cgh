@@ -1,0 +1,31 @@
+{
+  "trainable_params": 786432,
+  "all_params": 464774144,
+  "trainable_pct": 0.1692,
+  "train_loss": 0.8570380920401351,
+  "train_runtime_sec": 7366.3147,
+  "train_samples_per_second": 6.822,
+  "train_steps_per_second": 0.853,
+  "epoch": 3.0,
+  "eval_loss": 0.7803059816360474,
+  "eval_accuracy": null,
+  "gpu_memory_peak_mib": 11381,
+  "gpu_memory_avg_mib": 11350.6,
+  "gpu_util_peak_pct": 35,
+  "gpu_monitor_samples": 1466,
+  "gpu_memory_total_mib": 23552,
+  "adapter_size_bytes": 3158328,
+  "adapter_size_mb": 3.012,
+  "hyperparams": {
+    "lora_rank": 8,
+    "lora_alpha": 8,
+    "lora_dropout": 0.05,
+    "lora_target": "q_proj,v_proj",
+    "lora_target_key": "qv",
+    "quantization_bit": 4,
+    "learning_rate": 0.0001,
+    "num_train_epochs": 3.0,
+    "finetuning_type": "qlora",
+    "alpha_multiplier": 1
+  }
+}

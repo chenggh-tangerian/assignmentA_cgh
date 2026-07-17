@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A5 — Test-Time Scaling 策略效果与成本对比</title>
+  <style>
+    :root {
+      --bg: #0f1419; --surface: #1a2332; --surface2: #243044;
+      --border: #2d3a4f; --text: #e7ecf3; --muted: #8b9cb3;
+      --accent: #3b82f6; --accent2: #06b6d4; --green: #22c55e;
+      --amber: #f59e0b; --red: #ef4444; --purple: #a855f7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.65; padding: 2rem 1.5rem 4rem;
+    }
+    .container { max-width: 1180px; margin: 0 auto; }
+    header { border-bottom: 1px solid var(--border); padding-bottom: 2rem; margin-bottom: 2rem; }
+    h1 {
+      font-size: 2rem; font-weight: 700;
+      background: linear-gradient(135deg, #60a5fa, #22d3ee);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .subtitle { color: var(--muted); margin-top: 0.5rem; font-size: 1.05rem; }
+    .meta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.25rem; }
+    .badge {
+      display: inline-flex; padding: 0.3rem 0.75rem; border-radius: 999px;
+      font-size: 0.82rem; border: 1px solid var(--border); background: var(--surface);
+    }
+    .badge.primary { border-color: #2563eb55; background: #1e3a5f44; color: #93c5fd; }
+    .badge.green { border-color: #16a34a55; background: #14532d44; color: #86efac; }
+    .badge.amber { border-color: #d9770655; background: #78350f44; color: #fcd34d; }
+
+    h2 { font-size: 1.35rem; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); color: #cbd5e1; }
+    h3 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; color: #94a3b8; }
+    p { margin-bottom: 0.85rem; color: #c8d3e0; }
+    ul, ol { margin: 0.5rem 0 1rem 1.25rem; color: #c8d3e0; }
+    li { margin-bottom: 0.35rem; }
+
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin: 1rem 0; }
+    .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem; }
+    .stat .label { font-size: 0.8rem; color: var(--muted); }
+    .stat .value { font-size: 1.6rem; font-weight: 700; color: var(--green); margin-top: 0.2rem; }
+    .stat .sub { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem;
+    }
+    .card.highlight { border-color: #2563eb66; background: linear-gradient(135deg, #1e293b 0%, #17255433 100%); }
+    .card-title { font-weight: 600; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .dot.blue { background: var(--accent); }
+    .dot.cyan { background: var(--accent2); }
+    .dot.green { background: var(--green); }
+    .dot.purple { background: var(--purple); }
+    .dot.amber { background: var(--amber); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.86rem; margin: 0.75rem 0; }
+    th, td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { background: var(--surface2); color: #94a3b8; font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    tr:hover td { background: #ffffff06; }
+    .num { font-variant-numeric: tabular-nums; font-family: "Cascadia Code", "Fira Code", monospace; white-space: nowrap; }
+    .best { color: var(--green); font-weight: 700; }
+    .warn { color: var(--amber); }
+    .muted { color: var(--muted); font-size: 0.82rem; }
+
+    code, .path {
+      font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+      font-size: 0.82rem; background: #0d1117; padding: 0.15rem 0.45rem; border-radius: 4px; color: #79c0ff;
+    }
+
+    .bar-wrap { display: flex; align-items: center; gap: 0.5rem; min-width: 120px; }
+    .bar-bg { flex: 1; height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #3b82f6, #06b6d4); }
+    .bar-fill.green { background: linear-gradient(90deg, #22c55e, #4ade80); }
+
+    .tag {
+      display: inline-block; font-size: 0.72rem; padding: 0.15rem 0.45rem;
+      border-radius: 4px; border: 1px solid var(--border); color: var(--muted); margin-right: 0.25rem;
+    }
+    .tag.mine { border-color: #2563eb55; color: #93c5fd; }
+    .tag.other { border-color: #6b728055; color: #9ca3af; }
+
+    .toc {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 2rem;
+    }
+    .toc ol { margin-bottom: 0; }
+    .toc a { color: var(--accent2); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    .note {
+      font-size: 0.85rem; color: var(--muted); padding: 0.75rem 1rem;
+      background: var(--surface2); border-radius: 8px; border-left: 3px solid var(--amber); margin: 1rem 0;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } h1 { font-size: 1.5rem; } }
+
+    footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Test-Time Scaling 策略效果与成本对比</h1>
+  <p class="subtitle">统一 checkpoint · 统一评测集 · 准确率 vs Token vs 墙钟耗时</p>
+  <div class="meta-row">
+    <span class="badge primary">模型：PPO checkpoint-1304</span>
+    <span class="badge green">MBPP sanitized test · 257 题</span>
+    <span class="badge amber">Greedy 基线：12.45% pass@1</span>
+    <span class="badge">2026-07-13</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <strong style="color:#94a3b8;">目录</strong>
+  <ol>
+    <li><a href="#setup">实验设置与可比性说明</a></li>
+    <li><a href="#summary">核心结论一览</a></li>
+    <li><a href="#main">主对比表（效果 + 成本）</a></li>
+    <li><a href="#oracle">Oracle 上界与选优 gap</a></li>
+    <li><a href="#phase">分阶段成本分解</a></li>
+    <li><a href="#tradeoff">性价比分析</a></li>
+    <li><a href="#ownership">模块归属</a></li>
+    <li><a href="#artifacts">产物路径</a></li>
+  </ol>
+</nav>
+
+<!-- ========== SETUP ========== -->
+<section id="setup">
+  <h2>1. 实验设置与可比性说明</h2>
+  <div class="card highlight">
+    <div class="card-title"><span class="dot blue"></span>统一条件</div>
+    <ul>
+      <li><strong>模型</strong>：<code class="path">rl/outputs/train_lora_ppo_full/checkpoint-1304</code></li>
+      <li><strong>评测集</strong>：MBPP sanitized test，257 题，zero-shot prompt（example task IDs: 2,3,4）</li>
+      <li><strong>评测底座</strong>：共用 <code>dpo/scripts/mbpp_eval_dpo.py</code>（prompt 构造、代码抽取、assert 执行）</li>
+      <li><strong>Greedy 基线</strong>：MBPP 官方模板 + <code>temperature=0</code> 单次解码，作为所有 TTS 策略的成本下界</li>
+    </ul>
+  </div>
+  <div class="note">
+    <strong>可比性要点：</strong>Greedy / CoT / ToT（<code>a5_cgh/</code>）与 SC / BoN / Reflexion（<code>a5/</code>）在 prompt 构造、chat template、执行评测上对齐同一底座。
+    Greedy 每题 input token = <span class="num">148.9</span>，与 a5 多采样策略的单次生成 token 完全一致，验证了 prompt 一致性。
+    CoT 使用结构化 Prompt（Reasoning / Key steps / Final code），与 Greedy 的 MBPP 官方模板不同，属于 Prompt 结构对比而非纯 TTS 对比。
+  </div>
+</section>
+
+<!-- ========== SUMMARY ========== -->
+<section id="summary">
+  <h2>2. 核心结论一览</h2>
+  <div class="cards">
+    <div class="stat">
+      <div class="label">最高 pass@1</div>
+      <div class="value">23.35%</div>
+      <div class="sub">Best-of-N · 60/257</div>
+    </div>
+    <div class="stat">
+      <div class="label">Greedy 基线</div>
+      <div class="value">12.45%</div>
+      <div class="sub">32/257 · 成本下界</div>
+    </div>
+    <div class="stat">
+      <div class="label">最高 syntax</div>
+      <div class="value">99.6%</div>
+      <div class="sub">Best-of-N</div>
+    </div>
+    <div class="stat">
+      <div class="label">Oracle 上界</div>
+      <div class="value">24.90%</div>
+      <div class="sub">SC pass@k · 64/257</div>
+    </div>
+    <div class="stat">
+      <div class="label">最低 Token/题</div>
+      <div class="value">278</div>
+      <div class="sub">Greedy · 1 次生成</div>
+    </div>
+    <div class="stat">
+      <div class="label">反思挽救</div>
+      <div class="value">+6 题</div>
+      <div class="sub">Reflexion 16→22</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot amber"></span>三句话总结</div>
+    <ol>
+      <li><strong>Best-of-N 准确率最高</strong>（23.35%），相对 Greedy 提升 +10.9 pp，syntax 达 99.6%，但全量生成成本 ≈ Greedy 的 8.2×。</li>
+      <li><strong>Greedy 基线本身已不弱</strong>（12.45%），优于 CoT greedy（10.12%）、ToT（6.23%）、SC（7.39%），说明在此 checkpoint 上 MBPP 官方 prompt + T=0 解码是强基线。</li>
+      <li><strong>Reflexion 性价比较均衡</strong>：pass@1 8.56%（+2.3 pp over initial），Token ≈ Greedy 的 10×，耗时 ≈ Greedy 的 7.3×，按需触发仅失败题额外调用。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ========== MAIN TABLE ========== -->
+<section id="main">
+  <h2>3. 主对比表（效果 + 成本）</h2>
+  <p>全部实验在相同 checkpoint 与 257 题全量评测下完成。按 pass@1 降序排列。</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>策略</th>
+        <th>pass@1</th>
+        <th>通过/总数</th>
+        <th>syntax</th>
+        <th>avg test pass</th>
+        <th>LLM 调用/题</th>
+        <th>Token/题</th>
+        <th>耗时/题</th>
+        <th>相对 Greedy Token</th>
+        <th>实现</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Best-of-N</strong> <span class="tag other">a5</span><br><span class="muted">N=8, T=0.7, lexicographic</span></td>
+        <td class="num best">23.35%</td>
+        <td class="num">60/257</td>
+        <td class="num best">99.6%</td>
+        <td class="num">31.3%</td>
+        <td class="num">8.0</td>
+        <td class="num">2,285</td>
+        <td class="num">23.2 s</td>
+        <td class="num">8.2×</td>
+        <td class="path">a5/mbpp_eval_bon.py</td>
+      </tr>
+      <tr>
+        <td><strong>Greedy</strong> <span class="tag mine">a5_cgh</span><br><span class="muted">MBPP 官方, T=0</span></td>
+        <td class="num">12.45%</td>
+        <td class="num">32/257</td>
+        <td class="num">82.9%</td>
+        <td class="num">17.1%</td>
+        <td class="num">1.0</td>
+        <td class="num">278</td>
+        <td class="num">2.1 s</td>
+        <td class="num">1.0×</td>
+        <td class="path">a5_cgh/mbpp_eval_baseline.py</td>
+      </tr>
+      <tr>
+        <td><strong>CoT (greedy)</strong> <span class="tag mine">a5_cgh</span><br><span class="muted">结构化 Prompt, T=0</span></td>
+        <td class="num">10.12%</td>
+        <td class="num">26/257</td>
+        <td class="num">81.3%</td>
+        <td class="num">13.8%</td>
+        <td class="num">1.0</td>
+        <td class="num">379</td>
+        <td class="num">3.4 s</td>
+        <td class="num">1.4×</td>
+        <td class="path">a5_cgh/mbpp_eval_baseline.py</td>
+      </tr>
+      <tr>
+        <td><strong>Reflexion</strong> <span class="tag other">a5</span><br><span class="muted">max_retries=2, llm reflection</span></td>
+        <td class="num">8.56%</td>
+        <td class="num">22/257</td>
+        <td class="num">69.3%</td>
+        <td class="num">9.5%</td>
+        <td class="num">4.7</td>
+        <td class="num">2,773</td>
+        <td class="num">15.6 s</td>
+        <td class="num">10.0×</td>
+        <td class="path">a5/mbpp_eval_reflexion.py</td>
+      </tr>
+      <tr>
+        <td><strong>Self-Consistency</strong> <span class="tag other">a5</span><br><span class="muted">K=10, execution_signature</span></td>
+        <td class="num">7.39%</td>
+        <td class="num">19/257</td>
+        <td class="num">85.6%</td>
+        <td class="num">9.7%</td>
+        <td class="num">10.0</td>
+        <td class="num">2,830</td>
+        <td class="num">28.1 s</td>
+        <td class="num">10.2×</td>
+        <td class="path">a5/mbpp_eval_sc.py</td>
+      </tr>
+      <tr>
+        <td><strong>Tree of Thoughts</strong> <span class="tag mine">a5_cgh</span><br><span class="muted">BF=3, BW=2, D=2</span></td>
+        <td class="num">6.23%</td>
+        <td class="num">16/257</td>
+        <td class="num warn">98.4%</td>
+        <td class="num">11.1%</td>
+        <td class="num">9.0</td>
+        <td class="num">4,681</td>
+        <td class="num">26.1 s</td>
+        <td class="num">16.8×</td>
+        <td class="path">a5_cgh/mbpp_eval_tot.py</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>pass@1 可视化（相对 Greedy 基线 12.45%）</h3>
+  <table>
+    <thead><tr><th>策略</th><th>pass@1</th><th>相对 Greedy</th><th>图示</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Best-of-N</td><td class="num best">23.35%</td><td class="num best">+10.9 pp</td>
+        <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill green" style="width:100%"></div></div></div></td>
+      </tr>
+      <tr>
+        <td>Greedy</td><td class="num">12.45%</td><td class="num">基线</td>
+        <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:53%"></div></div></div></td>
+      </tr>
+      <tr>
+        <td>CoT</td><td class="num">10.12%</td><td class="num warn">−2.3 pp</td>
+        <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:43%"></div></div></div></td>
+      </tr>
+      <tr>
+        <td>Reflexion</td><td class="num">8.56%</td><td class="num warn">−3.9 pp</td>
+        <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:37%"></div></div></div></td>
+      </tr>
+      <tr>
+        <td>Self-Consistency</td><td class="num">7.39%</td><td class="num warn">−5.1 pp</td>
+        <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:32%"></div></div></div></td>
+      </tr>
+      <tr>
+        <td>ToT</td><td class="num">6.23%</td><td class="num warn">−6.2 pp</td>
+        <td><div class="bar-wrap"><div class="bar-bg"><div class="bar-fill" style="width:27%"></div></div></div></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ========== ORACLE ========== -->
+<section id="oracle">
+  <h2>4. Oracle 上界与选优 gap</h2>
+  <p>多采样/搜索策略的 pass@k（oracle）反映「生成池里有没有正确答案」，pass@1 与 pass@k 的 gap 反映选优策略的损失。</p>
+  <table>
+    <thead>
+      <tr>
+        <th>策略</th>
+        <th>pass@1（选优后）</th>
+        <th>pass@k / pass@n（oracle）</th>
+        <th>Oracle gap</th>
+        <th>解读</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Self-Consistency</td>
+        <td class="num">7.39%</td>
+        <td class="num best">24.90% (64/257)</td>
+        <td class="num warn">17.5 pp</td>
+        <td>10 条路径中有 64 题存在正确解，但投票仅选出 19 题 → 选优损失大</td>
+      </tr>
+      <tr>
+        <td>Best-of-N</td>
+        <td class="num best">23.35%</td>
+        <td class="num">23.35% (60/257)</td>
+        <td class="num best">0 pp</td>
+        <td>8 候选中最好的即为最终答案，无 oracle gap</td>
+      </tr>
+      <tr>
+        <td>ToT</td>
+        <td class="num">6.23%</td>
+        <td class="num">6.23% (16/257)</td>
+        <td class="num best">0 pp</td>
+        <td>beam 选优无损失；瓶颈在搜索/generation 而非 rerank</td>
+      </tr>
+      <tr>
+        <td>Reflexion</td>
+        <td class="num">8.56%</td>
+        <td class="num">—</td>
+        <td class="num">—</td>
+        <td>initial 6.23% → final 8.56%，6 题被反思挽救（+2.3 pp）</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ========== PHASE ========== -->
+<section id="phase">
+  <h2>5. 分阶段成本分解</h2>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title"><span class="dot cyan"></span>ToT 两阶段（a5_cgh）</div>
+      <table>
+        <thead><tr><th>阶段</th><th>调用次数</th><th>Token</th><th>耗时 (s)</th></tr></thead>
+        <tbody>
+          <tr><td>thought（计划生成）</td><td class="num">771</td><td class="num">307,910</td><td class="num">1,945</td></tr>
+          <tr><td>code（代码展开）</td><td class="num">1,542</td><td class="num">895,149</td><td class="num">4,429</td></tr>
+          <tr><td>final_answer 统计</td><td class="num">257</td><td class="num">145,275</td><td>—</td></tr>
+          <tr style="font-weight:600"><td>合计</td><td class="num">2,313</td><td class="num">1,203,059</td><td class="num">6,701</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">syntax 98.4% 来自 thought→code 两阶段分离；pass@1 仅 6.23% 说明计划质量是瓶颈。</p>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot purple"></span>Reflexion 三阶段（a5）</div>
+      <table>
+        <thead><tr><th>阶段</th><th>调用次数</th><th>Token</th><th>耗时 (s)</th></tr></thead>
+        <tbody>
+          <tr><td>initial（首次生成）</td><td class="num">257</td><td class="num">72,805</td><td class="num">548</td></tr>
+          <tr><td>reflection（失败反思）</td><td class="num">477</td><td class="num">307,425</td><td class="num">1,227</td></tr>
+          <tr><td>retry（带反思重生成）</td><td class="num">477</td><td class="num">332,457</td><td class="num">2,056</td></tr>
+          <tr style="font-weight:600"><td>合计</td><td class="num">1,211</td><td class="num">712,687</td><td class="num">4,011</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">仅失败题触发 reflection + retry；initial 用 T=0.7 采样（非 greedy），故 initial pass@1 = 6.23% ≠ Greedy 12.45%。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="dot amber"></span>Best-of-N Token 浪费率（a5）</div>
+    <table>
+      <thead><tr><th>类别</th><th>Token 合计</th><th>avg / task</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>全量生成（8×257）</td><td class="num">587,194</td><td class="num">2,285</td><td>所有候选路径 token 总和</td></tr>
+        <tr><td>选中答案（effective serving）</td><td class="num">70,087</td><td class="num">273</td><td>若部署时只保留最优候选</td></tr>
+        <tr><td>浪费比例</td><td class="num warn">88.1%</td><td>—</td><td>output waste ratio = 88.7%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ========== TRADEOFF ========== -->
+<section id="tradeoff">
+  <h2>6. 性价比分析</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>策略</th>
+        <th>pass@1 提升 vs Greedy</th>
+        <th>Token 倍数 vs Greedy</th>
+        <th>耗时倍数 vs Greedy</th>
+        <th>pass@1 增益 / Token 倍数</th>
+        <th>推荐场景</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Best-of-N</strong></td>
+        <td class="num best">+10.9 pp</td>
+        <td class="num">8.2×</td>
+        <td class="num">11.0×</td>
+        <td class="num best">1.33 pp/×</td>
+        <td>准确率优先，可接受 8× 生成成本</td>
+      </tr>
+      <tr>
+        <td><strong>Reflexion</strong></td>
+        <td class="num warn">−3.9 pp*</td>
+        <td class="num">10.0×</td>
+        <td class="num">7.3×</td>
+        <td class="num">—</td>
+        <td>失败题按需反思；*initial 非 greedy 口径</td>
+      </tr>
+      <tr>
+        <td><strong>Self-Consistency</strong></td>
+        <td class="num warn">−5.1 pp</td>
+        <td class="num">10.2×</td>
+        <td class="num">13.2×</td>
+        <td class="num warn">负收益</td>
+        <td>oracle 24.9% 说明采样有效但投票策略需优化</td>
+      </tr>
+      <tr>
+        <td><strong>ToT</strong></td>
+        <td class="num warn">−6.2 pp</td>
+        <td class="num">16.8×</td>
+        <td class="num">12.3×</td>
+        <td class="num warn">负收益</td>
+        <td>syntax 98.4% 高，适合语法约束场景；pass@1 需改进 thought 质量</td>
+      </tr>
+      <tr>
+        <td><strong>CoT</strong></td>
+        <td class="num warn">−2.3 pp</td>
+        <td class="num">1.4×</td>
+        <td class="num">1.6×</td>
+        <td class="num warn">负收益</td>
+        <td>此 checkpoint 上 CoT 结构化 prompt 未带来增益</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card highlight">
+    <div class="card-title"><span class="dot green"></span>选型建议</div>
+    <ul>
+      <li><strong>成本下界 / 快速基线</strong> → Greedy（278 tokens, 2.1 s, 12.45%）</li>
+      <li><strong>最高准确率</strong> → Best-of-N（23.35%，8× token）</li>
+      <li><strong>高 syntax + 结构化搜索</strong> → ToT（98.4% syntax，16.8× token）</li>
+      <li><strong>失败自愈 / 按需额外调用</strong> → Reflexion（+6 题挽救，10× token）</li>
+      <li><strong>采样 + 投票（需优化选优）</strong> → SC（oracle 24.9% ≫ pass@1 7.4%）</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== OWNERSHIP ========== -->
+<section id="ownership">
+  <h2>7. 模块归属</h2>
+  <table>
+    <thead><tr><th>策略</th><th>负责人</th><th>代码目录</th><th>产物目录</th></tr></thead>
+    <tbody>
+      <tr><td>Greedy 基线</td><td>本人 (a5_cgh)</td><td class="path">a5_cgh/mbpp_eval_baseline.py</td><td class="path">a5_cgh/outputs/eval_greedy/</td></tr>
+      <tr><td>CoT 基线</td><td>本人 (a5_cgh)</td><td class="path">a5_cgh/mbpp_eval_baseline.py</td><td class="path">a5_cgh/outputs/eval_cot/</td></tr>
+      <tr><td>Tree of Thoughts</td><td>本人 (a5_cgh)</td><td class="path">a5_cgh/mbpp_eval_tot.py</td><td class="path">a5_cgh/outputs/eval_tot/</td></tr>
+      <tr><td>Self-Consistency</td><td>组内其他同学</td><td class="path">a5/mbpp_eval_sc.py</td><td class="path">a5/outputs/eval_sc/</td></tr>
+      <tr><td>Best-of-N</td><td>组内其他同学</td><td class="path">a5/mbpp_eval_bon.py</td><td class="path">a5/outputs/eval_bon/</td></tr>
+      <tr><td>Reflexion</td><td>组内其他同学</td><td class="path">a5/mbpp_eval_reflexion.py</td><td class="path">a5/outputs/eval_reflexion/</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ========== ARTIFACTS ========== -->
+<section id="artifacts">
+  <h2>8. 产物路径（可复现）</h2>
+  <table>
+    <thead><tr><th>策略</th><th>metrics JSON</th><th>逐题结果</th><th>Token / Timing</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Greedy</td>
+        <td class="path">a5_cgh/outputs/eval_greedy/mbpp_metrics_greedy.json</td>
+        <td class="path">mbpp_cases_greedy.jsonl</td>
+        <td class="path">token_cost.json · timing.json</td>
+      </tr>
+      <tr>
+        <td>CoT</td>
+        <td class="path">a5_cgh/outputs/eval_cot/mbpp_metrics_cot.json</td>
+        <td class="path">mbpp_cases_cot.jsonl</td>
+        <td class="path">token_cost.json · timing.json</td>
+      </tr>
+      <tr>
+        <td>ToT</td>
+        <td class="path">a5_cgh/outputs/eval_tot/mbpp_metrics_tot.json</td>
+        <td class="path">mbpp_cases_tot.jsonl · mbpp_nodes_tot.jsonl</td>
+        <td class="path">token_cost.json · timing.json</td>
+      </tr>
+      <tr>
+        <td>Self-Consistency</td>
+        <td class="path">a5/outputs/eval_sc/mbpp_metrics_sc.json</td>
+        <td class="path">mbpp_cases_sc.jsonl</td>
+        <td class="path">token_cost.json · inference_timing.json</td>
+      </tr>
+      <tr>
+        <td>Best-of-N</td>
+        <td class="path">a5/outputs/eval_bon/mbpp_metrics_bon.json</td>
+        <td class="path">mbpp_cases_bon.jsonl</td>
+        <td class="path">token_cost.json · inference_timing.json</td>
+      </tr>
+      <tr>
+        <td>Reflexion</td>
+        <td class="path">a5/outputs/eval_reflexion/mbpp_metrics_reflexion.json</td>
+        <td class="path">mbpp_cases_reflexion.jsonl</td>
+        <td class="path">token_cost.json · timing.json</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>复现命令（Greedy 基线 · 不占用 GPU 时可单独跑 smoke）</h3>
+  <pre>cd /root/siton-tmp/assignment_A
+
+# Greedy / CoT / ToT（本人负责）
+bash a5_cgh/scripts/eval_greedy.sh
+bash a5_cgh/scripts/eval_cot.sh
+bash a5_cgh/scripts/eval_tot.sh
+
+# SC / BoN / Reflexion（组内其他同学）
+bash a5/scripts/eval_sc.sh
+bash a5/scripts/eval_bon.sh
+bash a5/scripts/eval_reflexion.sh</pre>
+</section>
+
+<footer>
+  <p>文件路径：<code>a5_cgh/a5_tts_cmp.html</code></p>
+  <p>数据来源：PPO checkpoint-1304 · MBPP sanitized test 257 题 · 2026-07-13</p>
+  <p>Greedy 基线 pass@1 = 12.45%（32/257）· Best-of-N pass@1 = 23.35%（60/257）· SC oracle pass@k = 24.90%（64/257）</p>
+</footer>
+
+</div>
+</body>
+</html>

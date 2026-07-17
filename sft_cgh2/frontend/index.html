@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SFT 模块验收展示</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand-mark">S</div>
+          <div>
+            <strong>SFT Lab</strong>
+            <span>代码能力验收台</span>
+          </div>
+        </div>
+
+        <nav class="side-nav" aria-label="主导航">
+          <button class="nav-tab active" data-tab="dashboard">总览仪表盘</button>
+          <button class="nav-tab" data-tab="pipeline">优化闭环</button>
+          <button class="nav-tab" data-tab="experiments">实验对比</button>
+          <button class="nav-tab" data-tab="analysis">错误分析</button>
+          <button class="nav-tab" data-tab="repair">修复案例</button>
+          <button class="nav-tab" data-tab="playground">模型推理台</button>
+        </nav>
+
+        <div class="sidebar-card">
+          <span class="pulse-dot"></span>
+          <p>当前模块</p>
+          <strong>Repair SFT</strong>
+          <small>训练完成 · 推理可用</small>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Interactive SFT Showcase</p>
+            <h1 id="page-title">SFT 代码能力优化闭环</h1>
+            <p id="page-subtitle">Baseline -> LoRA/QLoRA SFT -> 错误分析 -> 代码修复 SFT</p>
+          </div>
+          <div class="topbar-actions">
+            <span class="status-pill" id="project-status">已完成</span>
+            <a class="button ghost" href="./data/demo-data.json">数据源</a>
+          </div>
+        </header>
+
+        <section class="metric-strip" id="metric-grid"></section>
+
+        <section class="tab-panel active" id="tab-dashboard">
+          <div class="panel-grid">
+            <article class="show-card hero-panel">
+              <p class="eyebrow">验收主线</p>
+              <h2>不是单次训练，而是评测驱动的模型能力闭环</h2>
+              <p>
+                先建立 Baseline，再通过 LoRA/QLoRA 优化基础代码生成能力，
+                然后分析失败样本，最终把失败反馈转成代码修复 SFT，让模型学会根据报错改代码。
+              </p>
+              <div class="hero-actions">
+                <button class="button primary jump-tab" data-target-tab="playground">进入推理台</button>
+                <button class="button ghost jump-tab" data-target-tab="repair">查看修复案例</button>
+              </div>
+            </article>
+            <article class="show-card">
+              <p class="eyebrow">Deliverables</p>
+              <h3>交付清单</h3>
+              <ol class="next-list" id="next-list"></ol>
+            </article>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="tab-pipeline">
+          <div class="panel-heading">
+            <p class="eyebrow">Pipeline</p>
+            <h2>从评测到修复的闭环</h2>
+            <p>把普通 SFT 工作升级为可解释、可复现、可验收的能力建设流程。</p>
+          </div>
+          <div class="timeline" id="stage-list"></div>
+        </section>
+
+        <section class="tab-panel" id="tab-experiments">
+          <div class="panel-heading">
+            <p class="eyebrow">Experiments</p>
+            <h2>模型能力对比</h2>
+            <p>用三层模型能力讲清楚：Base 会什么，SFT 提升了什么，Repair SFT 新增了什么。</p>
+          </div>
+          <div class="experiment-list" id="experiment-list"></div>
+        </section>
+
+        <section class="tab-panel" id="tab-analysis">
+          <div class="panel-heading">
+            <p class="eyebrow">Error Analysis</p>
+            <h2>错误分布与优化方向</h2>
+            <p>基于 Repair SFT 样本的错误类型分布；name_error 占比最高，也是修复收益最明显的类别。</p>
+          </div>
+          <div class="error-layout">
+            <div class="bar-chart" id="error-bars"></div>
+            <div class="analysis-note">
+              <h3>优化策略</h3>
+              <ul>
+                <li>减少单纯函数名错误占比，补充更多逻辑错误样本。</li>
+                <li>压缩 traceback 路径噪声，保留断言和错误类型。</li>
+                <li>以 repair_pass@1 作为核心指标（当前 12%）。</li>
+                <li>修复前后测试通过数见「修复案例」页。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="tab-panel" id="tab-repair">
+          <div class="panel-heading">
+            <p class="eyebrow">Repair Cases</p>
+            <h2>代码修复案例</h2>
+            <p>点击不同 case，查看题目、错误实现、失败反馈和参考修复。</p>
+          </div>
+          <div class="case-tabs" id="case-tabs"></div>
+          <article class="repair-case" id="repair-case"></article>
+        </section>
+
+        <section class="tab-panel" id="tab-playground">
+          <div class="panel-heading">
+            <p class="eyebrow">Model Playground</p>
+            <h2>交互式代码修复推理台</h2>
+            <p>
+              输入题目、错误代码与失败反馈，调用 Repair SFT 模型完成代码修复。默认对接本机 /repair 服务。
+            </p>
+          </div>
+          <div class="playground">
+            <section class="playground-form">
+              <label>
+                模型接口地址
+                <input id="api-endpoint" value="http://127.0.0.1:8082/repair" placeholder="http://127.0.0.1:8082/repair" />
+              </label>
+              <label>
+                题目描述
+                <textarea id="pg-problem" rows="4"></textarea>
+              </label>
+              <label>
+                错误代码
+                <textarea id="pg-buggy-code" rows="10"></textarea>
+              </label>
+              <label>
+                失败测试 / 报错信息
+                <textarea id="pg-feedback" rows="7"></textarea>
+              </label>
+              <div class="playground-actions">
+                <button class="button ghost" id="load-case">载入当前案例</button>
+                <button class="button primary" id="run-inference">开始修复</button>
+              </div>
+            </section>
+            <section class="playground-result">
+              <div class="result-header">
+                <div>
+                  <p class="eyebrow">Output</p>
+                  <h3>模型输出</h3>
+                </div>
+                <span class="status-pill soft" id="inference-status">演示模式</span>
+              </div>
+              <pre><code id="model-output">点击“载入当前案例”，再点击“开始修复”。</code></pre>
+              <div class="api-note">
+                接口约定：POST JSON
+                <code>{ problem, buggy_code, feedback }</code>，返回
+                <code>{ fixed_code }</code> 或 <code>{ output }</code>。
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

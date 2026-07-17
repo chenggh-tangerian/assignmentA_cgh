@@ -1,0 +1,22 @@
+# Soft filter + light targeted upsample from sft/data ONLY.
+# Hard cap: final train size <= 2000. No MBPP/test usage.
+min_output_chars: 60
+max_output_chars: 2500
+prefer_output_min: 80
+prefer_output_max: 1200
+require_function_def: true
+reject_stub_only: true
+require_balanced_brackets: false
+reject_trailing_incomplete: true
+dedup_exact: true
+dedup_instruction: true
+dedup_code_fingerprint: true
+enable_balance: false
+target_train_size: 10050
+max_per_type: 0
+min_per_type: 0
+seed: 42
+splits:
+  train: code_sft_train.json
+  valid: code_sft_valid.json
+balance_splits: []

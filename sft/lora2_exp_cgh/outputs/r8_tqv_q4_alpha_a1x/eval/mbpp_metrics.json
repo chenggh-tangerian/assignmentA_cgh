@@ -1,0 +1,17 @@
+{
+  "benchmark": "MBPP",
+  "config": "sanitized",
+  "split": "test",
+  "predictions": "/root/siton-tmp/assignment_A/sft/lora2_exp_cgh/outputs/r8_tqv_q4_alpha_a1x/predict/generated_predictions.jsonl",
+  "mbpp_dir": "/root/siton-tmp/mbpp",
+  "num_tasks": 257,
+  "pass_at_1": 0.038910505836575876,
+  "syntax_pass_rate": 0.9377431906614786,
+  "avg_test_pass_rate": 0.041237113402061855,
+  "exact_match": 0.0,
+  "avg_code_token_f1": 0.45702169258095365,
+  "passed_tasks": 10,
+  "total_tests": 776,
+  "passed_tests": 32,
+  "note": "Reports pass@1 using MBPP sanitized task tests and execution outputs."
+}

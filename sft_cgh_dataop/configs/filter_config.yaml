@@ -1,0 +1,37 @@
+# High-quality SFT data filter (read-only on sft/data)
+
+# Length gates (characters of raw output field)
+min_output_chars: 60
+max_output_chars: 2500
+prefer_output_min: 80
+prefer_output_max: 1200
+
+# Completeness
+require_function_def: true
+reject_stub_only: true
+require_balanced_brackets: true
+reject_trailing_incomplete: true
+
+# Dedup
+dedup_exact: true
+dedup_instruction: true
+dedup_code_fingerprint: true
+
+# Task-type balance
+enable_balance: true
+# After hard filters, keep at most this many train samples (0 = no global cap)
+target_train_size: 6000
+# Per-type hard cap; 0 = derive from target_train_size / num_types * 1.5
+max_per_type: 0
+min_per_type: 50
+seed: 42
+
+# Splits to process (relative to --source_dir)
+splits:
+  train: code_sft_train.json
+  valid: code_sft_valid.json
+  test: code_sft_test.json
+
+# For valid/test: apply hard filters + dedup, but do NOT downsample for balance
+balance_splits:
+  - train

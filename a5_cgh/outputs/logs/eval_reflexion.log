@@ -1,0 +1,144 @@
+[eval_reflexion] GPU status before launch:
+0, 0 MiB, 23552 MiB, 0 %
+[eval_reflexion] Tip: do not run other evals or training on the same GPU concurrently.
+[load_model] Loading base model from: /root/siton-tmp/assignment_A/sft/outputs_cgh/qwen15_sft_with_signature
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  11%|█▏        | 33/290 [00:00<00:01, 201.09it/s]Loading weights:  21%|██        | 61/290 [00:00<00:01, 123.35it/s]Loading weights:  26%|██▌       | 75/290 [00:00<00:01, 127.07it/s]Loading weights:  31%|███       | 89/290 [00:00<00:01, 129.80it/s]Loading weights:  38%|███▊      | 109/290 [00:00<00:01, 115.21it/s]Loading weights:  46%|████▌     | 133/290 [00:00<00:01, 144.10it/s]Loading weights:  55%|█████▍    | 159/290 [00:01<00:00, 172.22it/s]Loading weights:  62%|██████▏   | 179/290 [00:01<00:00, 145.17it/s]Loading weights:  68%|██████▊   | 196/290 [00:01<00:00, 147.37it/s]Loading weights:  73%|███████▎  | 213/290 [00:01<00:00, 125.85it/s]Loading weights:  78%|███████▊  | 227/290 [00:02<00:00, 68.12it/s] Loading weights:  82%|████████▏ | 238/290 [00:02<00:00, 64.71it/s]Loading weights:  89%|████████▊ | 257/290 [00:02<00:00, 83.75it/s]Loading weights: 100%|██████████| 290/290 [00:02<00:00, 121.84it/s]
+[load_model] Merging LoRA adapter from: /root/siton-tmp/assignment_A/rl/outputs/train_lora_ppo_full/checkpoint-1304
+[load_model] LoRA adapter attached in 1.4s
+[load_model] GPU memory after load: 22.1 GiB free / 23.0 GiB total
+{
+  "benchmark": "MBPP",
+  "method": "reflexion",
+  "config": "sanitized",
+  "split": "test",
+  "model_path": "/root/siton-tmp/assignment_A/rl/outputs/train_lora_ppo_full/checkpoint-1304",
+  "records_path": "a5_cgh/outputs/eval_reflexion/mbpp_reflexion_records.jsonl",
+  "num_tasks": 257,
+  "max_retries": 2,
+  "reflection_mode": "llm",
+  "temperature": 0.7,
+  "top_p": 0.95,
+  "pass_at_1_reflexion": 0.0933852140077821,
+  "pass_at_1_initial": 0.07392996108949416,
+  "syntax_pass_rate_reflexion": 0.7003891050583657,
+  "avg_test_pass_rate_reflexion": 0.1095360824742268,
+  "passed_tasks_reflexion": 24,
+  "passed_tasks_initial": 19,
+  "tasks_improved_by_reflexion": 5,
+  "reflexion_gain_over_initial": 0.019455252918287938,
+  "total_tests": 776,
+  "passed_tests_reflexion": 85,
+  "prompt": {
+    "mode": "zero_shot",
+    "example_task_ids": [
+      2,
+      3,
+      4
+    ]
+  },
+  "execution_note": "Reflexion runs initial generation, evaluates code, then on failure builds execution feedback, optionally asks the model for a reflection, and retries with the reflection appended to the prompt.",
+  "token_cost": {
+    "method": "reflexion",
+    "num_tasks": 257,
+    "max_retries": 2,
+    "num_generations": 1205,
+    "generation": {
+      "num_generations": 1205,
+      "input_tokens": 501298,
+      "output_tokens": 202143,
+      "total_tokens": 703441,
+      "avg_input_tokens_per_task": 1950.5758754863814,
+      "avg_output_tokens_per_task": 786.5486381322958,
+      "avg_total_tokens_per_task": 2737.124513618677
+    },
+    "per_task_avg_generation": {
+      "num_generations": 4.688715953307393,
+      "input_tokens": 1950.5758754863814,
+      "output_tokens": 786.5486381322958,
+      "total_tokens": 2737.124513618677,
+      "avg_input_tokens_per_task": 1950.5758754863814,
+      "avg_output_tokens_per_task": 786.5486381322958,
+      "avg_total_tokens_per_task": 2737.124513618677
+    },
+    "by_phase": {
+      "initial": {
+        "count": 257,
+        "input_tokens": 38279,
+        "output_tokens": 35262,
+        "total_tokens": 73541,
+        "seconds": 545.2158000000001
+      },
+      "reflection": {
+        "count": 474,
+        "input_tokens": 225865,
+        "output_tokens": 74743,
+        "total_tokens": 300608,
+        "seconds": 1094.8583999999987
+      },
+      "retry": {
+        "count": 474,
+        "input_tokens": 237154,
+        "output_tokens": 92138,
+        "total_tokens": 329292,
+        "seconds": 1664.197600000001
+      }
+    },
+    "final_answer": {
+      "num_generations": 257,
+      "input_tokens": 126331,
+      "output_tokens": 49631,
+      "total_tokens": 175962,
+      "avg_input_tokens_per_task": 491.5603112840467,
+      "avg_output_tokens_per_task": 193.11673151750972,
+      "avg_total_tokens_per_task": 684.6770428015565
+    },
+    "greedy": null,
+    "reflexion_over_greedy_total_ratio": null,
+    "estimated_cost_usd": null,
+    "note": "Reflexion counts every LLM call: initial code, optional reflection, and each retry. Reflection phase tokens are included in generation totals."
+  },
+  "timing": {
+    "method": "reflexion",
+    "num_tasks": 257,
+    "max_retries": 2,
+    "skipped_generation": false,
+    "total_seconds": 3465.058,
+    "accounted_seconds": 3458.764,
+    "unaccounted_seconds": 6.294,
+    "model_load_seconds": 10.173,
+    "generation_seconds": 3304.272,
+    "test_execution_seconds": 144.319,
+    "avg_seconds_per_task": 13.4827,
+    "phases": {
+      "initial": {
+        "seconds": 545.214,
+        "num_generations": 257,
+        "seconds_per_generation": 2.1215,
+        "seconds_per_task": 2.1215
+      },
+      "reflection": {
+        "seconds": 1094.859,
+        "num_generations": 474,
+        "seconds_per_generation": 2.3098,
+        "seconds_per_task": 4.2602
+      },
+      "retry": {
+        "seconds": 1664.199,
+        "num_generations": 474,
+        "seconds_per_generation": 3.511,
+        "seconds_per_task": 6.4755
+      }
+    },
+    "greedy": null,
+    "reflexion_over_greedy_generation_ratio": null,
+    "note": "total_seconds is end-to-end wall time. generation_seconds sums initial, reflection, and retry model.generate calls. test_execution_seconds covers subprocess asserts for every attempt."
+  }
+}
+Wrote records to a5_cgh/outputs/eval_reflexion/mbpp_reflexion_records.jsonl
+Wrote metrics to a5_cgh/outputs/eval_reflexion/mbpp_metrics_reflexion.json
+Wrote token cost to a5_cgh/outputs/eval_reflexion/token_cost.json
+Wrote timing to a5_cgh/outputs/eval_reflexion/timing.json
+Token cost summary: total=703441 (in=501298, out=202143); generations=1205
+Tokens by phase: initial=73541, reflection=300608, retry=329292
+Timing summary: total=3465.058s, generation=3304.272s, tests=144.319s, avg_per_task=13.4827s

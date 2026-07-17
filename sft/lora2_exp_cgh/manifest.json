@@ -1,0 +1,368 @@
+{
+  "created_at": "2026-07-01T17:45:57.326690+00:00",
+  "experiment": "lora2_qlora_sft_hyperparam",
+  "base_model": "./Qwen1.5-0.5B-Chat",
+  "dataset_dir": "./sft/lora2_exp_cgh/data",
+  "phases": {
+    "grid": {
+      "description": "Phase1 主网格：rank × target × quantization，alpha=2×rank，epoch=3",
+      "run_ids": [
+        "r8_tqv_qnone",
+        "r8_tqv_q4",
+        "r8_tall_qnone",
+        "r8_tall_q4",
+        "r16_tqv_qnone",
+        "r16_tqv_q4",
+        "r16_tall_qnone",
+        "r16_tall_q4"
+      ]
+    },
+    "alpha_sweep": {
+      "description": "Phase2：在 Phase1 最优配置上 sweep alpha {rank, 2×rank, 4×rank}",
+      "run_ids": [
+        "r8_tqv_q4_alpha_a1x",
+        "r8_tqv_q4_alpha_a2x",
+        "r8_tqv_q4_alpha_a4x"
+      ]
+    },
+    "epoch_sweep": {
+      "description": "Phase3：在 Phase1 最优配置上 sweep epoch {1, 5}",
+      "run_ids": [
+        "r8_tqv_q4_epoch_1",
+        "r8_tqv_q4_epoch_5"
+      ]
+    }
+  },
+  "matrix": {
+    "lora_ranks": [
+      8,
+      16
+    ],
+    "lora_targets": [
+      "qv",
+      "all"
+    ],
+    "quantization_bits": [
+      "none",
+      4
+    ],
+    "lora_alpha_rule": "2 * lora_rank",
+    "lora_dropout": 0.05,
+    "learning_rate": 0.0001,
+    "num_train_epochs": 3.0
+  },
+  "total_runs": 13,
+  "runs": [
+    {
+      "run_id": "r8_tqv_qnone",
+      "phase": "grid",
+      "params": {
+        "lora_rank": 8,
+        "lora_alpha": 16,
+        "lora_dropout": 0.05,
+        "lora_target": "q_proj,v_proj",
+        "lora_target_key": "qv",
+        "quantization_bit": null,
+        "learning_rate": 0.0001,
+        "num_train_epochs": 3.0,
+        "finetuning_type": "lora"
+      },
+      "paths": {
+        "train_config": "./sft/lora2_exp_cgh/configs/r8_tqv_qnone_train.yaml",
+        "predict_config": "./sft/lora2_exp_cgh/configs/r8_tqv_qnone_predict.yaml",
+        "model_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_qnone/model",
+        "predict_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_qnone/predict",
+        "eval_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_qnone/eval",
+        "log_dir": "./sft/lora2_exp_cgh/logs/r8_tqv_qnone"
+      }
+    },
+    {
+      "run_id": "r8_tqv_q4",
+      "phase": "grid",
+      "params": {
+        "lora_rank": 8,
+        "lora_alpha": 16,
+        "lora_dropout": 0.05,
+        "lora_target": "q_proj,v_proj",
+        "lora_target_key": "qv",
+        "quantization_bit": 4,
+        "learning_rate": 0.0001,
+        "num_train_epochs": 3.0,
+        "finetuning_type": "qlora"
+      },
+      "paths": {
+        "train_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_train.yaml",
+        "predict_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_predict.yaml",
+        "model_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4/model",
+        "predict_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4/predict",
+        "eval_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4/eval",
+        "log_dir": "./sft/lora2_exp_cgh/logs/r8_tqv_q4"
+      }
+    },
+    {
+      "run_id": "r8_tall_qnone",
+      "phase": "grid",
+      "params": {
+        "lora_rank": 8,
+        "lora_alpha": 16,
+        "lora_dropout": 0.05,
+        "lora_target": "all",
+        "lora_target_key": "all",
+        "quantization_bit": null,
+        "learning_rate": 0.0001,
+        "num_train_epochs": 3.0,
+        "finetuning_type": "lora"
+      },
+      "paths": {
+        "train_config": "./sft/lora2_exp_cgh/configs/r8_tall_qnone_train.yaml",
+        "predict_config": "./sft/lora2_exp_cgh/configs/r8_tall_qnone_predict.yaml",
+        "model_dir": "./sft/lora2_exp_cgh/outputs/r8_tall_qnone/model",
+        "predict_dir": "./sft/lora2_exp_cgh/outputs/r8_tall_qnone/predict",
+        "eval_dir": "./sft/lora2_exp_cgh/outputs/r8_tall_qnone/eval",
+        "log_dir": "./sft/lora2_exp_cgh/logs/r8_tall_qnone"
+      }
+    },
+    {
+      "run_id": "r8_tall_q4",
+      "phase": "grid",
+      "params": {
+        "lora_rank": 8,
+        "lora_alpha": 16,
+        "lora_dropout": 0.05,
+        "lora_target": "all",
+        "lora_target_key": "all",
+        "quantization_bit": 4,
+        "learning_rate": 0.0001,
+        "num_train_epochs": 3.0,
+        "finetuning_type": "qlora"
+      },
+      "paths": {
+        "train_config": "./sft/lora2_exp_cgh/configs/r8_tall_q4_train.yaml",
+        "predict_config": "./sft/lora2_exp_cgh/configs/r8_tall_q4_predict.yaml",
+        "model_dir": "./sft/lora2_exp_cgh/outputs/r8_tall_q4/model",
+        "predict_dir": "./sft/lora2_exp_cgh/outputs/r8_tall_q4/predict",
+        "eval_dir": "./sft/lora2_exp_cgh/outputs/r8_tall_q4/eval",
+        "log_dir": "./sft/lora2_exp_cgh/logs/r8_tall_q4"
+      }
+    },
+    {
+      "run_id": "r16_tqv_qnone",
+      "phase": "grid",
+      "params": {
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "lora_dropout": 0.05,
+        "lora_target": "q_proj,v_proj",
+        "lora_target_key": "qv",
+        "quantization_bit": null,
+        "learning_rate": 0.0001,
+        "num_train_epochs": 3.0,
+        "finetuning_type": "lora"
+      },
+      "paths": {
+        "train_config": "./sft/lora2_exp_cgh/configs/r16_tqv_qnone_train.yaml",
+        "predict_config": "./sft/lora2_exp_cgh/configs/r16_tqv_qnone_predict.yaml",
+        "model_dir": "./sft/lora2_exp_cgh/outputs/r16_tqv_qnone/model",
+        "predict_dir": "./sft/lora2_exp_cgh/outputs/r16_tqv_qnone/predict",
+        "eval_dir": "./sft/lora2_exp_cgh/outputs/r16_tqv_qnone/eval",
+        "log_dir": "./sft/lora2_exp_cgh/logs/r16_tqv_qnone"
+      }
+    },
+    {
+      "run_id": "r16_tqv_q4",
+      "phase": "grid",
+      "params": {
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "lora_dropout": 0.05,
+        "lora_target": "q_proj,v_proj",
+        "lora_target_key": "qv",
+        "quantization_bit": 4,
+        "learning_rate": 0.0001,
+        "num_train_epochs": 3.0,
+        "finetuning_type": "qlora"
+      },
+      "paths": {
+        "train_config": "./sft/lora2_exp_cgh/configs/r16_tqv_q4_train.yaml",
+        "predict_config": "./sft/lora2_exp_cgh/configs/r16_tqv_q4_predict.yaml",
+        "model_dir": "./sft/lora2_exp_cgh/outputs/r16_tqv_q4/model",
+        "predict_dir": "./sft/lora2_exp_cgh/outputs/r16_tqv_q4/predict",
+        "eval_dir": "./sft/lora2_exp_cgh/outputs/r16_tqv_q4/eval",
+        "log_dir": "./sft/lora2_exp_cgh/logs/r16_tqv_q4"
+      }
+    },
+    {
+      "run_id": "r16_tall_qnone",
+      "phase": "grid",
+      "params": {
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "lora_dropout": 0.05,
+        "lora_target": "all",
+        "lora_target_key": "all",
+        "quantization_bit": null,
+        "learning_rate": 0.0001,
+        "num_train_epochs": 3.0,
+        "finetuning_type": "lora"
+      },
+      "paths": {
+        "train_config": "./sft/lora2_exp_cgh/configs/r16_tall_qnone_train.yaml",
+        "predict_config": "./sft/lora2_exp_cgh/configs/r16_tall_qnone_predict.yaml",
+        "model_dir": "./sft/lora2_exp_cgh/outputs/r16_tall_qnone/model",
+        "predict_dir": "./sft/lora2_exp_cgh/outputs/r16_tall_qnone/predict",
+        "eval_dir": "./sft/lora2_exp_cgh/outputs/r16_tall_qnone/eval",
+        "log_dir": "./sft/lora2_exp_cgh/logs/r16_tall_qnone"
+      }
+    },
+    {
+      "run_id": "r16_tall_q4",
+      "phase": "grid",
+      "params": {
+        "lora_rank": 16,
+        "lora_alpha": 32,
+        "lora_dropout": 0.05,
+        "lora_target": "all",
+        "lora_target_key": "all",
+        "quantization_bit": 4,
+        "learning_rate": 0.0001,
+        "num_train_epochs": 3.0,
+        "finetuning_type": "qlora"
+      },
+      "paths": {
+        "train_config": "./sft/lora2_exp_cgh/configs/r16_tall_q4_train.yaml",
+        "predict_config": "./sft/lora2_exp_cgh/configs/r16_tall_q4_predict.yaml",
+        "model_dir": "./sft/lora2_exp_cgh/outputs/r16_tall_q4/model",
+        "predict_dir": "./sft/lora2_exp_cgh/outputs/r16_tall_q4/predict",
+        "eval_dir": "./sft/lora2_exp_cgh/outputs/r16_tall_q4/eval",
+        "log_dir": "./sft/lora2_exp_cgh/logs/r16_tall_q4"
+      }
+    }
+  ],
+  "sweep_runs": [
+    {
+      "run_id": "r8_tqv_q4_alpha_a1x",
+      "phase": "alpha_sweep",
+      "base_run_id": "r8_tqv_q4",
+      "params": {
+        "lora_rank": 8,
+        "lora_alpha": 8,
+        "lora_dropout": 0.05,
+        "lora_target": "q_proj,v_proj",
+        "lora_target_key": "qv",
+        "quantization_bit": 4,
+        "learning_rate": 0.0001,
+        "num_train_epochs": 3.0,
+        "finetuning_type": "qlora",
+        "alpha_multiplier": 1
+      },
+      "paths": {
+        "train_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_alpha_a1x_train.yaml",
+        "predict_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_alpha_a1x_predict.yaml",
+        "model_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_alpha_a1x/model",
+        "predict_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_alpha_a1x/predict",
+        "eval_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_alpha_a1x/eval",
+        "log_dir": "./sft/lora2_exp_cgh/logs/r8_tqv_q4_alpha_a1x"
+      }
+    },
+    {
+      "run_id": "r8_tqv_q4_alpha_a2x",
+      "phase": "alpha_sweep",
+      "base_run_id": "r8_tqv_q4",
+      "params": {
+        "lora_rank": 8,
+        "lora_alpha": 16,
+        "lora_dropout": 0.05,
+        "lora_target": "q_proj,v_proj",
+        "lora_target_key": "qv",
+        "quantization_bit": 4,
+        "learning_rate": 0.0001,
+        "num_train_epochs": 3.0,
+        "finetuning_type": "qlora",
+        "alpha_multiplier": 2
+      },
+      "paths": {
+        "train_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_alpha_a2x_train.yaml",
+        "predict_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_alpha_a2x_predict.yaml",
+        "model_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_alpha_a2x/model",
+        "predict_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_alpha_a2x/predict",
+        "eval_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_alpha_a2x/eval",
+        "log_dir": "./sft/lora2_exp_cgh/logs/r8_tqv_q4_alpha_a2x"
+      }
+    },
+    {
+      "run_id": "r8_tqv_q4_alpha_a4x",
+      "phase": "alpha_sweep",
+      "base_run_id": "r8_tqv_q4",
+      "params": {
+        "lora_rank": 8,
+        "lora_alpha": 32,
+        "lora_dropout": 0.05,
+        "lora_target": "q_proj,v_proj",
+        "lora_target_key": "qv",
+        "quantization_bit": 4,
+        "learning_rate": 0.0001,
+        "num_train_epochs": 3.0,
+        "finetuning_type": "qlora",
+        "alpha_multiplier": 4
+      },
+      "paths": {
+        "train_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_alpha_a4x_train.yaml",
+        "predict_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_alpha_a4x_predict.yaml",
+        "model_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_alpha_a4x/model",
+        "predict_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_alpha_a4x/predict",
+        "eval_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_alpha_a4x/eval",
+        "log_dir": "./sft/lora2_exp_cgh/logs/r8_tqv_q4_alpha_a4x"
+      }
+    },
+    {
+      "run_id": "r8_tqv_q4_epoch_1",
+      "phase": "epoch_sweep",
+      "base_run_id": "r8_tqv_q4",
+      "params": {
+        "lora_rank": 8,
+        "lora_alpha": 16,
+        "lora_dropout": 0.05,
+        "lora_target": "q_proj,v_proj",
+        "lora_target_key": "qv",
+        "quantization_bit": 4,
+        "learning_rate": 0.0001,
+        "num_train_epochs": 1.0,
+        "finetuning_type": "qlora"
+      },
+      "paths": {
+        "train_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_epoch_1_train.yaml",
+        "predict_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_epoch_1_predict.yaml",
+        "model_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_epoch_1/model",
+        "predict_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_epoch_1/predict",
+        "eval_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_epoch_1/eval",
+        "log_dir": "./sft/lora2_exp_cgh/logs/r8_tqv_q4_epoch_1"
+      }
+    },
+    {
+      "run_id": "r8_tqv_q4_epoch_5",
+      "phase": "epoch_sweep",
+      "base_run_id": "r8_tqv_q4",
+      "params": {
+        "lora_rank": 8,
+        "lora_alpha": 16,
+        "lora_dropout": 0.05,
+        "lora_target": "q_proj,v_proj",
+        "lora_target_key": "qv",
+        "quantization_bit": 4,
+        "learning_rate": 0.0001,
+        "num_train_epochs": 5.0,
+        "finetuning_type": "qlora"
+      },
+      "paths": {
+        "train_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_epoch_5_train.yaml",
+        "predict_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_epoch_5_predict.yaml",
+        "model_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_epoch_5/model",
+        "predict_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_epoch_5/predict",
+        "eval_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4_epoch_5/eval",
+        "log_dir": "./sft/lora2_exp_cgh/logs/r8_tqv_q4_epoch_5"
+      }
+    }
+  ],
+  "best_run_id": "r8_tqv_q4",
+  "sweep_generated_at": "2026-07-14T07:59:05.615155+00:00"
+}

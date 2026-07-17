@@ -1,0 +1,386 @@
+=== eval_greedy start Sun Jul 12 22:52:25 CST 2026 ===
+[eval_greedy] GPU status before launch:
+0, 17592186043898 MiB, 23552 MiB, 29 %
+[eval_greedy] Tip: do not run other evals or training on the same GPU concurrently.
+[load_model] Loading base model from: /root/siton-tmp/assignment_A/sft/outputs_cgh/qwen15_sft_with_signature
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[vGPU ERROR (pid:483144 thread=140549394299776 allocator.c:53)]: Device: 0 Killed by OOM, Apply for memory: 18446744073168486400, Limit memory: 24696061952
+[vGPU ERROR (pid:483144 thread=140549394299776 allocator.c:53)]: Device: 0 Killed by OOM, Apply for memory: 18446744073168486400, Limit memory: 24696061952
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  13%|█▎        | 37/290 [00:00<00:01, 219.79it/s]Loading weights:  21%|██        | 61/290 [00:00<00:01, 228.71it/s]Loading weights:  29%|██▉       | 85/290 [00:00<00:00, 232.01it/s]Loading weights:  38%|███▊      | 109/290 [00:00<00:00, 231.64it/s]Loading weights:  47%|████▋     | 135/290 [00:00<00:00, 238.72it/s]Loading weights:  55%|█████▍    | 159/290 [00:00<00:00, 233.38it/s]Loading weights:  67%|██████▋   | 193/290 [00:00<00:00, 211.33it/s]Loading weights:  76%|███████▌  | 219/290 [00:00<00:00, 218.63it/s]Loading weights:  86%|████████▌ | 249/290 [00:01<00:00, 239.93it/s]Loading weights:  99%|█████████▉| 287/290 [00:01<00:00, 272.78it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 244.40it/s]
+[load_model] Merging LoRA adapter from: /root/siton-tmp/assignment_A/rl/outputs/train_lora_ppo_full/checkpoint-1304
+[vGPU ERROR (pid:483144 thread=140549394299776 allocator.c:53)]: Device: 0 Killed by OOM, Apply for memory: 18446744073168486400, Limit memory: 24696061952
+[vGPU ERROR (pid:483144 thread=140549394299776 allocator.c:53)]: Device: 0 Killed by OOM, Apply for memory: 18446744073168486400, Limit memory: 24696061952
+Traceback (most recent call last):
+  File "/root/siton-tmp/assignment_A/a5_cgh/mbpp_eval_baseline.py", line 341, in <module>
+    main()
+  File "/root/siton-tmp/assignment_A/a5_cgh/mbpp_eval_baseline.py", line 268, in main
+    generations, gen_timing = generate_single_path_completions(
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/siton-tmp/assignment_A/a5_cgh/baseline_common.py", line 146, in generate_single_path_completions
+    tokenizer, model, torch = load_model_fn(model_path, trust_remote_code)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/siton-tmp/assignment_A/dpo/scripts/mbpp_eval_dpo.py", line 206, in load_model
+    model = peft.PeftModel.from_pretrained(base_model, str(model_path))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/cjqsft/lib/python3.11/site-packages/peft/peft_model.py", line 582, in from_pretrained
+    load_result = model.load_adapter(
+                  ^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/cjqsft/lib/python3.11/site-packages/peft/peft_model.py", line 1402, in load_adapter
+    adapters_weights = load_peft_weights(
+                       ^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/cjqsft/lib/python3.11/site-packages/peft/utils/save_and_load.py", line 965, in load_peft_weights
+    adapters_weights = safe_load_file(filename, device=device)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/cjqsft/lib/python3.11/site-packages/safetensors/torch.py", line 315, in load_file
+    result[k] = f.get_tensor(k)
+                ^^^^^^^^^^^^^^^
+RuntimeError: CUDA error: invalid argument
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+=== eval_greedy start Sun Jul 12 22:57:31 CST 2026 ===
+[eval_greedy] GPU status before launch:
+0, 0 MiB, 23552 MiB, 31 %
+[eval_greedy] Tip: do not run other evals or training on the same GPU concurrently.
+[load_model] Loading base model from: /root/siton-tmp/assignment_A/sft/outputs_cgh/qwen15_sft_with_signature
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  41%|████      | 119/290 [00:00<00:00, 1174.94it/s]Loading weights:  82%|████████▏ | 237/290 [00:00<00:00, 786.47it/s] Loading weights: 100%|██████████| 290/290 [00:00<00:00, 761.88it/s]
+[load_model] Merging LoRA adapter from: /root/siton-tmp/assignment_A/rl/outputs/train_lora_ppo_full/checkpoint-1304
+[load_model] LoRA adapter attached in 1.6s
+[load_model] GPU memory after load: 22.1 GiB free / 23.0 GiB total
+[transformers] The following generation flags are not valid and may be ignored: ['top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Generated 4 / 257
+Generated 8 / 257
+Generated 12 / 257
+Generated 16 / 257
+Generated 20 / 257
+Generated 24 / 257
+Generated 28 / 257
+Generated 32 / 257
+Generated 36 / 257
+Generated 40 / 257
+Generated 44 / 257
+Generated 48 / 257
+Generated 52 / 257
+Generated 56 / 257
+Generated 60 / 257
+Generated 64 / 257
+Generated 68 / 257
+Generated 72 / 257
+Generated 76 / 257
+Generated 80 / 257
+Generated 84 / 257
+Generated 88 / 257
+Generated 92 / 257
+Generated 96 / 257
+Generated 100 / 257
+Generated 104 / 257
+Generated 108 / 257
+Generated 112 / 257
+Generated 116 / 257
+Generated 120 / 257
+Generated 124 / 257
+Generated 128 / 257
+Generated 132 / 257
+Generated 136 / 257
+Generated 140 / 257
+Generated 144 / 257
+Generated 148 / 257
+Generated 152 / 257
+Generated 156 / 257
+Generated 160 / 257
+Generated 164 / 257
+Generated 168 / 257
+Generated 172 / 257
+Generated 176 / 257
+Generated 180 / 257
+Generated 184 / 257
+Generated 188 / 257
+Generated 192 / 257
+Generated 196 / 257
+Generated 200 / 257
+Generated 204 / 257
+Generated 208 / 257
+Generated 212 / 257
+Generated 216 / 257
+Generated 220 / 257
+Generated 224 / 257
+Generated 228 / 257
+Generated 232 / 257
+Generated 236 / 257
+Generated 240 / 257
+Generated 244 / 257
+Generated 248 / 257
+Generated 252 / 257
+Generated 256 / 257
+Generated 257 / 257
+{
+  "benchmark": "MBPP",
+  "method": "greedy",
+  "config": "sanitized",
+  "split": "test",
+  "model_path": "/root/siton-tmp/assignment_A/rl/outputs/train_lora_ppo_full/checkpoint-1304",
+  "records_path": "a5_cgh/outputs/eval_greedy/mbpp_greedy_records.jsonl",
+  "num_tasks": 257,
+  "pass_at_1_greedy": 0.1245136186770428,
+  "pass_at_1": 0.1245136186770428,
+  "syntax_pass_rate_greedy": 0.8287937743190662,
+  "syntax_pass_rate": 0.8287937743190662,
+  "avg_test_pass_rate_greedy": 0.1713917525773196,
+  "avg_test_pass_rate": 0.1713917525773196,
+  "passed_tasks_greedy": 32,
+  "passed_tasks": 32,
+  "total_tests": 776,
+  "passed_tests_greedy": 133,
+  "passed_tests": 133,
+  "max_new_tokens": 512,
+  "prompt": {
+    "source": "Google Research MBPP README",
+    "template": "You are an expert Python programmer, and here is your task: {prompt} Your code should pass these tests:\n\n{tests}\n[BEGIN]\n{code}\n[DONE]",
+    "mode": "zero_shot",
+    "example_task_ids": [
+      2,
+      3,
+      4
+    ]
+  },
+  "execution_note": "Greedy baseline uses the MBPP official prompt template with temperature=0 (do_sample=False) single-path decode.",
+  "token_cost": {
+    "method": "greedy",
+    "num_tasks": 257,
+    "num_generations": 257,
+    "generation": {
+      "num_generations": 257,
+      "input_tokens": 38279,
+      "output_tokens": 33272,
+      "total_tokens": 71551,
+      "avg_input_tokens_per_task": 148.9455252918288,
+      "avg_output_tokens_per_task": 129.46303501945525,
+      "avg_total_tokens_per_task": 278.408560311284
+    },
+    "per_task_avg_generation": {
+      "num_generations": 1.0,
+      "input_tokens": 148.9455252918288,
+      "output_tokens": 129.46303501945525,
+      "total_tokens": 278.408560311284,
+      "avg_input_tokens_per_task": 148.9455252918288,
+      "avg_output_tokens_per_task": 129.46303501945525,
+      "avg_total_tokens_per_task": 278.408560311284
+    },
+    "final_answer": {
+      "num_generations": 257,
+      "input_tokens": 38279,
+      "output_tokens": 33272,
+      "total_tokens": 71551,
+      "avg_input_tokens_per_task": 148.9455252918288,
+      "avg_output_tokens_per_task": 129.46303501945525,
+      "avg_total_tokens_per_task": 278.408560311284
+    },
+    "estimated_cost_usd": null,
+    "note": "Single-path greedy decode: one model.generate() call per task."
+  },
+  "timing": {
+    "method": "greedy",
+    "num_tasks": 257,
+    "skipped_generation": false,
+    "total_seconds": 545.915,
+    "accounted_seconds": 544.88,
+    "unaccounted_seconds": 1.035,
+    "model_load_seconds": 8.107,
+    "generation_seconds": 497.185,
+    "scoring_seconds": 39.588,
+    "avg_seconds_per_task": 2.1242,
+    "phases": {
+      "generation": {
+        "seconds": 497.185,
+        "num_generations": 257,
+        "seconds_per_generation": 1.9346,
+        "seconds_per_task": 1.9346
+      },
+      "scoring": {
+        "seconds": 39.588,
+        "num_items": 257,
+        "seconds_per_item": 0.154
+      }
+    },
+    "note": "total_seconds is end-to-end wall time. generation_seconds sums model.generate() calls. scoring_seconds covers subprocess assert execution."
+  },
+  "total_seconds": 545.915
+}
+Wrote records to a5_cgh/outputs/eval_greedy/mbpp_greedy_records.jsonl
+Wrote metrics to a5_cgh/outputs/eval_greedy/mbpp_metrics_greedy.json
+Wrote cases to a5_cgh/outputs/eval_greedy/mbpp_cases_greedy.jsonl
+Wrote token cost to a5_cgh/outputs/eval_greedy/token_cost.json
+Wrote timing to a5_cgh/outputs/eval_greedy/timing.json
+=== eval_greedy done Sun Jul 12 23:06:40 CST 2026 ===
+=== eval_cot start Sun Jul 12 23:06:40 CST 2026 ===
+[eval_cot] GPU status before launch:
+0, 15809 MiB, 23552 MiB, 22 %
+[eval_cot] Tip: do not run other evals or training on the same GPU concurrently.
+[load_model] Loading base model from: /root/siton-tmp/assignment_A/sft/outputs_cgh/qwen15_sft_with_signature
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  24%|██▍       | 71/290 [00:00<00:00, 706.63it/s]Loading weights:  49%|████▉     | 142/290 [00:00<00:00, 658.74it/s]Loading weights:  72%|███████▏  | 209/290 [00:00<00:00, 656.45it/s]Loading weights:  95%|█████████▍| 275/290 [00:00<00:00, 640.29it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 575.71it/s]
+[load_model] Merging LoRA adapter from: /root/siton-tmp/assignment_A/rl/outputs/train_lora_ppo_full/checkpoint-1304
+[load_model] LoRA adapter attached in 1.6s
+[load_model] GPU memory after load: 6.2 GiB free / 23.0 GiB total
+[transformers] The following generation flags are not valid and may be ignored: ['top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Generated 4 / 257
+Generated 8 / 257
+Generated 12 / 257
+Generated 16 / 257
+Generated 20 / 257
+Generated 24 / 257
+Generated 28 / 257
+Generated 32 / 257
+Generated 36 / 257
+Generated 40 / 257
+Generated 44 / 257
+Generated 48 / 257
+Generated 52 / 257
+Generated 56 / 257
+Generated 60 / 257
+Generated 64 / 257
+Generated 68 / 257
+Generated 72 / 257
+Generated 76 / 257
+Generated 80 / 257
+Generated 84 / 257
+Generated 88 / 257
+Generated 92 / 257
+Generated 96 / 257
+Generated 100 / 257
+Generated 104 / 257
+Generated 108 / 257
+Generated 112 / 257
+Generated 116 / 257
+Generated 120 / 257
+Generated 124 / 257
+Generated 128 / 257
+Generated 132 / 257
+Generated 136 / 257
+Generated 140 / 257
+Generated 144 / 257
+Generated 148 / 257
+Generated 152 / 257
+Generated 156 / 257
+Generated 160 / 257
+Generated 164 / 257
+Generated 168 / 257
+Generated 172 / 257
+Generated 176 / 257
+Generated 180 / 257
+Generated 184 / 257
+Generated 188 / 257
+Generated 192 / 257
+Generated 196 / 257
+Generated 200 / 257
+Generated 204 / 257
+Generated 208 / 257
+Generated 212 / 257
+Generated 216 / 257
+Generated 220 / 257
+Generated 224 / 257
+Generated 228 / 257
+Generated 232 / 257
+Generated 236 / 257
+Generated 240 / 257
+Generated 244 / 257
+Generated 248 / 257
+Generated 252 / 257
+Generated 256 / 257
+Generated 257 / 257
+{
+  "benchmark": "MBPP",
+  "method": "chain_of_thought",
+  "config": "sanitized",
+  "split": "test",
+  "model_path": "/root/siton-tmp/assignment_A/rl/outputs/train_lora_ppo_full/checkpoint-1304",
+  "records_path": "a5_cgh/outputs/eval_cot/mbpp_cot_records.jsonl",
+  "num_tasks": 257,
+  "pass_at_1_cot": 0.10116731517509728,
+  "pass_at_1": 0.10116731517509728,
+  "syntax_pass_rate_cot": 0.8132295719844358,
+  "syntax_pass_rate": 0.8132295719844358,
+  "avg_test_pass_rate_cot": 0.13788659793814434,
+  "avg_test_pass_rate": 0.13788659793814434,
+  "passed_tasks_cot": 26,
+  "passed_tasks": 26,
+  "total_tests": 776,
+  "passed_tests_cot": 107,
+  "passed_tests": 107,
+  "max_new_tokens": 768,
+  "prompt": {
+    "style": "CoT with Reasoning, Key steps, and Final code sections",
+    "include_examples": false,
+    "decode": "greedy (temperature=0)"
+  },
+  "execution_note": "CoT baseline uses a structured Reasoning / Key steps / Final code prompt with temperature=0 greedy decode; only the Final code block is evaluated.",
+  "token_cost": {
+    "method": "chain_of_thought",
+    "num_tasks": 257,
+    "num_generations": 257,
+    "generation": {
+      "num_generations": 257,
+      "input_tokens": 56788,
+      "output_tokens": 40537,
+      "total_tokens": 97325,
+      "avg_input_tokens_per_task": 220.96498054474708,
+      "avg_output_tokens_per_task": 157.73151750972764,
+      "avg_total_tokens_per_task": 378.6964980544747
+    },
+    "per_task_avg_generation": {
+      "num_generations": 1.0,
+      "input_tokens": 220.96498054474708,
+      "output_tokens": 157.73151750972764,
+      "total_tokens": 378.6964980544747,
+      "avg_input_tokens_per_task": 220.96498054474708,
+      "avg_output_tokens_per_task": 157.73151750972764,
+      "avg_total_tokens_per_task": 378.6964980544747
+    },
+    "final_answer": {
+      "num_generations": 257,
+      "input_tokens": 56788,
+      "output_tokens": 40537,
+      "total_tokens": 97325,
+      "avg_input_tokens_per_task": 220.96498054474708,
+      "avg_output_tokens_per_task": 157.73151750972764,
+      "avg_total_tokens_per_task": 378.6964980544747
+    },
+    "estimated_cost_usd": null,
+    "note": "Single-path greedy decode: one model.generate() call per task."
+  },
+  "timing": {
+    "method": "chain_of_thought",
+    "num_tasks": 257,
+    "skipped_generation": false,
+    "total_seconds": 879.027,
+    "accounted_seconds": 877.747,
+    "unaccounted_seconds": 1.28,
+    "model_load_seconds": 8.495,
+    "generation_seconds": 801.89,
+    "scoring_seconds": 67.363,
+    "avg_seconds_per_task": 3.4203,
+    "phases": {
+      "generation": {
+        "seconds": 801.89,
+        "num_generations": 257,
+        "seconds_per_generation": 3.1202,
+        "seconds_per_task": 3.1202
+      },
+      "scoring": {
+        "seconds": 67.363,
+        "num_items": 257,
+        "seconds_per_item": 0.2621
+      }
+    },
+    "note": "total_seconds is end-to-end wall time. generation_seconds sums model.generate() calls. scoring_seconds covers subprocess assert execution."
+  },
+  "total_seconds": 879.027
+}
+Wrote records to a5_cgh/outputs/eval_cot/mbpp_cot_records.jsonl
+Wrote metrics to a5_cgh/outputs/eval_cot/mbpp_metrics_cot.json
+Wrote cases to a5_cgh/outputs/eval_cot/mbpp_cases_cot.jsonl
+Wrote token cost to a5_cgh/outputs/eval_cot/token_cost.json
+Wrote timing to a5_cgh/outputs/eval_cot/timing.json
+=== eval_cot done Sun Jul 12 23:21:22 CST 2026 ===

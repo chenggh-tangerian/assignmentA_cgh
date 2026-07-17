@@ -1,0 +1,83 @@
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  22%|██▏       | 65/290 [00:00<00:00, 642.52it/s]Loading weights:  76%|███████▌  | 219/290 [00:00<00:00, 1159.01it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 1162.18it/s]
+[transformers] The following generation flags are not valid and may be ignored: ['top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+generated 4/257
+generated 8/257
+generated 12/257
+generated 16/257
+generated 20/257
+generated 24/257
+generated 28/257
+generated 32/257
+generated 36/257
+generated 40/257
+generated 44/257
+generated 48/257
+generated 52/257
+generated 56/257
+generated 60/257
+generated 64/257
+generated 68/257
+generated 72/257
+generated 76/257
+generated 80/257
+generated 84/257
+generated 88/257
+generated 92/257
+generated 96/257
+generated 100/257
+generated 104/257
+generated 108/257
+generated 112/257
+generated 116/257
+generated 120/257
+generated 124/257
+generated 128/257
+generated 132/257
+generated 136/257
+generated 140/257
+generated 144/257
+generated 148/257
+generated 152/257
+generated 156/257
+generated 160/257
+generated 164/257
+generated 168/257
+generated 172/257
+generated 176/257
+generated 180/257
+generated 184/257
+generated 188/257
+generated 192/257
+generated 196/257
+generated 200/257
+generated 204/257
+generated 208/257
+generated 212/257
+generated 216/257
+generated 220/257
+generated 224/257
+generated 228/257
+generated 232/257
+generated 236/257
+generated 240/257
+generated 244/257
+generated 248/257
+generated 252/257
+generated 256/257
+generated 257/257
+{
+  "model_path": "dpo/outputs/qwen15_code_full_dpo",
+  "input_file": "../mbpp/sanitized/test-00000-of-00001.parquet",
+  "total": 257,
+  "syntax_pass_rate": 0.5992217898832685,
+  "pass_at_1": 0.0,
+  "avg_test_pass_rate": 0.002577319587628866,
+  "passed_tasks": 0,
+  "total_tests": 776,
+  "passed_tests": 2,
+  "exact_match": 0.0,
+  "avg_code_token_f1": 0.21072961399518034,
+  "prompt": "CoT prompt with Reasoning, Key steps, and Final code sections."
+}
+Wrote metrics to tts/outputs/cot_code_eval_dpo/cot_code_metrics.json
+Wrote cases to tts/outputs/cot_code_eval_dpo/cot_code_cases.jsonl

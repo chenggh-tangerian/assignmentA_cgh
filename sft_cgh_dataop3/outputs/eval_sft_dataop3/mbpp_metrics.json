@@ -1,0 +1,21 @@
+{
+  "benchmark": "MBPP",
+  "config": "sanitized",
+  "split": "test",
+  "model_path": "/root/siton-tmp/assignment_A/sft_cgh_dataop3/outputs/train/qwen15_dataop3_full_sft/checkpoint-3771",
+  "predictions": "/root/siton-tmp/assignment_A/sft_cgh_dataop3/outputs/eval_sft_dataop3/mbpp_generations.jsonl",
+  "num_tasks": 257,
+  "pass_at_1": 0.1245136186770428,
+  "syntax_pass_rate": 0.8599221789883269,
+  "avg_test_pass_rate": 0.15077319587628865,
+  "passed_tasks": 32,
+  "total_tests": 776,
+  "passed_tests": 117,
+  "prompt": {
+    "source": "Google Research MBPP README",
+    "template": "You are an expert Python programmer, and here is your task: {prompt} Your code should pass these tests:\n\n{tests}\n[BEGIN]\n{code}\n[DONE]",
+    "mode": "zero_shot",
+    "example_task_ids": []
+  },
+  "execution_note": "Generated Python is executed in a temporary subprocess with timeout and basic resource limits."
+}

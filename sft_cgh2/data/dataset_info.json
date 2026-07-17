@@ -1,0 +1,11 @@
+{
+  "repair_sft_train": {
+    "file_name": "repair_sft_train.json"
+  },
+  "repair_sft_valid": {
+    "file_name": "repair_sft_valid.json"
+  },
+  "repair_sft_all": {
+    "file_name": "repair_sft_all.json"
+  }
+}

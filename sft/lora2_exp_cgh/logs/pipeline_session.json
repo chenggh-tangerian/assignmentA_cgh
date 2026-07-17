@@ -1,0 +1,11 @@
+{
+  "program": "run_chain_6h",
+  "status": "running",
+  "started_at": "2026-07-02T06:27:02.072560+00:00",
+  "finished_at": null,
+  "budget_sec": 21600,
+  "batch02_exit": null,
+  "stretch_exit": null,
+  "suppress_watchdog": false,
+  "updated_at": "2026-07-02T06:27:02.072603+00:00"
+}

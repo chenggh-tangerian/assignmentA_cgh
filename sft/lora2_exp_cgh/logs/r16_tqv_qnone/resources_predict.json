@@ -1,0 +1,16 @@
+{
+  "train_loss": 0.8107511238169799,
+  "train_runtime_sec": 5820.9485,
+  "train_samples_per_second": 8.633,
+  "train_steps_per_second": 1.079,
+  "epoch": 3.0,
+  "eval_loss": 0.744908332824707,
+  "eval_accuracy": null,
+  "gpu_memory_peak_mib": 1257,
+  "gpu_memory_avg_mib": 1155.87,
+  "gpu_util_peak_pct": 100,
+  "gpu_monitor_samples": 84,
+  "gpu_memory_total_mib": 23552,
+  "adapter_size_bytes": 6304192,
+  "adapter_size_mb": 6.0121
+}

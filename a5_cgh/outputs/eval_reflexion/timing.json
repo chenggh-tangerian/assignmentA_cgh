@@ -1,0 +1,36 @@
+{
+  "method": "reflexion",
+  "num_tasks": 257,
+  "max_retries": 2,
+  "skipped_generation": false,
+  "total_seconds": 3465.058,
+  "accounted_seconds": 3458.764,
+  "unaccounted_seconds": 6.294,
+  "model_load_seconds": 10.173,
+  "generation_seconds": 3304.272,
+  "test_execution_seconds": 144.319,
+  "avg_seconds_per_task": 13.4827,
+  "phases": {
+    "initial": {
+      "seconds": 545.214,
+      "num_generations": 257,
+      "seconds_per_generation": 2.1215,
+      "seconds_per_task": 2.1215
+    },
+    "reflection": {
+      "seconds": 1094.859,
+      "num_generations": 474,
+      "seconds_per_generation": 2.3098,
+      "seconds_per_task": 4.2602
+    },
+    "retry": {
+      "seconds": 1664.199,
+      "num_generations": 474,
+      "seconds_per_generation": 3.511,
+      "seconds_per_task": 6.4755
+    }
+  },
+  "greedy": null,
+  "reflexion_over_greedy_generation_ratio": null,
+  "note": "total_seconds is end-to-end wall time. generation_seconds sums initial, reflection, and retry model.generate calls. test_execution_seconds covers subprocess asserts for every attempt."
+}

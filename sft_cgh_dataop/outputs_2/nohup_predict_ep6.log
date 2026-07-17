@@ -1,0 +1,400 @@
+[predict_ep6] GPU=0 model=/root/siton-tmp/assignment_A/sft_cgh_dataop/outputs_2/train/qwen15_hq_full_sft_ep6
+/opt/conda/envs/chenggh-sft/lib/python3.11/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[INFO|2026-07-12 00:01:21] llamafactory.hparams.parser:523 >> Process rank: 0, world size: 1, device: cuda:0, distributed training: False, compute dtype: torch.float16
+[INFO|hub.py:364] 2026-07-12 00:01:21,145 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-12 00:01:21,145 >> loading configuration file ./sft_cgh_dataop/outputs_2/train/qwen15_hq_full_sft_ep6/config.json
+[INFO|configuration_utils.py:847] 2026-07-12 00:01:21,150 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": null,
+  "dtype": "float32",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": 151643,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": false,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:364] 2026-07-12 00:01:21,150 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1592] 2026-07-12 00:01:21,151 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-12 00:01:22,035 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-12 00:01:22,035 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-12 00:01:22,035 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-12 00:01:22,035 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-12 00:01:22,035 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-12 00:01:22,036 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-12 00:01:22,036 >> loading configuration file ./sft_cgh_dataop/outputs_2/train/qwen15_hq_full_sft_ep6/config.json
+[INFO|configuration_utils.py:847] 2026-07-12 00:01:22,038 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": null,
+  "dtype": "float32",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": 151643,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": false,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:364] 2026-07-12 00:01:22,038 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-12 00:01:22,038 >> loading configuration file ./sft_cgh_dataop/outputs_2/train/qwen15_hq_full_sft_ep6/config.json
+[INFO|configuration_utils.py:847] 2026-07-12 00:01:22,040 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": null,
+  "dtype": "float32",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": 151643,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": false,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:364] 2026-07-12 00:01:22,040 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1592] 2026-07-12 00:01:22,040 >> Offline mode: forcing local_files_only=True
+[INFO|2026-07-12 00:01:23] llamafactory.data.loader:144 >> Loading dataset mbpp_sanitized_test_with_signature.json...
+Converting format of dataset (num_proc=8): 100%|██████████| 257/257 [00:00<?, ? examples/s]Converting format of dataset (num_proc=8): 290 examples [00:00, 327.59 examples/s]         Converting format of dataset (num_proc=8): 514 examples [00:00, 1240.59 examples/s]
+Running tokenizer on dataset (num_proc=8):   0%|          | 0/257 [00:00<?, ? examples/s]Running tokenizer on dataset (num_proc=8):  13%|█▎        | 33/257 [00:02<00:16, 13.95 examples/s]Running tokenizer on dataset (num_proc=8):  25%|██▌       | 65/257 [00:04<00:11, 16.04 examples/s]Running tokenizer on dataset (num_proc=8):  38%|███▊      | 97/257 [00:05<00:09, 16.92 examples/s]Running tokenizer on dataset (num_proc=8):  50%|█████     | 129/257 [00:07<00:07, 17.38 examples/s]Running tokenizer on dataset (num_proc=8):  63%|██████▎   | 161/257 [00:09<00:05, 17.69 examples/s]Running tokenizer on dataset (num_proc=8):  75%|███████▌  | 193/257 [00:11<00:03, 17.20 examples/s]Running tokenizer on dataset (num_proc=8):  88%|████████▊ | 225/257 [00:13<00:01, 17.51 examples/s]Running tokenizer on dataset (num_proc=8): 100%|██████████| 257/257 [00:15<00:00, 17.26 examples/s]Running tokenizer on dataset (num_proc=8): 100%|██████████| 257/257 [00:15<00:00, 16.65 examples/s]
+[INFO|hub.py:364] 2026-07-12 00:01:40,510 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-12 00:01:40,511 >> loading configuration file ./sft_cgh_dataop/outputs_2/train/qwen15_hq_full_sft_ep6/config.json
+[INFO|configuration_utils.py:847] 2026-07-12 00:01:40,513 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": null,
+  "dtype": "float32",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": 151643,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": false,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+eval example:
+input_ids:
+[151644, 8948, 198, 2610, 525, 1207, 16948, 11, 3465, 553, 54364, 14817, 13, 1446, 525, 264, 10950, 17847, 13, 151645, 198, 151644, 872, 198, 7985, 264, 10135, 729, 311, 4057, 1156, 323, 1537, 31559, 315, 264, 2661, 3668, 504, 279, 914, 382, 2610, 1969, 4211, 279, 6291, 1667, 6896, 419, 729, 11957, 320, 13096, 279, 729, 829, 323, 5733, 5036, 34857, 982, 750, 4057, 2232, 638, 1141, 11, 521, 1648, 151645, 198, 151644, 77091, 198]
+inputs:
+<|im_start|>system
+You are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>
+<|im_start|>user
+Write a python function to remove first and last occurrence of a given character from the string.
+
+You must implement the solution using exactly this function signature (keep the function name and parameter names unchanged):
+def remove_Occ(s, ch):<|im_end|>
+<|im_start|>assistant
+
+label_ids:
+[750, 4057, 2232, 638, 1141, 69997, 1648, 715, 262, 369, 600, 304, 2088, 6901, 1141, 36715, 715, 286, 421, 320, 82, 989, 60, 621, 521, 1648, 715, 310, 274, 284, 274, 58, 15, 549, 600, 60, 488, 274, 989, 488, 220, 16, 28283, 715, 310, 1438, 198, 262, 369, 600, 304, 2088, 6901, 1141, 8, 481, 220, 16, 4999, 16, 4999, 16, 1648, 2303, 286, 421, 320, 82, 989, 60, 621, 521, 1648, 715, 310, 274, 284, 274, 58, 15, 549, 600, 60, 488, 274, 989, 488, 220, 16, 28283, 715, 310, 1438, 198, 262, 470, 274, 151645, 198]
+labels:
+def remove_Occ(s,ch): 
+    for i in range(len(s)): 
+        if (s[i] == ch): 
+            s = s[0 : i] + s[i + 1:] 
+            break
+    for i in range(len(s) - 1,-1,-1):  
+        if (s[i] == ch): 
+            s = s[0 : i] + s[i + 1:] 
+            break
+    return s<|im_end|>
+
+[INFO|2026-07-12 00:01:40] llamafactory.model.model_utils.kv_cache:144 >> KV cache is enabled for faster generation.
+[INFO|modeling_utils.py:748] 2026-07-12 00:01:41,289 >> loading weights file ./sft_cgh_dataop/outputs_2/train/qwen15_hq_full_sft_ep6/model.safetensors
+[INFO|modeling_utils.py:821] 2026-07-12 00:01:41,289 >> Will use dtype=torch.float32 as defined in model's config object
+[INFO|configuration_utils.py:1027] 2026-07-12 00:01:41,290 >> Generate config GenerationConfig {
+  "eos_token_id": 151645,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "pad_token_id": 151643,
+  "use_cache": true
+}
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   6%|▌         | 18/290 [00:00<00:01, 179.70it/s]Loading weights:  39%|███▉      | 113/290 [00:00<00:00, 632.05it/s]Loading weights:  72%|███████▏  | 208/290 [00:00<00:00, 770.18it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 758.08it/s]
+[INFO|configuration_utils.py:978] 2026-07-12 00:01:42,333 >> loading configuration file ./sft_cgh_dataop/outputs_2/train/qwen15_hq_full_sft_ep6/generation_config.json
+[INFO|configuration_utils.py:1027] 2026-07-12 00:01:42,334 >> Generate config GenerationConfig {
+  "do_sample": true,
+  "eos_token_id": [
+    151645,
+    151643
+  ],
+  "pad_token_id": 151643,
+  "repetition_penalty": 1.1,
+  "top_p": 0.8
+}
+
+[INFO|dynamic_module_utils.py:406] 2026-07-12 00:01:42,334 >> Could not locate the custom_generate/generate.py inside ./sft_cgh_dataop/outputs_2/train/qwen15_hq_full_sft_ep6.
+[INFO|2026-07-12 00:01:42] llamafactory.model.model_utils.attention:144 >> Using torch SDPA for faster training and inference.
+[INFO|2026-07-12 00:01:42] llamafactory.model.loader:144 >> all params: 463,987,712
+[WARNING|2026-07-12 00:01:42] llamafactory.train.sft.workflow:155 >> Batch generation can be very slow. Consider using `scripts/vllm_infer.py` instead.
+[INFO|trainer.py:2668] 2026-07-12 00:01:42,389 >> 
+***** Running Prediction *****
+[INFO|trainer.py:2670] 2026-07-12 00:01:42,389 >>   Num examples = 257
+[INFO|trainer.py:2673] 2026-07-12 00:01:42,389 >>   Batch size = 8
+[WARNING|logging.py:340] 2026-07-12 00:01:42,691 >> The following generation flags are not valid and may be ignored: ['temperature', 'top_p'].
+[INFO|logging.py:355] 2026-07-12 00:01:42,691 >> - `temperature`: `do_sample` is set not to set `True`. However, `temperature` is set to `0.95` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+- `top_p`: `do_sample` is set not to set `True`. However, `top_p` is set to `0.7` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+If you're using a pretrained model, note that some of these attributes may be set through the model's `generation_config.json` file.
+  0%|          | 0/33 [00:00<?, ?it/s][WARNING|utils.py:1621] 2026-07-12 00:02:38,974 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+  6%|▌         | 2/33 [00:45<11:45, 22.75s/it][WARNING|utils.py:1621] 2026-07-12 00:03:24,276 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+  9%|▉         | 3/33 [01:43<18:45, 37.53s/it][WARNING|utils.py:1621] 2026-07-12 00:04:22,671 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 12%|█▏        | 4/33 [02:25<18:56, 39.19s/it][WARNING|utils.py:1621] 2026-07-12 00:05:04,476 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 15%|█▌        | 5/33 [03:15<20:00, 42.88s/it][WARNING|utils.py:1621] 2026-07-12 00:05:54,471 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 18%|█▊        | 6/33 [04:06<20:29, 45.54s/it][WARNING|utils.py:1621] 2026-07-12 00:06:45,274 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 21%|██        | 7/33 [05:13<22:44, 52.48s/it][WARNING|utils.py:1621] 2026-07-12 00:07:52,374 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 24%|██▍       | 8/33 [05:40<18:28, 44.32s/it][WARNING|utils.py:1621] 2026-07-12 00:08:18,867 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 27%|██▋       | 9/33 [05:50<13:31, 33.81s/it][WARNING|utils.py:1621] 2026-07-12 00:08:29,307 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 30%|███       | 10/33 [06:37<14:27, 37.73s/it][WARNING|utils.py:1621] 2026-07-12 00:09:15,877 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 33%|███▎      | 11/33 [07:19<14:20, 39.12s/it][WARNING|utils.py:1621] 2026-07-12 00:09:58,166 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 36%|███▋      | 12/33 [08:56<19:51, 56.72s/it][WARNING|utils.py:1621] 2026-07-12 00:11:35,288 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 39%|███▉      | 13/33 [09:23<15:54, 47.74s/it][WARNING|utils.py:1621] 2026-07-12 00:12:02,307 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 42%|████▏     | 14/33 [10:20<15:59, 50.50s/it][WARNING|utils.py:1621] 2026-07-12 00:12:59,196 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 45%|████▌     | 15/33 [11:20<16:03, 53.52s/it][WARNING|utils.py:1621] 2026-07-12 00:13:59,737 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 48%|████▊     | 16/33 [12:08<14:38, 51.70s/it][WARNING|utils.py:1621] 2026-07-12 00:14:47,204 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 52%|█████▏    | 17/33 [12:30<11:23, 42.74s/it][WARNING|utils.py:1621] 2026-07-12 00:15:09,104 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 55%|█████▍    | 18/33 [13:11<10:34, 42.31s/it][WARNING|utils.py:1621] 2026-07-12 00:15:50,406 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 58%|█████▊    | 19/33 [14:09<10:59, 47.12s/it][WARNING|utils.py:1621] 2026-07-12 00:16:48,733 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 61%|██████    | 20/33 [15:28<12:14, 56.51s/it][WARNING|utils.py:1621] 2026-07-12 00:18:07,136 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 64%|██████▎   | 21/33 [16:04<10:06, 50.52s/it][WARNING|utils.py:1621] 2026-07-12 00:18:43,675 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 67%|██████▋   | 22/33 [16:26<07:40, 41.87s/it][WARNING|utils.py:1621] 2026-07-12 00:19:05,373 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 70%|██████▉   | 23/33 [18:39<11:32, 69.30s/it][WARNING|utils.py:1621] 2026-07-12 00:21:18,653 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 73%|███████▎  | 24/33 [19:42<10:04, 67.22s/it][WARNING|utils.py:1621] 2026-07-12 00:22:21,020 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 76%|███████▌  | 25/33 [20:17<07:40, 57.56s/it][WARNING|utils.py:1621] 2026-07-12 00:22:56,040 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 79%|███████▉  | 26/33 [20:33<05:16, 45.20s/it][WARNING|utils.py:1621] 2026-07-12 00:23:12,403 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 82%|████████▏ | 27/33 [20:56<03:51, 38.57s/it][WARNING|utils.py:1621] 2026-07-12 00:23:35,498 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 85%|████████▍ | 28/33 [21:25<02:57, 35.55s/it][WARNING|utils.py:1621] 2026-07-12 00:24:04,019 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 88%|████████▊ | 29/33 [21:50<02:09, 32.40s/it][WARNING|utils.py:1621] 2026-07-12 00:24:29,065 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 91%|█████████ | 30/33 [22:27<01:41, 33.76s/it][WARNING|utils.py:1621] 2026-07-12 00:25:05,986 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 94%|█████████▍| 31/33 [24:18<01:53, 56.98s/it][WARNING|utils.py:1621] 2026-07-12 00:26:57,144 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+ 97%|█████████▋| 32/33 [24:36<00:45, 45.20s/it][WARNING|utils.py:1621] 2026-07-12 00:27:14,890 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+100%|██████████| 33/33 [24:37<00:00, 31.93s/it]Building prefix dict from the default dictionary ...
+Loading model from cache /tmp/jieba.cache
+Loading model cost 0.777 seconds.
+Prefix dict has been built successfully.
+100%|██████████| 33/33 [24:39<00:00, 44.82s/it]
+***** predict metrics *****
+  predict_bleu-4                 =    34.2705
+  predict_model_preparation_time =     0.0043
+  predict_rouge-1                =    62.7368
+  predict_rouge-2                =    37.0875
+  predict_rouge-l                =    45.1561
+  predict_runtime                = 0:25:35.39
+  predict_samples_per_second     =      0.167
+  predict_steps_per_second       =      0.021
+[INFO|2026-07-12 00:27:17] llamafactory.train.sft.trainer:144 >> Saving prediction results to ./sft_cgh_dataop/outputs_2/predict/generated_predictions.jsonl
+[eval_ep6] MBPP execution
+{
+  "benchmark": "MBPP",
+  "config": "sanitized",
+  "split": "test",
+  "predictions": "/root/siton-tmp/assignment_A/sft_cgh_dataop/outputs_2/predict/generated_predictions.jsonl",
+  "mbpp_dir": "/root/siton-tmp/mbpp",
+  "num_tasks": 257,
+  "pass_at_1": 0.2178988326848249,
+  "syntax_pass_rate": 0.9416342412451362,
+  "avg_test_pass_rate": 0.2667525773195876,
+  "exact_match": 0.0,
+  "avg_code_token_f1": 0.49672463764328373,
+  "passed_tasks": 56,
+  "total_tests": 776,
+  "passed_tests": 207,
+  "note": "Reports pass@1 using MBPP sanitized task tests and execution outputs."
+}
+Wrote metrics to /root/siton-tmp/assignment_A/sft_cgh_dataop/outputs_2/eval/mbpp_metrics.json
+Wrote detailed cases to /root/siton-tmp/assignment_A/sft_cgh_dataop/outputs_2/eval/mbpp_cases.jsonl
+[analysis_ep6]
+Analyzed 257 cases
+Wrote /root/siton-tmp/assignment_A/sft_cgh_dataop/outputs_2/analysis/error_analysis_hq_sft_dataop_ep6.json
+Wrote /root/siton-tmp/assignment_A/sft_cgh_dataop/outputs_2/analysis/error_analysis_hq_sft_dataop_ep6.md
+Wrote /root/siton-tmp/assignment_A/sft_cgh_dataop/outputs_2/analysis/error_cases_enriched_hq_sft_dataop_ep6.jsonl
+
+Top failure categories:
+  - 逻辑错误(断言失败): 86 (42.8% of failures)
+  - 类型错误: 27 (13.4% of failures)
+  - 部分测试通过: 23 (11.4% of failures)
+  - 其他运行时错误: 17 (8.5% of failures)
+[predict_ep6] done
+  metrics: /root/siton-tmp/assignment_A/sft_cgh_dataop/outputs_2/eval/mbpp_metrics.json
+  report:  /root/siton-tmp/assignment_A/sft_cgh_dataop/outputs_2/analysis/error_analysis_hq_sft_dataop_ep6.md

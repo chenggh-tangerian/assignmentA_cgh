@@ -1,0 +1,92 @@
+{
+  "run_id": "r8_tqv_q4",
+  "phase": "grid",
+  "params": {
+    "lora_rank": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "lora_target": "q_proj,v_proj",
+    "lora_target_key": "qv",
+    "quantization_bit": 4,
+    "learning_rate": 0.0001,
+    "num_train_epochs": 3.0,
+    "finetuning_type": "qlora"
+  },
+  "paths": {
+    "train_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_train.yaml",
+    "predict_config": "./sft/lora2_exp_cgh/configs/r8_tqv_q4_predict.yaml",
+    "model_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4/model",
+    "predict_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4/predict",
+    "eval_dir": "./sft/lora2_exp_cgh/outputs/r8_tqv_q4/eval",
+    "log_dir": "./sft/lora2_exp_cgh/logs/r8_tqv_q4"
+  },
+  "stages": {
+    "train": {
+      "status": "done",
+      "started_at": "2026-07-01T19:23:46.984289+00:00",
+      "finished_at": "2026-07-01T21:28:27.801818+00:00",
+      "error": null
+    },
+    "predict": {
+      "status": "done",
+      "started_at": "2026-07-01T21:28:28.141370+00:00",
+      "finished_at": "2026-07-01T21:38:20.755497+00:00",
+      "error": null
+    },
+    "eval": {
+      "status": "done",
+      "started_at": "2026-07-01T21:38:20.803578+00:00",
+      "finished_at": "2026-07-01T21:38:34.812098+00:00",
+      "error": null
+    }
+  },
+  "resources": {
+    "trainable_params": 786432,
+    "all_params": 464774144,
+    "trainable_pct": 0.1692,
+    "train_loss": 0.8466210446703856,
+    "train_runtime_sec": 7385.8257,
+    "train_samples_per_second": 6.804,
+    "train_steps_per_second": 0.851,
+    "epoch": 3.0,
+    "eval_loss": 0.7730488181114197,
+    "eval_accuracy": null,
+    "gpu_memory_peak_mib": 11381,
+    "gpu_memory_avg_mib": 11358.4,
+    "gpu_util_peak_pct": 31,
+    "gpu_monitor_samples": 1469,
+    "gpu_memory_total_mib": 23552,
+    "adapter_size_bytes": 3158328,
+    "adapter_size_mb": 3.012,
+    "hyperparams": {
+      "lora_rank": 8,
+      "lora_alpha": 16,
+      "lora_dropout": 0.05,
+      "lora_target": "q_proj,v_proj",
+      "lora_target_key": "qv",
+      "quantization_bit": 4,
+      "learning_rate": 0.0001,
+      "num_train_epochs": 3.0,
+      "finetuning_type": "qlora"
+    }
+  },
+  "metrics": {
+    "benchmark": "MBPP",
+    "config": "sanitized",
+    "split": "test",
+    "predictions": "/root/siton-tmp/assignment_A/sft/lora2_exp_cgh/outputs/r8_tqv_q4/predict/generated_predictions.jsonl",
+    "mbpp_dir": "/root/siton-tmp/mbpp",
+    "num_tasks": 257,
+    "pass_at_1": 0.03501945525291829,
+    "syntax_pass_rate": 0.9494163424124513,
+    "avg_test_pass_rate": 0.037371134020618556,
+    "exact_match": 0.0,
+    "avg_code_token_f1": 0.4633188721315931,
+    "passed_tasks": 9,
+    "total_tests": 776,
+    "passed_tests": 29,
+    "note": "Reports pass@1 using MBPP sanitized task tests and execution outputs."
+  },
+  "overall_status": "done",
+  "updated_at": "2026-07-01T21:38:34.812181+00:00"
+}

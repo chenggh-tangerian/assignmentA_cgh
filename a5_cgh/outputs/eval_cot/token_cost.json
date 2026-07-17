@@ -1,0 +1,34 @@
+{
+  "method": "chain_of_thought",
+  "num_tasks": 257,
+  "num_generations": 257,
+  "generation": {
+    "num_generations": 257,
+    "input_tokens": 56788,
+    "output_tokens": 40537,
+    "total_tokens": 97325,
+    "avg_input_tokens_per_task": 220.96498054474708,
+    "avg_output_tokens_per_task": 157.73151750972764,
+    "avg_total_tokens_per_task": 378.6964980544747
+  },
+  "per_task_avg_generation": {
+    "num_generations": 1.0,
+    "input_tokens": 220.96498054474708,
+    "output_tokens": 157.73151750972764,
+    "total_tokens": 378.6964980544747,
+    "avg_input_tokens_per_task": 220.96498054474708,
+    "avg_output_tokens_per_task": 157.73151750972764,
+    "avg_total_tokens_per_task": 378.6964980544747
+  },
+  "final_answer": {
+    "num_generations": 257,
+    "input_tokens": 56788,
+    "output_tokens": 40537,
+    "total_tokens": 97325,
+    "avg_input_tokens_per_task": 220.96498054474708,
+    "avg_output_tokens_per_task": 157.73151750972764,
+    "avg_total_tokens_per_task": 378.6964980544747
+  },
+  "estimated_cost_usd": null,
+  "note": "Single-path greedy decode: one model.generate() call per task."
+}

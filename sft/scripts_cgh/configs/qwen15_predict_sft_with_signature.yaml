@@ -1,0 +1,34 @@
+# 功能: 签名版 v2 模型 + 签名 MBPP 预测
+# 输入: sft/outputs_cgh/qwen15_sft_with_signature + mbpp_*_with_signature
+# 输出: sft/outputs_cgh/predict_sft_with_signature/
+### model
+model_name_or_path: ./sft/outputs_cgh/qwen15_sft_with_signature
+trust_remote_code: true
+
+### method
+stage: sft
+do_predict: true
+finetuning_type: full
+
+### dataset
+dataset_dir: ./sft/data_cgh
+eval_dataset: mbpp_sanitized_test_with_signature
+template: qwen
+cutoff_len: 2048
+overwrite_cache: true
+preprocessing_num_workers: 8
+dataloader_num_workers: 2
+
+### output
+output_dir: ./sft/outputs_cgh/predict_sft_with_signature
+overwrite_output_dir: true
+report_to: none
+
+### generation
+per_device_eval_batch_size: 2
+predict_with_generate: true
+max_new_tokens: 768
+do_sample: false
+num_beams: 1
+fp16: true
+ddp_timeout: 180000000

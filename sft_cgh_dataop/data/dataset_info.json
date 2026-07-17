@@ -1,0 +1,14 @@
+{
+  "code_sft_train_hq": {
+    "file_name": "code_sft_train_hq.json"
+  },
+  "code_sft_valid_hq": {
+    "file_name": "code_sft_valid_hq.json"
+  },
+  "code_sft_test_hq": {
+    "file_name": "code_sft_test_hq.json"
+  },
+  "mbpp_sanitized_test_with_signature": {
+    "file_name": "mbpp_sanitized_test_with_signature.json"
+  }
+}

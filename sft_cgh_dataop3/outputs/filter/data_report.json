@@ -1,0 +1,40 @@
+{
+  "constraint": "train_from_sft_data_only_no_test_leak",
+  "source_dir": "/root/siton-tmp/assignment_A/sft/data",
+  "target_ratio": 0.6,
+  "target_total": 10050,
+  "train": {
+    "input": 16750,
+    "soft_pass": 10010,
+    "after_dedup": 9847,
+    "ratio_vs_raw": 0.6,
+    "soft_pool": 9847,
+    "unique_selected": 9847,
+    "extras": 203,
+    "final": 10050,
+    "with_signature": 10044,
+    "tag_counts_in_final": {
+      "other": 4580,
+      "type_like": 3518,
+      "algo_like": 2730,
+      "boundary_like": 835
+    },
+    "quotas": {
+      "extra_algo": 200,
+      "extra_type": 150,
+      "extra_boundary": 100,
+      "target_total": 10050
+    },
+    "sources": [
+      "sft/data/code_sft_train.json ONLY"
+    ],
+    "forbidden_used": false
+  },
+  "valid": {
+    "input": 930,
+    "soft_pass": 556,
+    "final": 556
+  },
+  "eval_mbpp_copied_for_predict_only": "/root/siton-tmp/assignment_A/sft/infer_signature_cgh/data/mbpp_sanitized_test_with_signature.json",
+  "eval_mbpp_mixed_into_train": false
+}

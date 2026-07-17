@@ -1,0 +1,51 @@
+### model
+# Warm-start from HQ ep3 weights (safetensors). Avoid resume_from_checkpoint
+# (optimizer.pt needs torch>=2.6). Extra 3 epochs -> effective ~6 epochs total.
+model_name_or_path: ./sft_cgh_dataop/outputs/train/qwen15_hq_full_sft
+trust_remote_code: true
+
+### method
+stage: sft
+do_train: true
+finetuning_type: full
+compute_accuracy: true
+
+### dataset
+dataset_dir: ./sft_cgh_dataop/data
+dataset: code_sft_train_hq
+eval_dataset: code_sft_valid_hq
+template: qwen
+cutoff_len: 2048
+overwrite_cache: true
+preprocessing_num_workers: 8
+dataloader_num_workers: 8
+
+### output
+output_dir: ./sft_cgh_dataop/outputs_2/train/qwen15_hq_full_sft_ep6
+logging_steps: 5
+save_steps: 200
+save_total_limit: 2
+plot_loss: true
+overwrite_output_dir: true
+save_only_model: false
+report_to: none
+
+### train
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 4
+# Slightly lower LR for continued fine-tuning
+learning_rate: 5.0e-6
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.03
+max_grad_norm: 1.0
+gradient_checkpointing: true
+fp16: true
+bf16: false
+ddp_timeout: 180000000
+resume_from_checkpoint: null
+
+### eval during training
+per_device_eval_batch_size: 2
+eval_strategy: steps
+eval_steps: 200

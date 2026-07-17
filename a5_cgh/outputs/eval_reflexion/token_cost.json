@@ -1,0 +1,60 @@
+{
+  "method": "reflexion",
+  "num_tasks": 257,
+  "max_retries": 2,
+  "num_generations": 1205,
+  "generation": {
+    "num_generations": 1205,
+    "input_tokens": 501298,
+    "output_tokens": 202143,
+    "total_tokens": 703441,
+    "avg_input_tokens_per_task": 1950.5758754863814,
+    "avg_output_tokens_per_task": 786.5486381322958,
+    "avg_total_tokens_per_task": 2737.124513618677
+  },
+  "per_task_avg_generation": {
+    "num_generations": 4.688715953307393,
+    "input_tokens": 1950.5758754863814,
+    "output_tokens": 786.5486381322958,
+    "total_tokens": 2737.124513618677,
+    "avg_input_tokens_per_task": 1950.5758754863814,
+    "avg_output_tokens_per_task": 786.5486381322958,
+    "avg_total_tokens_per_task": 2737.124513618677
+  },
+  "by_phase": {
+    "initial": {
+      "count": 257,
+      "input_tokens": 38279,
+      "output_tokens": 35262,
+      "total_tokens": 73541,
+      "seconds": 545.2158000000001
+    },
+    "reflection": {
+      "count": 474,
+      "input_tokens": 225865,
+      "output_tokens": 74743,
+      "total_tokens": 300608,
+      "seconds": 1094.8583999999987
+    },
+    "retry": {
+      "count": 474,
+      "input_tokens": 237154,
+      "output_tokens": 92138,
+      "total_tokens": 329292,
+      "seconds": 1664.197600000001
+    }
+  },
+  "final_answer": {
+    "num_generations": 257,
+    "input_tokens": 126331,
+    "output_tokens": 49631,
+    "total_tokens": 175962,
+    "avg_input_tokens_per_task": 491.5603112840467,
+    "avg_output_tokens_per_task": 193.11673151750972,
+    "avg_total_tokens_per_task": 684.6770428015565
+  },
+  "greedy": null,
+  "reflexion_over_greedy_total_ratio": null,
+  "estimated_cost_usd": null,
+  "note": "Reflexion counts every LLM call: initial code, optional reflection, and each retry. Reflection phase tokens are included in generation totals."
+}

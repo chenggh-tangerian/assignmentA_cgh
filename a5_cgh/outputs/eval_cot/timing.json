@@ -1,0 +1,26 @@
+{
+  "method": "chain_of_thought",
+  "num_tasks": 257,
+  "skipped_generation": false,
+  "total_seconds": 879.027,
+  "accounted_seconds": 877.747,
+  "unaccounted_seconds": 1.28,
+  "model_load_seconds": 8.495,
+  "generation_seconds": 801.89,
+  "scoring_seconds": 67.363,
+  "avg_seconds_per_task": 3.4203,
+  "phases": {
+    "generation": {
+      "seconds": 801.89,
+      "num_generations": 257,
+      "seconds_per_generation": 3.1202,
+      "seconds_per_task": 3.1202
+    },
+    "scoring": {
+      "seconds": 67.363,
+      "num_items": 257,
+      "seconds_per_item": 0.2621
+    }
+  },
+  "note": "total_seconds is end-to-end wall time. generation_seconds sums model.generate() calls. scoring_seconds covers subprocess assert execution."
+}

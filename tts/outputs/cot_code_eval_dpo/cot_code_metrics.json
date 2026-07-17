@@ -1,0 +1,14 @@
+{
+  "model_path": "dpo/outputs/qwen15_code_full_dpo",
+  "input_file": "../mbpp/sanitized/test-00000-of-00001.parquet",
+  "total": 257,
+  "syntax_pass_rate": 0.5992217898832685,
+  "pass_at_1": 0.0,
+  "avg_test_pass_rate": 0.002577319587628866,
+  "passed_tasks": 0,
+  "total_tests": 776,
+  "passed_tests": 2,
+  "exact_match": 0.0,
+  "avg_code_token_f1": 0.21072961399518034,
+  "prompt": "CoT prompt with Reasoning, Key steps, and Final code sections."
+}

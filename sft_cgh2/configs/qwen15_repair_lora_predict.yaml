@@ -1,0 +1,50 @@
+# 代码修复 SFT 预测配置（加载已训 LoRA，在验证集上生成）
+#
+# 输入:
+#   基座模型: ./Qwen1.5-0.5B-Chat
+#   adapter:  ./sft_cgh2/outputs/qwen15_repair_lora
+#   数据集:   sft_cgh2/data/repair_sft_valid
+#
+# 输出:
+#   预测结果: ./sft_cgh2/outputs/qwen15_repair_lora_predict
+#             （含 generated_predictions.jsonl 等）
+#
+# 用法:
+#   python -m llamafactory.cli train sft_cgh2/configs/qwen15_repair_lora_predict.yaml
+
+### model
+model_name_or_path: ./Qwen1.5-0.5B-Chat
+adapter_name_or_path: ./sft_cgh2/outputs/qwen15_repair_lora
+trust_remote_code: true
+
+### method
+stage: sft
+do_predict: true
+finetuning_type: lora
+
+### dataset
+dataset_dir: ./sft_cgh2/data
+eval_dataset: repair_sft_valid
+template: qwen
+cutoff_len: 4096
+overwrite_cache: true
+preprocessing_num_workers: 8
+dataloader_num_workers: 2
+
+### output
+output_dir: ./sft_cgh2/outputs/qwen15_repair_lora_predict
+overwrite_output_dir: true
+report_to: none
+
+### generation
+per_device_eval_batch_size: 1
+predict_with_generate: true
+max_new_tokens: 768
+do_sample: false
+num_beams: 1
+fp16: true
+ddp_timeout: 180000000
+
+### qlora
+quantization_bit: 4
+quantization_method: bnb

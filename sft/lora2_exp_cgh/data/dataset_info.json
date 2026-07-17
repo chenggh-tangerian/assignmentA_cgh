@@ -1,0 +1,11 @@
+{
+  "code_sft_train": {
+    "file_name": "code_sft_train.json"
+  },
+  "code_sft_valid": {
+    "file_name": "code_sft_valid.json"
+  },
+  "mbpp_sanitized_test": {
+    "file_name": "mbpp_sanitized_test.json"
+  }
+}

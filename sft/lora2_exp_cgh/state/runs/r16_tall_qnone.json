@@ -1,0 +1,92 @@
+{
+  "run_id": "r16_tall_qnone",
+  "phase": "grid",
+  "params": {
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "lora_target": "all",
+    "lora_target_key": "all",
+    "quantization_bit": null,
+    "learning_rate": 0.0001,
+    "num_train_epochs": 3.0,
+    "finetuning_type": "lora"
+  },
+  "paths": {
+    "train_config": "./sft/lora2_exp_cgh/configs/r16_tall_qnone_train.yaml",
+    "predict_config": "./sft/lora2_exp_cgh/configs/r16_tall_qnone_predict.yaml",
+    "model_dir": "./sft/lora2_exp_cgh/outputs/r16_tall_qnone/model",
+    "predict_dir": "./sft/lora2_exp_cgh/outputs/r16_tall_qnone/predict",
+    "eval_dir": "./sft/lora2_exp_cgh/outputs/r16_tall_qnone/eval",
+    "log_dir": "./sft/lora2_exp_cgh/logs/r16_tall_qnone"
+  },
+  "stages": {
+    "train": {
+      "status": "done",
+      "started_at": "2026-07-03T01:00:59.700666+00:00",
+      "finished_at": "2026-07-03T05:00:51.606079+00:00",
+      "error": null
+    },
+    "predict": {
+      "status": "done",
+      "started_at": "2026-07-03T05:00:51.951829+00:00",
+      "finished_at": "2026-07-03T05:07:31.881163+00:00",
+      "error": null
+    },
+    "eval": {
+      "status": "done",
+      "started_at": "2026-07-03T05:07:31.930711+00:00",
+      "finished_at": "2026-07-03T05:07:46.430007+00:00",
+      "error": null
+    }
+  },
+  "resources": {
+    "trainable_params": 7569408,
+    "all_params": 471557120,
+    "trainable_pct": 1.6052,
+    "train_loss": 0.737863412084795,
+    "train_runtime_sec": 14284.0225,
+    "train_samples_per_second": 3.518,
+    "train_steps_per_second": 0.44,
+    "epoch": 3.0,
+    "eval_loss": 0.7158302664756775,
+    "eval_accuracy": null,
+    "gpu_memory_peak_mib": 19133,
+    "gpu_memory_avg_mib": 13531.67,
+    "gpu_util_peak_pct": 100,
+    "gpu_monitor_samples": 2831,
+    "gpu_memory_total_mib": 23552,
+    "adapter_size_bytes": 30322120,
+    "adapter_size_mb": 28.9174,
+    "hyperparams": {
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "lora_dropout": 0.05,
+      "lora_target": "all",
+      "lora_target_key": "all",
+      "quantization_bit": null,
+      "learning_rate": 0.0001,
+      "num_train_epochs": 3.0,
+      "finetuning_type": "lora"
+    }
+  },
+  "metrics": {
+    "benchmark": "MBPP",
+    "config": "sanitized",
+    "split": "test",
+    "predictions": "/root/siton-tmp/assignment_A/sft/lora2_exp_cgh/outputs/r16_tall_qnone/predict/generated_predictions.jsonl",
+    "mbpp_dir": "/root/siton-tmp/mbpp",
+    "num_tasks": 257,
+    "pass_at_1": 0.027237354085603113,
+    "syntax_pass_rate": 0.9688715953307393,
+    "avg_test_pass_rate": 0.029639175257731958,
+    "exact_match": 0.0,
+    "avg_code_token_f1": 0.48327780570488155,
+    "passed_tasks": 7,
+    "total_tests": 776,
+    "passed_tests": 23,
+    "note": "Reports pass@1 using MBPP sanitized task tests and execution outputs."
+  },
+  "overall_status": "done",
+  "updated_at": "2026-07-03T05:07:46.430073+00:00"
+}

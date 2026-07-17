@@ -1,0 +1,1041 @@
+========== [1/6] Prepare SFT train/valid/test with signatures ==========
+train: 16750 -> 16750 (signature=11811, plain=4939, skipped=0)
+  wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/code_sft_train_with_signature.json
+valid: 930 -> 930 (signature=653, plain=277, skipped=0)
+  wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/code_sft_valid_with_signature.json
+test: 932 -> 932 (signature=668, plain=264, skipped=0)
+  wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/code_sft_test_with_signature.json
+Wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/dataset_info.json
+
+Example augmented instruction tail:
+ string as a parameter and capitalizes the first letter of each word in the string.
+
+You must implement the solution using exactly this function signature (keep the function name and parameter names unchanged):
+def capitalize(input_string):
+Source rows: 257
+Converted rows: 257
+Skipped rows: 0
+Wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/mbpp_sanitized_test_with_signature.json
+Wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/dataset_info.json
+
+Example instruction tail:
+remove first and last occurrence of a given character from the string.
+
+You must implement the solution using exactly this function signature (keep the function name and parameter names unchanged):
+def remove_Occ(s, ch):
+========== [2/6] Train SFT on signature-augmented data ==========
+project_root= /root/siton-tmp/assignment_A
+CUDA_VISIBLE_DEVICES= 0
+torch.cuda.is_available()= True
+visible_device_count= 1
+device0= NVIDIA H200 NVL
+/opt/conda/envs/chenggh-sft/lib/python3.11/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+[INFO|2026-07-01 16:04:55] llamafactory.hparams.parser:523 >> Process rank: 0, world size: 1, device: cuda:0, distributed training: False, compute dtype: torch.float16
+[INFO|hub.py:364] 2026-07-01 16:04:55,008 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-01 16:04:55,009 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:847] 2026-07-01 16:04:55,013 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:364] 2026-07-01 16:04:55,013 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1592] 2026-07-01 16:04:55,014 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:04:55,356 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:04:55,357 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:04:55,357 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:04:55,357 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:04:55,357 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:04:55,357 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-01 16:04:55,357 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:847] 2026-07-01 16:04:55,359 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:364] 2026-07-01 16:04:55,359 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-01 16:04:55,359 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:847] 2026-07-01 16:04:55,361 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:364] 2026-07-01 16:04:55,361 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1592] 2026-07-01 16:04:55,361 >> Offline mode: forcing local_files_only=True
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/root/siton-tmp/assignment_A/LlamaFactory/src/llamafactory/cli.py", line 31, in <module>
+    main()
+  File "/root/siton-tmp/assignment_A/LlamaFactory/src/llamafactory/cli.py", line 24, in main
+    launcher.launch()
+  File "/root/siton-tmp/assignment_A/LlamaFactory/src/llamafactory/launcher.py", line 157, in launch
+    run_exp()
+  File "/root/siton-tmp/assignment_A/LlamaFactory/src/llamafactory/train/tuner.py", line 156, in run_exp
+    _training_function(config={"args": args, "callbacks": callbacks})
+  File "/root/siton-tmp/assignment_A/LlamaFactory/src/llamafactory/train/tuner.py", line 124, in _training_function
+    run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+  File "/root/siton-tmp/assignment_A/LlamaFactory/src/llamafactory/train/sft/workflow.py", line 52, in run_sft
+    dataset_module = get_dataset(template, model_args, data_args, training_args, stage="sft", **tokenizer_module)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/siton-tmp/assignment_A/LlamaFactory/src/llamafactory/data/loader.py", line 303, in get_dataset
+    dataset = _get_merged_dataset(data_args.dataset, model_args, data_args, training_args, stage)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/siton-tmp/assignment_A/LlamaFactory/src/llamafactory/data/loader.py", line 177, in _get_merged_dataset
+    for dataset_name, dataset_attr in zip(dataset_names, get_dataset_list(dataset_names, data_args.dataset_dir)):
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/siton-tmp/assignment_A/LlamaFactory/src/llamafactory/data/parser.py", line 126, in get_dataset_list
+    raise ValueError(f"Undefined dataset {name} in {DATA_CONFIG}.")
+ValueError: Undefined dataset code_sft_train_with_signature in dataset_info.json.
+24, in _training_function
+    run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+  File "/root/siton-tmp/assignment_A/LlamaFactory/src/llamafactory/train/sft/workflow.py", line 52, in run_sft
+    dataset_module = get_dataset(template, model_args, data_args, training_args, stage="sft", **tokenizer_module)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/siton-tmp/assignment_A/LlamaFactory/src/llamafactory/data/loader.py", line 303, in get_dataset
+    dataset = _get_merged_dataset(data_args.dataset, model_args, data_args, training_args, stage)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/siton-tmp/assignment_A/LlamaFactory/src/llamafactory/data/loader.py", line 177, in _get_merged_dataset
+    for dataset_name, dataset_attr in zip(dataset_names, get_dataset_list(dataset_names, data_args.dataset_dir)):
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/siton-tmp/assignment_A/LlamaFactory/src/llamafactory/data/parser.py", line 126, in get_dataset_list
+    raise ValueError(f"Undefined dataset {name} in {DATA_CONFIG}.")
+ValueError: Undefined dataset code_sft_train_with_signature in dataset_info.json.
+========== [1/6] Prepare SFT train/valid/test with signatures ==========
+========== [1/6] Prepare SFT train/valid/test with signatures ==========
+Source rows: 257
+Converted rows: 257
+Skipped rows: 0
+Wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/mbpp_sanitized_test_with_signature.json
+Updated /root/siton-tmp/assignment_A/sft/script_cgh/data/dataset_info.json
+
+Example instruction tail:
+remove first and last occurrence of a given character from the string.
+
+You must implement the solution using exactly this function signature (keep the function name and parameter names unchanged):
+def remove_Occ(s, ch):
+Source rows: 257
+Converted rows: 257
+Skipped rows: 0
+Wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/mbpp_sanitized_test_with_signature.json
+Updated /root/siton-tmp/assignment_A/sft/script_cgh/data/dataset_info.json
+
+Example instruction tail:
+remove first and last occurrence of a given character from the string.
+
+You must implement the solution using exactly this function signature (keep the function name and parameter names unchanged):
+def remove_Occ(s, ch):
+train: 16750 -> 16750 (signature=11811, plain=4939, skipped=0)
+  wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/code_sft_train_with_signature.json
+valid: 930 -> 930 (signature=653, plain=277, skipped=0)
+  wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/code_sft_valid_with_signature.json
+test: 932 -> 932 (signature=668, plain=264, skipped=0)
+  wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/code_sft_test_with_signature.json
+Wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/dataset_info.json
+
+Example augmented instruction tail:
+ string as a parameter and capitalizes the first letter of each word in the string.
+
+You must implement the solution using exactly this function signature (keep the function name and parameter names unchanged):
+def capitalize(input_string):
+train: 16750 -> 16750 (signature=11811, plain=4939, skipped=0)
+  wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/code_sft_train_with_signature.json
+valid: 930 -> 930 (signature=653, plain=277, skipped=0)
+  wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/code_sft_valid_with_signature.json
+test: 932 -> 932 (signature=668, plain=264, skipped=0)
+  wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/code_sft_test_with_signature.json
+Wrote /root/siton-tmp/assignment_A/sft/script_cgh/data/dataset_info.json
+
+Example augmented instruction tail:
+ string as a parameter and capitalizes the first letter of each word in the string.
+
+You must implement the solution using exactly this function signature (keep the function name and parameter names unchanged):
+def capitalize(input_string):
+========== [2/6] Train SFT on signature-augmented data ==========
+========== [2/6] Train SFT on signature-augmented data ==========
+project_root= /root/siton-tmp/assignment_A
+CUDA_VISIBLE_DEVICES= 0
+torch.cuda.is_available()= True
+visible_device_count= 1
+device0= NVIDIA H200 NVL
+project_root= /root/siton-tmp/assignment_A
+CUDA_VISIBLE_DEVICES= 0
+torch.cuda.is_available()= True
+visible_device_count= 1
+device0= NVIDIA H200 NVL
+/opt/conda/envs/chenggh-sft/lib/python3.11/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/opt/conda/envs/chenggh-sft/lib/python3.11/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+[transformers] warmup_ratio is deprecated and will be removed in v5.2. Use `warmup_steps` instead.
+[INFO|2026-07-01 16:06:04] llamafactory.hparams.parser:523 >> Process rank: 0, world size: 1, device: cuda:0, distributed training: False, compute dtype: torch.float16
+[INFO|2026-07-01 16:06:04] llamafactory.hparams.parser:523 >> Process rank: 0, world size: 1, device: cuda:0, distributed training: False, compute dtype: torch.float16
+[INFO|hub.py:364] 2026-07-01 16:06:04,915 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:04,915 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-01 16:06:04,916 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:769] 2026-07-01 16:06:04,916 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:847] 2026-07-01 16:06:04,920 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|configuration_utils.py:847] 2026-07-01 16:06:04,920 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:364] 2026-07-01 16:06:04,920 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:04,920 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1592] 2026-07-01 16:06:04,921 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1592] 2026-07-01 16:06:04,921 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,268 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,268 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,268 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,268 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,268 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,268 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,268 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,268 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,268 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,268 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,268 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,268 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-01 16:06:05,268 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:769] 2026-07-01 16:06:05,268 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:847] 2026-07-01 16:06:05,270 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|configuration_utils.py:847] 2026-07-01 16:06:05,270 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:364] 2026-07-01 16:06:05,270 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,270 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-01 16:06:05,270 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:769] 2026-07-01 16:06:05,270 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:847] 2026-07-01 16:06:05,272 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|configuration_utils.py:847] 2026-07-01 16:06:05,272 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|hub.py:364] 2026-07-01 16:06:05,272 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:05,272 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1592] 2026-07-01 16:06:05,272 >> Offline mode: forcing local_files_only=True
+[INFO|tokenization_utils_base.py:1592] 2026-07-01 16:06:05,272 >> Offline mode: forcing local_files_only=True
+[INFO|2026-07-01 16:06:05] llamafactory.data.loader:144 >> Loading dataset code_sft_train_with_signature.json...
+[INFO|2026-07-01 16:06:05] llamafactory.data.loader:144 >> Loading dataset code_sft_train_with_signature.json...
+Setting num_proc from 8 back to 1 for the train split to disable multiprocessing as it only contains one shard.
+Setting num_proc from 8 back to 1 for the train split to disable multiprocessing as it only contains one shard.
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 16750 examples [00:00, 112993.65 examples/s]Generating train split: 16750 examples [00:00, 112993.65 examples/s]Generating train split: 16750 examples [00:00, 112793.01 examples/s]Generating train split: 16750 examples [00:00, 112793.01 examples/s]
+
+Converting format of dataset (num_proc=8):   0%|          | 0/16750 [00:00<?, ? examples/s]Converting format of dataset (num_proc=8):   0%|          | 0/16750 [00:00<?, ? examples/s]Converting format of dataset (num_proc=8):   5%|▍         | 809/16750 [00:00<00:02, 5394.34 examples/s]Converting format of dataset (num_proc=8):   5%|▍         | 809/16750 [00:00<00:02, 5394.34 examples/s]Converting format of dataset (num_proc=8):  89%|████████▉ | 14966/16750 [00:00<00:00, 71005.22 examples/s]Converting format of dataset (num_proc=8):  89%|████████▉ | 14966/16750 [00:00<00:00, 71005.22 examples/s]Converting format of dataset (num_proc=8): 100%|██████████| 16750/16750 [00:00<00:00, 45180.96 examples/s]
+Converting format of dataset (num_proc=8): 100%|██████████| 16750/16750 [00:00<00:00, 45180.96 examples/s]
+[INFO|2026-07-01 16:06:06] llamafactory.data.loader:144 >> Loading dataset code_sft_valid_with_signature.json...
+[INFO|2026-07-01 16:06:06] llamafactory.data.loader:144 >> Loading dataset code_sft_valid_with_signature.json...
+Setting num_proc from 8 back to 1 for the train split to disable multiprocessing as it only contains one shard.
+Setting num_proc from 8 back to 1 for the train split to disable multiprocessing as it only contains one shard.
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 930 examples [00:00, 61289.40 examples/s]
+Generating train split: 930 examples [00:00, 61289.40 examples/s]
+Converting format of dataset (num_proc=8):   0%|          | 0/930 [00:00<?, ? examples/s]Converting format of dataset (num_proc=8):   0%|          | 0/930 [00:00<?, ? examples/s]Converting format of dataset (num_proc=8): 100%|██████████| 930/930 [00:00<00:00, 5113.32 examples/s]
+Converting format of dataset (num_proc=8): 100%|██████████| 930/930 [00:00<00:00, 5113.32 examples/s]
+Running tokenizer on dataset (num_proc=8):   0%|          | 0/16750 [00:00<?, ? examples/s]Running tokenizer on dataset (num_proc=8):   0%|          | 0/16750 [00:00<?, ? examples/s]Running tokenizer on dataset (num_proc=8):   6%|▌         | 1000/16750 [00:03<00:47, 331.03 examples/s]Running tokenizer on dataset (num_proc=8):   6%|▌         | 1000/16750 [00:03<00:47, 331.03 examples/s]Running tokenizer on dataset (num_proc=8):  12%|█▏        | 2000/16750 [00:03<00:24, 612.48 examples/s]Running tokenizer on dataset (num_proc=8):  12%|█▏        | 2000/16750 [00:03<00:24, 612.48 examples/s]Running tokenizer on dataset (num_proc=8):  18%|█▊        | 3094/16750 [00:04<00:18, 748.65 examples/s]Running tokenizer on dataset (num_proc=8):  18%|█▊        | 3094/16750 [00:04<00:18, 748.65 examples/s]Running tokenizer on dataset (num_proc=8):  24%|██▍       | 4094/16750 [00:05<00:13, 943.84 examples/s]Running tokenizer on dataset (num_proc=8):  24%|██▍       | 4094/16750 [00:05<00:13, 943.84 examples/s]Running tokenizer on dataset (num_proc=8):  31%|███       | 5188/16750 [00:06<00:11, 978.31 examples/s]Running tokenizer on dataset (num_proc=8):  31%|███       | 5188/16750 [00:06<00:11, 978.31 examples/s]Running tokenizer on dataset (num_proc=8):  37%|███▋      | 6188/16750 [00:07<00:09, 1115.73 examples/s]Running tokenizer on dataset (num_proc=8):  37%|███▋      | 6188/16750 [00:07<00:09, 1115.73 examples/s]Running tokenizer on dataset (num_proc=8):  43%|████▎     | 7282/16750 [00:08<00:08, 1062.20 examples/s]Running tokenizer on dataset (num_proc=8):  43%|████▎     | 7282/16750 [00:08<00:08, 1062.20 examples/s]Running tokenizer on dataset (num_proc=8):  49%|████▉     | 8282/16750 [00:08<00:07, 1194.61 examples/s]Running tokenizer on dataset (num_proc=8):  49%|████▉     | 8282/16750 [00:08<00:07, 1194.61 examples/s]Running tokenizer on dataset (num_proc=8):  56%|█████▌    | 9376/16750 [00:10<00:06, 1089.04 examples/s]Running tokenizer on dataset (num_proc=8):  56%|█████▌    | 9376/16750 [00:10<00:06, 1089.04 examples/s]Running tokenizer on dataset (num_proc=8):  62%|██████▏   | 10376/16750 [00:10<00:05, 1218.41 examples/s]Running tokenizer on dataset (num_proc=8):  62%|██████▏   | 10376/16750 [00:10<00:05, 1218.41 examples/s]Running tokenizer on dataset (num_proc=8):  68%|██████▊   | 11470/16750 [00:11<00:04, 1159.74 examples/s]Running tokenizer on dataset (num_proc=8):  68%|██████▊   | 11470/16750 [00:11<00:04, 1159.74 examples/s]Running tokenizer on dataset (num_proc=8):  74%|███████▍  | 12470/16750 [00:12<00:03, 1278.74 examples/s]Running tokenizer on dataset (num_proc=8):  74%|███████▍  | 12470/16750 [00:12<00:03, 1278.74 examples/s]Running tokenizer on dataset (num_proc=8):  81%|████████  | 13564/16750 [00:13<00:02, 1162.10 examples/s]Running tokenizer on dataset (num_proc=8):  81%|████████  | 13564/16750 [00:13<00:02, 1162.10 examples/s]Running tokenizer on dataset (num_proc=8):  87%|████████▋ | 14564/16750 [00:13<00:01, 1261.78 examples/s]Running tokenizer on dataset (num_proc=8):  87%|████████▋ | 14564/16750 [00:13<00:01, 1261.78 examples/s]Running tokenizer on dataset (num_proc=8):  93%|█████████▎| 15657/16750 [00:15<00:00, 1194.31 examples/s]Running tokenizer on dataset (num_proc=8):  93%|█████████▎| 15657/16750 [00:15<00:00, 1194.31 examples/s]Running tokenizer on dataset (num_proc=8):  99%|█████████▉| 16657/16750 [00:15<00:00, 1293.06 examples/s]Running tokenizer on dataset (num_proc=8):  99%|█████████▉| 16657/16750 [00:15<00:00, 1293.06 examples/s]Running tokenizer on dataset (num_proc=8): 100%|██████████| 16750/16750 [00:15<00:00, 1058.96 examples/s]
+Running tokenizer on dataset (num_proc=8): 100%|██████████| 16750/16750 [00:15<00:00, 1058.96 examples/s]
+training example:
+input_ids:
+[151644, 8948, 198, 2610, 525, 1207, 16948, 11, 3465, 553, 54364, 14817, 13, 1446, 525, 264, 10950, 17847, 13, 151645, 198, 151644, 872, 198, 62980, 264, 729, 304, 13027, 429, 4990, 264, 914, 438, 264, 5733, 323, 6722, 4756, 279, 1156, 6524, 315, 1817, 3409, 304, 279, 914, 382, 2610, 1969, 4211, 279, 6291, 1667, 6896, 419, 729, 11957, 320, 13096, 279, 729, 829, 323, 5733, 5036, 34857, 982, 750, 52725, 5384, 3904, 982, 785, 3974, 13876, 38835, 151645, 198, 151644, 77091, 198, 750, 52725, 5384, 3904, 982, 262, 421, 2422, 5384, 3904, 8, 621, 220, 15, 510, 286, 470, 11776, 262, 770, 510, 286, 4244, 284, 1946, 3904, 5289, 741, 286, 97321, 18981, 284, 508, 1158, 78498, 368, 369, 3409, 304, 4244, 921, 286, 470, 364, 6256, 5987, 51386, 2174, 1506, 18981, 692, 1350, 51386, 34313, 492, 785, 3974, 13876, 38835, 3789, 151645, 198]
+inputs:
+<|im_start|>system
+You are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>
+<|im_start|>user
+Implement a function in Python that takes a string as a parameter and capitalizes the first letter of each word in the string.
+
+You must implement the solution using exactly this function signature (keep the function name and parameter names unchanged):
+def capitalize(input_string):
+The quick brown fox<|im_end|>
+<|im_start|>assistant
+def capitalize(input_string):
+    if len(input_string) == 0:
+        return ''
+    else:
+        words = input_string.split()
+        capitalized_words = [word.capitalize() for word in words]
+        return ' '.join(capitalized_words)
+
+print(capitalize('The quick brown fox'))<|im_end|>
+
+label_ids:
+[-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 750, 52725, 5384, 3904, 982, 262, 421, 2422, 5384, 3904, 8, 621, 220, 15, 510, 286, 470, 11776, 262, 770, 510, 286, 4244, 284, 1946, 3904, 5289, 741, 286, 97321, 18981, 284, 508, 1158, 78498, 368, 369, 3409, 304, 4244, 921, 286, 470, 364, 6256, 5987, 51386, 2174, 1506, 18981, 692, 1350, 51386, 34313, 492, 785, 3974, 13876, 38835, 3789, 151645, 198]
+labels:
+def capitalize(input_string):
+    if len(input_string) == 0:
+        return ''
+    else:
+        words = input_string.split()
+        capitalized_words = [word.capitalize() for word in words]
+        return ' '.join(capitalized_words)
+
+print(capitalize('The quick brown fox'))<|im_end|>
+
+training example:
+input_ids:
+[151644, 8948, 198, 2610, 525, 1207, 16948, 11, 3465, 553, 54364, 14817, 13, 1446, 525, 264, 10950, 17847, 13, 151645, 198, 151644, 872, 198, 62980, 264, 729, 304, 13027, 429, 4990, 264, 914, 438, 264, 5733, 323, 6722, 4756, 279, 1156, 6524, 315, 1817, 3409, 304, 279, 914, 382, 2610, 1969, 4211, 279, 6291, 1667, 6896, 419, 729, 11957, 320, 13096, 279, 729, 829, 323, 5733, 5036, 34857, 982, 750, 52725, 5384, 3904, 982, 785, 3974, 13876, 38835, 151645, 198, 151644, 77091, 198, 750, 52725, 5384, 3904, 982, 262, 421, 2422, 5384, 3904, 8, 621, 220, 15, 510, 286, 470, 11776, 262, 770, 510, 286, 4244, 284, 1946, 3904, 5289, 741, 286, 97321, 18981, 284, 508, 1158, 78498, 368, 369, 3409, 304, 4244, 921, 286, 470, 364, 6256, 5987, 51386, 2174, 1506, 18981, 692, 1350, 51386, 34313, 492, 785, 3974, 13876, 38835, 3789, 151645, 198]
+inputs:
+<|im_start|>system
+You are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>
+<|im_start|>user
+Implement a function in Python that takes a string as a parameter and capitalizes the first letter of each word in the string.
+
+You must implement the solution using exactly this function signature (keep the function name and parameter names unchanged):
+def capitalize(input_string):
+The quick brown fox<|im_end|>
+<|im_start|>assistant
+def capitalize(input_string):
+    if len(input_string) == 0:
+        return ''
+    else:
+        words = input_string.split()
+        capitalized_words = [word.capitalize() for word in words]
+        return ' '.join(capitalized_words)
+
+print(capitalize('The quick brown fox'))<|im_end|>
+
+label_ids:
+[-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 750, 52725, 5384, 3904, 982, 262, 421, 2422, 5384, 3904, 8, 621, 220, 15, 510, 286, 470, 11776, 262, 770, 510, 286, 4244, 284, 1946, 3904, 5289, 741, 286, 97321, 18981, 284, 508, 1158, 78498, 368, 369, 3409, 304, 4244, 921, 286, 470, 364, 6256, 5987, 51386, 2174, 1506, 18981, 692, 1350, 51386, 34313, 492, 785, 3974, 13876, 38835, 3789, 151645, 198]
+labels:
+def capitalize(input_string):
+    if len(input_string) == 0:
+        return ''
+    else:
+        words = input_string.split()
+        capitalized_words = [word.capitalize() for word in words]
+        return ' '.join(capitalized_words)
+
+print(capitalize('The quick brown fox'))<|im_end|>
+
+Running tokenizer on dataset (num_proc=8):   0%|          | 0/930 [00:00<?, ? examples/s]Running tokenizer on dataset (num_proc=8):   0%|          | 0/930 [00:00<?, ? examples/s]Running tokenizer on dataset (num_proc=8):  13%|█▎        | 117/930 [00:02<00:16, 48.03 examples/s]Running tokenizer on dataset (num_proc=8):  13%|█▎        | 117/930 [00:02<00:16, 48.03 examples/s]Running tokenizer on dataset (num_proc=8):  25%|██▌       | 234/930 [00:04<00:11, 58.49 examples/s]Running tokenizer on dataset (num_proc=8):  25%|██▌       | 234/930 [00:04<00:11, 58.49 examples/s]Running tokenizer on dataset (num_proc=8):  38%|███▊      | 350/930 [00:05<00:09, 61.83 examples/s]Running tokenizer on dataset (num_proc=8):  38%|███▊      | 350/930 [00:05<00:09, 61.83 examples/s]Running tokenizer on dataset (num_proc=8):  50%|█████     | 466/930 [00:07<00:07, 64.19 examples/s]Running tokenizer on dataset (num_proc=8):  50%|█████     | 466/930 [00:07<00:07, 64.19 examples/s]Running tokenizer on dataset (num_proc=8):  63%|██████▎   | 582/930 [00:09<00:05, 65.11 examples/s]Running tokenizer on dataset (num_proc=8):  63%|██████▎   | 582/930 [00:09<00:05, 65.11 examples/s]Running tokenizer on dataset (num_proc=8):  75%|███████▌  | 698/930 [00:10<00:03, 66.54 examples/s]Running tokenizer on dataset (num_proc=8):  75%|███████▌  | 698/930 [00:10<00:03, 66.54 examples/s]Running tokenizer on dataset (num_proc=8):  88%|████████▊ | 814/930 [00:12<00:01, 66.82 examples/s]Running tokenizer on dataset (num_proc=8):  88%|████████▊ | 814/930 [00:12<00:01, 66.82 examples/s]Running tokenizer on dataset (num_proc=8): 100%|██████████| 930/930 [00:14<00:00, 67.01 examples/s]Running tokenizer on dataset (num_proc=8): 100%|██████████| 930/930 [00:14<00:00, 67.01 examples/s]Running tokenizer on dataset (num_proc=8): 100%|██████████| 930/930 [00:14<00:00, 63.91 examples/s]
+Running tokenizer on dataset (num_proc=8): 100%|██████████| 930/930 [00:14<00:00, 63.91 examples/s]
+[INFO|hub.py:364] 2026-07-01 16:06:40,477 >> Offline mode: forcing local_files_only=True
+[INFO|hub.py:364] 2026-07-01 16:06:40,477 >> Offline mode: forcing local_files_only=True
+[INFO|configuration_utils.py:769] 2026-07-01 16:06:40,477 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:769] 2026-07-01 16:06:40,477 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
+[INFO|configuration_utils.py:847] 2026-07-01 16:06:40,480 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+[INFO|configuration_utils.py:847] 2026-07-01 16:06:40,480 >> Model config Qwen2Config {
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "attention_dropout": 0.0,
+  "bos_token_id": 151643,
+  "dtype": "bfloat16",
+  "eos_token_id": 151645,
+  "hidden_act": "silu",
+  "hidden_size": 1024,
+  "initializer_range": 0.02,
+  "intermediate_size": 2816,
+  "layer_types": [
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention",
+    "full_attention"
+  ],
+  "max_position_embeddings": 32768,
+  "max_window_layers": 21,
+  "model_type": "qwen2",
+  "num_attention_heads": 16,
+  "num_hidden_layers": 24,
+  "num_key_value_heads": 16,
+  "pad_token_id": null,
+  "rms_norm_eps": 1e-06,
+  "rope_parameters": {
+    "rope_theta": 1000000.0,
+    "rope_type": "default"
+  },
+  "sliding_window": null,
+  "tie_word_embeddings": true,
+  "transformers_version": "5.6.0",
+  "use_cache": true,
+  "use_sliding_window": false,
+  "vocab_size": 151936
+}
+
+eval example:
+input_ids:
+[151644, 8948, 198, 2610, 525, 1207, 16948, 11, 3465, 553, 54364, 14817, 13, 1446, 525, 264, 10950, 17847, 13, 151645, 198, 151644, 872, 198, 4021, 264, 10135, 2025, 311, 5508, 279, 2661, 882, 897, 311, 220, 17, 19, 21231, 882, 3561, 624, 1678, 284, 364, 15, 23, 25, 19, 20, 5851, 6, 151645, 198, 151644, 77091, 198, 1678, 62, 17, 19, 32292, 284, 364, 17, 15, 25, 19, 20, 6, 151645, 198]
+inputs:
+<|im_start|>system
+You are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>
+<|im_start|>user
+Create a python program to convert the given time value to 24-hour time format.
+time = '08:45 PM'<|im_end|>
+<|im_start|>assistant
+time_24_hour = '20:45'<|im_end|>
+
+label_ids:
+[-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 1678, 62, 17, 19, 32292, 284, 364, 17, 15, 25, 19, 20, 6, 151645, 198]
+labels:
+time_24_hour = '20:45'<|im_end|>
+
+[INFO|2026-07-01 16:06:40] llamafactory.model.model_utils.kv_cache:144 >> KV cache is disabled during training.
+eval example:
+input_ids:
+[151644, 8948, 198, 2610, 525, 1207, 16948, 11, 3465, 553, 54364, 14817, 13, 1446, 525, 264, 10950, 17847, 13, 151645, 198, 151644, 872, 198, 4021, 264, 10135, 2025, 311, 5508, 279, 2661, 882, 897, 311, 220, 17, 19, 21231, 882, 3561, 624, 1678, 284, 364, 15, 23, 25, 19, 20, 5851, 6, 151645, 198, 151644, 77091, 198, 1678, 62, 17, 19, 32292, 284, 364, 17, 15, 25, 19, 20, 6, 151645, 198]
+inputs:
+<|im_start|>system
+You are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>
+<|im_start|>user
+Create a python program to convert the given time value to 24-hour time format.
+time = '08:45 PM'<|im_end|>
+<|im_start|>assistant
+time_24_hour = '20:45'<|im_end|>
+
+label_ids:
+[-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 1678, 62, 17, 19, 32292, 284, 364, 17, 15, 25, 19, 20, 6, 151645, 198]
+labels:
+time_24_hour = '20:45'<|im_end|>
+
+[INFO|2026-07-01 16:06:40] llamafactory.model.model_utils.kv_cache:144 >> KV cache is disabled during training.
+[INFO|modeling_utils.py:748] 2026-07-01 16:06:40,950 >> loading weights file ./Qwen1.5-0.5B-Chat/model.safetensors
+[INFO|modeling_utils.py:748] 2026-07-01 16:06:40,950 >> loading weights file ./Qwen1.5-0.5B-Chat/model.safetensors
+[INFO|modeling_utils.py:821] 2026-07-01 16:06:40,950 >> Will use dtype=torch.bfloat16 as defined in model's config object
+[INFO|modeling_utils.py:821] 2026-07-01 16:06:40,950 >> Will use dtype=torch.bfloat16 as defined in model's config object
+[INFO|configuration_utils.py:1027] 2026-07-01 16:06:40,952 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "eos_token_id": 151645,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "use_cache": false
+}
+
+[INFO|configuration_utils.py:1027] 2026-07-01 16:06:40,952 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "eos_token_id": 151645,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "use_cache": false
+}
+
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:  56%|█████▌    | 162/291 [00:00<00:00, 1618.94it/s]Loading weights:  56%|█████▌    | 162/291 [00:00<00:00, 1618.94it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 2047.89it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 2047.89it/s]
+
+[INFO|configuration_utils.py:978] 2026-07-01 16:06:41,430 >> loading configuration file ./Qwen1.5-0.5B-Chat/generation_config.json
+[INFO|configuration_utils.py:978] 2026-07-01 16:06:41,430 >> loading configuration file ./Qwen1.5-0.5B-Chat/generation_config.json
+[INFO|configuration_utils.py:1027] 2026-07-01 16:06:41,431 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "do_sample": true,
+  "eos_token_id": [
+    151645,
+    151643
+  ],
+  "pad_token_id": 151643,
+  "repetition_penalty": 1.1,
+  "top_p": 0.8
+}
+
+[INFO|configuration_utils.py:1027] 2026-07-01 16:06:41,431 >> Generate config GenerationConfig {
+  "bos_token_id": 151643,
+  "do_sample": true,
+  "eos_token_id": [
+    151645,
+    151643
+  ],
+  "pad_token_id": 151643,
+  "repetition_penalty": 1.1,
+  "top_p": 0.8
+}
+
+[INFO|dynamic_module_utils.py:406] 2026-07-01 16:06:41,431 >> Could not locate the custom_generate/generate.py inside ./Qwen1.5-0.5B-Chat.
+[INFO|dynamic_module_utils.py:406] 2026-07-01 16:06:41,431 >> Could not locate the custom_generate/generate.py inside ./Qwen1.5-0.5B-Chat.
+[INFO|2026-07-01 16:06:41] llamafactory.model.model_utils.checkpointing:144 >> Gradient checkpointing enabled.
+[INFO|2026-07-01 16:06:41] llamafactory.model.model_utils.checkpointing:144 >> Gradient checkpointing enabled.
+[INFO|2026-07-01 16:06:41] llamafactory.model.model_utils.attention:144 >> Using torch SDPA for faster training and inference.
+[INFO|2026-07-01 16:06:41] llamafactory.model.model_utils.attention:144 >> Using torch SDPA for faster training and inference.
+[INFO|2026-07-01 16:06:41] llamafactory.model.adapter:144 >> Upcasting trainable params to float32.
+[INFO|2026-07-01 16:06:41] llamafactory.model.adapter:144 >> Upcasting trainable params to float32.
+[INFO|2026-07-01 16:06:41] llamafactory.model.adapter:144 >> Fine-tuning method: Full
+[INFO|2026-07-01 16:06:41] llamafactory.model.adapter:144 >> Fine-tuning method: Full
+[INFO|2026-07-01 16:06:41] llamafactory.model.loader:144 >> trainable params: 463,987,712 || all params: 463,987,712 || trainable%: 100.0000
+[INFO|2026-07-01 16:06:41] llamafactory.model.loader:144 >> trainable params: 463,987,712 || all params: 463,987,712 || trainable%: 100.0000
+[WARNING|trainer_utils.py:1238] 2026-07-01 16:06:41,461 >> The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+[WARNING|trainer_utils.py:1238] 2026-07-01 16:06:41,461 >> The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.
+[INFO|trainer.py:1469] 2026-07-01 16:06:41,705 >> ***** Running training *****
+[INFO|trainer.py:1469] 2026-07-01 16:06:41,705 >> ***** Running training *****
+[INFO|trainer.py:1470] 2026-07-01 16:06:41,705 >>   Num examples = 16,750
+[INFO|trainer.py:1470] 2026-07-01 16:06:41,705 >>   Num examples = 16,750
+[INFO|trainer.py:1471] 2026-07-01 16:06:41,705 >>   Num Epochs = 3
+[INFO|trainer.py:1471] 2026-07-01 16:06:41,705 >>   Num Epochs = 3
+[INFO|trainer.py:1472] 2026-07-01 16:06:41,705 >>   Num update steps per epoch = 2,094
+[INFO|trainer.py:1472] 2026-07-01 16:06:41,705 >>   Num update steps per epoch = 2,094
+[INFO|trainer.py:1473] 2026-07-01 16:06:41,705 >>   Instantaneous batch size per device = 2
+[INFO|trainer.py:1473] 2026-07-01 16:06:41,705 >>   Instantaneous batch size per device = 2
+[INFO|trainer.py:1476] 2026-07-01 16:06:41,705 >>   Total train batch size (w. parallel, distributed & accumulation) = 8
+[INFO|trainer.py:1476] 2026-07-01 16:06:41,705 >>   Total train batch size (w. parallel, distributed & accumulation) = 8
+[INFO|trainer.py:1477] 2026-07-01 16:06:41,705 >>   Gradient Accumulation steps = 4
+[INFO|trainer.py:1477] 2026-07-01 16:06:41,705 >>   Gradient Accumulation steps = 4
+[INFO|trainer.py:1478] 2026-07-01 16:06:41,705 >>   Total optimization steps = 6,282
+[INFO|trainer.py:1478] 2026-07-01 16:06:41,705 >>   Total optimization steps = 6,282
+[INFO|trainer.py:1479] 2026-07-01 16:06:41,706 >>   Number of trainable parameters = 463,987,712
+[INFO|trainer.py:1479] 2026-07-01 16:06:41,706 >>   Number of trainable parameters = 463,987,712
+  0%|          | 0/6282 [00:00<?, ?it/s]  0%|          | 0/6282 [00:00<?, ?it/s]  0%|          | 1/6282 [00:01<2:40:59,  1.54s/it]  0%|          | 1/6282 [00:01<2:40:59,  1.54s/it]  0%|          | 2/6282 [00:01<1:32:28,  1.13it/s]  0%|          | 2/6282 [00:01<1:32:28,  1.13it/s]  0%|          | 3/6282 [00:02<1:20:22,  1.30it/s]  0%|          | 3/6282 [00:02<1:20:22,  1.30it/s]  0%|          | 4/6282 [00:03<1:08:31,  1.53it/s]  0%|          | 4/6282 [00:03<1:08:31,  1.53it/s]  0%|          | 5/6282 [00:03<1:00:01,  1.74it/s]  0%|          | 5/6282 [00:03<1:00:01,  1.74it/s]                                                                                                      0%|          | 5/6282 [00:03<1:00:01,  1.74it/s]  0%|          | 5/6282 [00:03<1:00:01,  1.74it/s]  0%|          | 6/6282 [00:04<1:02:34,  1.67it/s]  0%|          | 6/6282 [00:04<1:02:34,  1.67it/s]  0%|          | 7/6282 [00:05<1:20:26,  1.30it/s]  0%|          | 7/6282 [00:05<1:20:26,  1.30it/s]  0%|          | 8/6282 [00:06<1:30:55,  1.15it/s]  0%|          | 8/6282 [00:06<1:30:55,  1.15it/s]  0%|          | 9/6282 [00:07<1:30:31,  1.15it/s]  0%|          | 9/6282 [00:07<1:30:31,  1.15it/s]  0%|          | 10/6282 [00:08<1:34:36,  1.10it/s]  0%|          | 10/6282 [00:08<1:34:36,  1.10it/s]                                                                                                        0%|          | 10/6282 [00:08<1:34:36,  1.10it/s]  0%|          | 10/6282 [00:08<1:34:36,  1.10it/s]  0%|          | 11/6282 [00:09<1:32:52,  1.13it/s]  0%|          | 11/6282 [00:09<1:32:52,  1.13it/s]  0%|          | 12/6282 [00:10<1:35:28,  1.09it/s]  0%|          | 12/6282 [00:10<1:35:28,  1.09it/s]  0%|          | 13/6282 [00:10<1:36:54,  1.08it/s]  0%|          | 13/6282 [00:10<1:36:54,  1.08it/s]  0%|          | 14/6282 [00:11<1:38:22,  1.06it/s]  0%|          | 14/6282 [00:11<1:38:22,  1.06it/s]  0%|          | 15/6282 [00:12<1:39:21,  1.05it/s]  0%|          | 15/6282 [00:12<1:39:21,  1.05it/s]                                                                                                        0%|          | 15/6282 [00:12<1:39:21,  1.05it/s]  0%|          | 15/6282 [00:12<1:39:21,  1.05it/s]  0%|          | 16/6282 [00:14<1:56:23,  1.11s/it]  0%|          | 16/6282 [00:14<1:56:23,  1.11s/it]  0%|          | 17/6282 [00:15<1:47:06,  1.03s/it]  0%|          | 17/6282 [00:15<1:47:06,  1.03s/it]  0%|          | 18/6282 [00:16<1:42:18,  1.02it/s]  0%|          | 18/6282 [00:16<1:42:18,  1.02it/s]  0%|          | 19/6282 [00:16<1:38:32,  1.06it/s]  0%|          | 19/6282 [00:16<1:38:32,  1.06it/s]  0%|          | 20/6282 [00:17<1:38:42,  1.06it/s]  0%|          | 20/6282 [00:17<1:38:42,  1.06it/s]                                                                                                        0%|          | 20/6282 [00:17<1:38:42,  1.06it/s]  0%|          | 20/6282 [00:17<1:38:42,  1.06it/s]  0%|          | 21/6282 [00:18<1:40:49,  1.03it/s]  0%|          | 21/6282 [00:18<1:40:49,  1.03it/s]  0%|          | 22/6282 [00:19<1:33:27,  1.12it/s]  0%|          | 22/6282 [00:19<1:33:27,  1.12it/s]  0%|          | 23/6282 [00:20<1:35:32,  1.09it/s]  0%|          | 23/6282 [00:20<1:35:32,  1.09it/s]  0%|          | 24/6282 [00:21<1:37:11,  1.07it/s]  0%|          | 24/6282 [00:21<1:37:11,  1.07it/s]  0%|          | 25/6282 [00:22<1:38:09,  1.06it/s]  0%|          | 25/6282 [00:22<1:38:09,  1.06it/s]                                                                                                        0%|          | 25/6282 [00:22<1:38:09,  1.06it/s]  0%|          | 25/6282 [00:22<1:38:09,  1.06it/s]  0%|          | 26/6282 [00:23<1:35:42,  1.09it/s]  0%|          | 26/6282 [00:23<1:35:42,  1.09it/s]  0%|          | 27/6282 [00:24<1:40:28,  1.04it/s]  0%|          | 27/6282 [00:24<1:40:28,  1.04it/s]  0%|          | 28/6282 [00:25<1:38:49,  1.05it/s]  0%|          | 28/6282 [00:25<1:38:49,  1.05it/s]  0%|          | 29/6282 [00:26<1:42:00,  1.02it/s]  0%|          | 29/6282 [00:26<1:42:00,  1.02it/s]  0%|          | 30/6282 [00:27<1:45:13,  1.01s/it]  0%|          | 30/6282 [00:27<1:45:13,  1.01s/it]                                                                                                        0%|          | 30/6282 [00:27<1:45:13,  1.01s/it]  0%|          | 30/6282 [00:27<1:45:13,  1.01s/it]  0%|          | 31/6282 [00:28<1:52:43,  1.08s/it]  0%|          | 31/6282 [00:28<1:52:43,  1.08s/it]  1%|          | 32/6282 [00:30<2:11:04,  1.26s/it]  1%|          | 32/6282 [00:30<2:11:04,  1.26s/it]  1%|          | 33/6282 [00:31<1:55:04,  1.10s/it]  1%|          | 33/6282 [00:31<1:55:04,  1.10s/it]  1%|          | 34/6282 [00:32<1:47:53,  1.04s/it]  1%|          | 34/6282 [00:32<1:47:53,  1.04s/it]  1%|          | 35/6282 [00:32<1:42:21,  1.02it/s]  1%|          | 35/6282 [00:32<1:42:21,  1.02it/s]                                                                                                        1%|          | 35/6282 [00:32<1:42:21,  1.02it/s]  1%|          | 35/6282 [00:32<1:42:21,  1.02it/s]  1%|          | 36/6282 [00:34<1:44:31,  1.00s/it]  1%|          | 36/6282 [00:34<1:44:31,  1.00s/it]  1%|          | 37/6282 [00:34<1:43:43,  1.00it/s]  1%|          | 37/6282 [00:34<1:43:43,  1.00it/s]  1%|          | 38/6282 [00:36<2:05:27,  1.21s/it]  1%|          | 38/6282 [00:36<2:05:27,  1.21s/it]  1%|          | 39/6282 [00:37<1:52:14,  1.08s/it]  1%|          | 39/6282 [00:37<1:52:14,  1.08s/it]  1%|          | 40/6282 [00:38<1:45:02,  1.01s/it]  1%|          | 40/6282 [00:38<1:45:02,  1.01s/it]                                                                                                        1%|          | 40/6282 [00:38<1:45:02,  1.01s/it]  1%|          | 40/6282 [00:38<1:45:02,  1.01s/it]  1%|          | 41/6282 [00:39<1:43:12,  1.01it/s]  1%|          | 41/6282 [00:39<1:43:12,  1.01it/s]  1%|          | 42/6282 [00:40<2:02:00,  1.17s/it]  1%|          | 42/6282 [00:40<2:02:00,  1.17s/it]  1%|          | 43/6282 [00:41<1:49:12,  1.05s/it]  1%|          | 43/6282 [00:41<1:49:12,  1.05s/it]  1%|          | 44/6282 [00:42<1:45:24,  1.01s/it]  1%|          | 44/6282 [00:42<1:45:24,  1.01s/it]  1%|          | 45/6282 [00:43<1:43:46,  1.00it/s]  1%|          | 45/6282 [00:43<1:43:46,  1.00it/s]                                                                                                        1%|          | 45/6282 [00:43<1:43:46,  1.00it/s]  1%|          | 45/6282 [00:43<1:43:46,  1.00it/s]  1%|          | 46/6282 [00:44<1:40:20,  1.04it/s]  1%|          | 46/6282 [00:44<1:40:20,  1.04it/s]  1%|          | 47/6282 [00:45<1:36:42,  1.07it/s]  1%|          | 47/6282 [00:45<1:36:42,  1.07it/s]  1%|          | 48/6282 [00:47<2:06:09,  1.21s/it]  1%|          | 48/6282 [00:47<2:06:09,  1.21s/it]  1%|          | 49/6282 [00:47<1:53:19,  1.09s/it]  1%|          | 49/6282 [00:47<1:53:19,  1.09s/it]  1%|          | 50/6282 [00:48<1:49:54,  1.06s/it]  1%|          | 50/6282 [00:48<1:49:54,  1.06s/it]                                                                                                        1%|          | 50/6282 [00:48<1:49:54,  1.06s/it]  1%|          | 50/6282 [00:48<1:49:54,  1.06s/it]  1%|          | 51/6282 [00:49<1:48:37,  1.05s/it]  1%|          | 51/6282 [00:49<1:48:37,  1.05s/it]  1%|          | 52/6282 [00:51<1:57:05,  1.13s/it]  1%|          | 52/6282 [00:51<1:57:05,  1.13s/it]  1%|          | 53/6282 [00:52<1:55:05,  1.11s/it]  1%|          | 53/6282 [00:52<1:55:05,  1.11s/it]  1%|          | 54/6282 [00:53<1:43:50,  1.00s/it]  1%|          | 54/6282 [00:53<1:43:50,  1.00s/it]  1%|          | 55/6282 [00:53<1:39:02,  1.05it/s]  1%|          | 55/6282 [00:53<1:39:02,  1.05it/s]                                                                                                        1%|          | 55/6282 [00:53<1:39:02,  1.05it/s]  1%|          | 55/6282 [00:53<1:39:02,  1.05it/s]  1%|          | 56/6282 [00:54<1:37:07,  1.07it/s]  1%|          | 56/6282 [00:54<1:37:07,  1.07it/s]  1%|          | 57/6282 [00:55<1:37:51,  1.06it/s]  1%|          | 57/6282 [00:55<1:37:51,  1.06it/s]  1%|          | 58/6282 [00:56<1:38:43,  1.05it/s]  1%|          | 58/6282 [00:56<1:38:43,  1.05it/s]  1%|          | 59/6282 [00:57<1:35:33,  1.09it/s]  1%|          | 59/6282 [00:57<1:35:33,  1.09it/s]  1%|          | 60/6282 [00:58<1:37:45,  1.06it/s]  1%|          | 60/6282 [00:58<1:37:45,  1.06it/s]                                                                                                        1%|          | 60/6282 [00:58<1:37:45,  1.06it/s]  1%|          | 60/6282 [00:58<1:37:45,  1.06it/s]  1%|          | 61/6282 [00:59<1:38:38,  1.05it/s]  1%|          | 61/6282 [00:59<1:38:38,  1.05it/s]  1%|          | 62/6282 [01:00<1:38:16,  1.05it/s]  1%|          | 62/6282 [01:00<1:38:16,  1.05it/s]  1%|          | 63/6282 [01:01<1:35:20,  1.09it/s]  1%|          | 63/6282 [01:01<1:35:20,  1.09it/s]  1%|          | 64/6282 [01:02<1:37:49,  1.06it/s]  1%|          | 64/6282 [01:02<1:37:49,  1.06it/s]  1%|          | 65/6282 [01:03<1:41:42,  1.02it/s]  1%|          | 65/6282 [01:03<1:41:42,  1.02it/s]                                                                                                        1%|          | 65/6282 [01:03<1:41:42,  1.02it/s]  1%|          | 65/6282 [01:03<1:41:42,  1.02it/s]  1%|          | 66/6282 [01:04<1:32:00,  1.13it/s]  1%|          | 66/6282 [01:04<1:32:00,  1.13it/s]  1%|          | 67/6282 [01:05<1:33:19,  1.11it/s]  1%|          | 67/6282 [01:05<1:33:19,  1.11it/s]  1%|          | 68/6282 [01:06<2:00:12,  1.16s/it]  1%|          | 68/6282 [01:06<2:00:12,  1.16s/it]  1%|          | 69/6282 [01:07<1:46:29,  1.03s/it]  1%|          | 69/6282 [01:07<1:46:29,  1.03s/it]  1%|          | 70/6282 [01:08<1:40:45,  1.03it/s]  1%|          | 70/6282 [01:08<1:40:45,  1.03it/s]                                                                                                        1%|          | 70/6282 [01:08<1:40:45,  1.03it/s]  1%|          | 70/6282 [01:08<1:40:45,  1.03it/s]  1%|          | 71/6282 [01:09<1:39:23,  1.04it/s]  1%|          | 71/6282 [01:09<1:39:23,  1.04it/s]  1%|          | 72/6282 [01:10<1:40:00,  1.03it/s]  1%|          | 72/6282 [01:10<1:40:00,  1.03it/s]  1%|          | 73/6282 [01:11<1:36:37,  1.07it/s]  1%|          | 73/6282 [01:11<1:36:37,  1.07it/s]  1%|          | 74/6282 [01:11<1:34:38,  1.09it/s]  1%|          | 74/6282 [01:11<1:34:38,  1.09it/s]  1%|          | 75/6282 [01:13<1:39:45,  1.04it/s]  1%|          | 75/6282 [01:13<1:39:45,  1.04it/s]                                                                                                        1%|          | 75/6282 [01:13<1:39:45,  1.04it/s]  1%|          | 75/6282 [01:13<1:39:45,  1.04it/s]Terminated
+Terminated

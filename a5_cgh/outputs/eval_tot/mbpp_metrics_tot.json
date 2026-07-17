@@ -1,0 +1,134 @@
+{
+  "benchmark": "MBPP",
+  "method": "tree_of_thoughts",
+  "config": "sanitized",
+  "split": "test",
+  "model_path": "/root/siton-tmp/assignment_A/rl/outputs/train_lora_ppo_full/checkpoint-1304",
+  "records_path": "a5_cgh/outputs/eval_tot/mbpp_tot_records.jsonl",
+  "num_tasks": 257,
+  "branch_factor": 3,
+  "beam_width": 2,
+  "depth": 2,
+  "value_mode": "heuristic",
+  "temperature": 0.7,
+  "top_p": 0.95,
+  "pass_at_1_tot": 0.0622568093385214,
+  "pass_at_n_oracle": 0.0622568093385214,
+  "syntax_pass_rate_tot": 0.9844357976653697,
+  "avg_test_pass_rate_tot": 0.11082474226804123,
+  "passed_tasks_tot": 16,
+  "passed_tasks_oracle": 16,
+  "oracle_gap": 0.0,
+  "total_tests": 776,
+  "passed_tests_tot": 86,
+  "avg_code_candidates": 6.0,
+  "prompt": {
+    "mode": "zero_shot",
+    "example_task_ids": [
+      2,
+      3,
+      4
+    ]
+  },
+  "execution_note": "Tree of Thoughts proposes multiple intermediate plans, scores/prunes them to a beam, expands each surviving plan into code candidates, then selects the highest-scoring executable solution.",
+  "token_cost": {
+    "method": "tree_of_thoughts",
+    "num_tasks": 257,
+    "branch_factor": 3,
+    "beam_width": 2,
+    "depth": 2,
+    "num_generations": 2313,
+    "generation": {
+      "num_generations": 2313,
+      "input_tokens": 750594,
+      "output_tokens": 452465,
+      "total_tokens": 1203059,
+      "avg_input_tokens_per_task": 2920.5992217898834,
+      "avg_output_tokens_per_task": 1760.5642023346304,
+      "avg_total_tokens_per_task": 4681.163424124514
+    },
+    "per_task_avg_generation": {
+      "num_generations": 9.0,
+      "input_tokens": 2920.5992217898834,
+      "output_tokens": 1760.5642023346304,
+      "total_tokens": 4681.163424124514,
+      "avg_input_tokens_per_task": 2920.5992217898834,
+      "avg_output_tokens_per_task": 1760.5642023346304,
+      "avg_total_tokens_per_task": 4681.163424124514
+    },
+    "by_phase": {
+      "thought": {
+        "count": 771,
+        "input_tokens": 148005,
+        "output_tokens": 159905,
+        "total_tokens": 307910,
+        "seconds": 1945.1064000000006
+      },
+      "code": {
+        "count": 1542,
+        "input_tokens": 602589,
+        "output_tokens": 292560,
+        "total_tokens": 895149,
+        "seconds": 4429.277599999998
+      }
+    },
+    "final_answer": {
+      "num_generations": 257,
+      "input_tokens": 101261,
+      "output_tokens": 44014,
+      "total_tokens": 145275,
+      "avg_input_tokens_per_task": 394.011673151751,
+      "avg_output_tokens_per_task": 171.26070038910507,
+      "avg_total_tokens_per_task": 565.272373540856
+    },
+    "estimated_cost_usd": null,
+    "note": "ToT counts every LLM call: thought proposals, optional value scoring, and code expansions under surviving beams."
+  },
+  "timing": {
+    "method": "tree_of_thoughts",
+    "num_tasks": 257,
+    "branch_factor": 3,
+    "beam_width": 2,
+    "depth": 2,
+    "skipped_generation": false,
+    "total_seconds": 6701.142,
+    "accounted_seconds": 6689.48,
+    "unaccounted_seconds": 11.662,
+    "model_load_seconds": 8.687,
+    "generation_seconds": 6374.383,
+    "scoring_seconds": 306.398,
+    "selection_seconds": 0.011,
+    "avg_seconds_per_task": 26.0745,
+    "phases": {
+      "thought": {
+        "seconds": 1945.108,
+        "num_generations": 771,
+        "seconds_per_generation": 2.5228,
+        "seconds_per_task": 7.5685
+      },
+      "value": {
+        "seconds": 0.0,
+        "num_generations": 0,
+        "seconds_per_generation": 0.0,
+        "seconds_per_task": 0.0
+      },
+      "code": {
+        "seconds": 4429.275,
+        "num_generations": 1542,
+        "seconds_per_generation": 2.8724,
+        "seconds_per_task": 17.2345
+      },
+      "scoring": {
+        "seconds": 306.398,
+        "num_items": 1542,
+        "seconds_per_item": 0.1987
+      },
+      "selection": {
+        "seconds": 0.011,
+        "num_items": 257,
+        "seconds_per_item": 0.0
+      }
+    },
+    "note": "total_seconds is end-to-end wall time. generation_seconds sums thought, value, and code model.generate calls. scoring_seconds covers verifier/tests."
+  }
+}
