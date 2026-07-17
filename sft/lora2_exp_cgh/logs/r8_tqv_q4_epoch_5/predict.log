@@ -1,463 +1,0 @@
-========== PREDICT r8_tqv_q4_epoch_5 2026-07-05 18:24:55 ==========
-/opt/conda/envs/chenggh-sft/lib/python3.11/site-packages/jieba/_compat.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
-  import pkg_resources
-[WARNING|2026-07-05 18:25:02] llamafactory.hparams.parser:149 >> Evaluating model in 4/8-bit mode may cause lower scores.
-[INFO|2026-07-05 18:25:02] llamafactory.hparams.parser:523 >> Process rank: 0, world size: 1, device: cuda:0, distributed training: False, compute dtype: torch.float16
-[INFO|hub.py:364] 2026-07-05 18:25:02,709 >> Offline mode: forcing local_files_only=True
-[INFO|configuration_utils.py:769] 2026-07-05 18:25:02,709 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
-[INFO|configuration_utils.py:847] 2026-07-05 18:25:02,714 >> Model config Qwen2Config {
-  "architectures": [
-    "Qwen2ForCausalLM"
-  ],
-  "attention_dropout": 0.0,
-  "bos_token_id": 151643,
-  "dtype": "bfloat16",
-  "eos_token_id": 151645,
-  "hidden_act": "silu",
-  "hidden_size": 1024,
-  "initializer_range": 0.02,
-  "intermediate_size": 2816,
-  "layer_types": [
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention"
-  ],
-  "max_position_embeddings": 32768,
-  "max_window_layers": 21,
-  "model_type": "qwen2",
-  "num_attention_heads": 16,
-  "num_hidden_layers": 24,
-  "num_key_value_heads": 16,
-  "pad_token_id": null,
-  "rms_norm_eps": 1e-06,
-  "rope_parameters": {
-    "rope_theta": 1000000.0,
-    "rope_type": "default"
-  },
-  "sliding_window": null,
-  "tie_word_embeddings": true,
-  "transformers_version": "5.6.0",
-  "use_cache": true,
-  "use_sliding_window": false,
-  "vocab_size": 151936
-}
-
-[INFO|hub.py:364] 2026-07-05 18:25:02,714 >> Offline mode: forcing local_files_only=True
-[INFO|tokenization_utils_base.py:1592] 2026-07-05 18:25:02,715 >> Offline mode: forcing local_files_only=True
-[INFO|hub.py:364] 2026-07-05 18:25:03,065 >> Offline mode: forcing local_files_only=True
-[INFO|hub.py:364] 2026-07-05 18:25:03,065 >> Offline mode: forcing local_files_only=True
-[INFO|hub.py:364] 2026-07-05 18:25:03,065 >> Offline mode: forcing local_files_only=True
-[INFO|hub.py:364] 2026-07-05 18:25:03,065 >> Offline mode: forcing local_files_only=True
-[INFO|hub.py:364] 2026-07-05 18:25:03,065 >> Offline mode: forcing local_files_only=True
-[INFO|hub.py:364] 2026-07-05 18:25:03,065 >> Offline mode: forcing local_files_only=True
-[INFO|configuration_utils.py:769] 2026-07-05 18:25:03,065 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
-[INFO|configuration_utils.py:847] 2026-07-05 18:25:03,067 >> Model config Qwen2Config {
-  "architectures": [
-    "Qwen2ForCausalLM"
-  ],
-  "attention_dropout": 0.0,
-  "bos_token_id": 151643,
-  "dtype": "bfloat16",
-  "eos_token_id": 151645,
-  "hidden_act": "silu",
-  "hidden_size": 1024,
-  "initializer_range": 0.02,
-  "intermediate_size": 2816,
-  "layer_types": [
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention"
-  ],
-  "max_position_embeddings": 32768,
-  "max_window_layers": 21,
-  "model_type": "qwen2",
-  "num_attention_heads": 16,
-  "num_hidden_layers": 24,
-  "num_key_value_heads": 16,
-  "pad_token_id": null,
-  "rms_norm_eps": 1e-06,
-  "rope_parameters": {
-    "rope_theta": 1000000.0,
-    "rope_type": "default"
-  },
-  "sliding_window": null,
-  "tie_word_embeddings": true,
-  "transformers_version": "5.6.0",
-  "use_cache": true,
-  "use_sliding_window": false,
-  "vocab_size": 151936
-}
-
-[INFO|hub.py:364] 2026-07-05 18:25:03,067 >> Offline mode: forcing local_files_only=True
-[INFO|configuration_utils.py:769] 2026-07-05 18:25:03,067 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
-[INFO|configuration_utils.py:847] 2026-07-05 18:25:03,069 >> Model config Qwen2Config {
-  "architectures": [
-    "Qwen2ForCausalLM"
-  ],
-  "attention_dropout": 0.0,
-  "bos_token_id": 151643,
-  "dtype": "bfloat16",
-  "eos_token_id": 151645,
-  "hidden_act": "silu",
-  "hidden_size": 1024,
-  "initializer_range": 0.02,
-  "intermediate_size": 2816,
-  "layer_types": [
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention"
-  ],
-  "max_position_embeddings": 32768,
-  "max_window_layers": 21,
-  "model_type": "qwen2",
-  "num_attention_heads": 16,
-  "num_hidden_layers": 24,
-  "num_key_value_heads": 16,
-  "pad_token_id": null,
-  "rms_norm_eps": 1e-06,
-  "rope_parameters": {
-    "rope_theta": 1000000.0,
-    "rope_type": "default"
-  },
-  "sliding_window": null,
-  "tie_word_embeddings": true,
-  "transformers_version": "5.6.0",
-  "use_cache": true,
-  "use_sliding_window": false,
-  "vocab_size": 151936
-}
-
-[INFO|hub.py:364] 2026-07-05 18:25:03,069 >> Offline mode: forcing local_files_only=True
-[INFO|tokenization_utils_base.py:1592] 2026-07-05 18:25:03,069 >> Offline mode: forcing local_files_only=True
-[INFO|2026-07-05 18:25:03] llamafactory.data.loader:144 >> Loading dataset mbpp_sanitized_test.json...
-Converting format of dataset (num_proc=8): 100%|██████████| 257/257 [00:00<?, ? examples/s]Converting format of dataset (num_proc=8): 418 examples [00:00, 1533.26 examples/s]        Converting format of dataset (num_proc=8): 514 examples [00:00, 1237.57 examples/s]
-Running tokenizer on dataset (num_proc=8): 100%|██████████| 257/257 [00:00<?, ? examples/s]Running tokenizer on dataset (num_proc=8): 290 examples [00:02, 14.20 examples/s]          Running tokenizer on dataset (num_proc=8): 322 examples [00:04, 16.51 examples/s]Running tokenizer on dataset (num_proc=8): 354 examples [00:05, 17.19 examples/s]Running tokenizer on dataset (num_proc=8): 386 examples [00:07, 17.86 examples/s]Running tokenizer on dataset (num_proc=8): 418 examples [00:09, 18.05 examples/s]Running tokenizer on dataset (num_proc=8): 450 examples [00:10, 18.14 examples/s]Running tokenizer on dataset (num_proc=8): 482 examples [00:12, 18.38 examples/s]Running tokenizer on dataset (num_proc=8): 514 examples [00:14, 18.53 examples/s]Running tokenizer on dataset (num_proc=8): 514 examples [00:14, 17.74 examples/s]
-[INFO|hub.py:364] 2026-07-05 18:25:19,993 >> Offline mode: forcing local_files_only=True
-[INFO|configuration_utils.py:769] 2026-07-05 18:25:19,993 >> loading configuration file ./Qwen1.5-0.5B-Chat/config.json
-[INFO|configuration_utils.py:847] 2026-07-05 18:25:19,995 >> Model config Qwen2Config {
-  "architectures": [
-    "Qwen2ForCausalLM"
-  ],
-  "attention_dropout": 0.0,
-  "bos_token_id": 151643,
-  "dtype": "bfloat16",
-  "eos_token_id": 151645,
-  "hidden_act": "silu",
-  "hidden_size": 1024,
-  "initializer_range": 0.02,
-  "intermediate_size": 2816,
-  "layer_types": [
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention",
-    "full_attention"
-  ],
-  "max_position_embeddings": 32768,
-  "max_window_layers": 21,
-  "model_type": "qwen2",
-  "num_attention_heads": 16,
-  "num_hidden_layers": 24,
-  "num_key_value_heads": 16,
-  "pad_token_id": null,
-  "rms_norm_eps": 1e-06,
-  "rope_parameters": {
-    "rope_theta": 1000000.0,
-    "rope_type": "default"
-  },
-  "sliding_window": null,
-  "tie_word_embeddings": true,
-  "transformers_version": "5.6.0",
-  "use_cache": true,
-  "use_sliding_window": false,
-  "vocab_size": 151936
-}
-
-eval example:
-input_ids:
-[151644, 8948, 198, 2610, 525, 1207, 16948, 11, 3465, 553, 54364, 14817, 13, 1446, 525, 264, 10950, 17847, 13, 151645, 198, 151644, 872, 198, 7985, 264, 10135, 729, 311, 4057, 1156, 323, 1537, 31559, 315, 264, 2661, 3668, 504, 279, 914, 13, 151645, 198, 151644, 77091, 198]
-inputs:
-<|im_start|>system
-You are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>
-<|im_start|>user
-Write a python function to remove first and last occurrence of a given character from the string.<|im_end|>
-<|im_start|>assistant
-
-label_ids:
-[750, 4057, 2232, 638, 1141, 69997, 1648, 715, 262, 369, 600, 304, 2088, 6901, 1141, 36715, 715, 286, 421, 320, 82, 989, 60, 621, 521, 1648, 715, 310, 274, 284, 274, 58, 15, 549, 600, 60, 488, 274, 989, 488, 220, 16, 28283, 715, 310, 1438, 198, 262, 369, 600, 304, 2088, 6901, 1141, 8, 481, 220, 16, 4999, 16, 4999, 16, 1648, 2303, 286, 421, 320, 82, 989, 60, 621, 521, 1648, 715, 310, 274, 284, 274, 58, 15, 549, 600, 60, 488, 274, 989, 488, 220, 16, 28283, 715, 310, 1438, 198, 262, 470, 274, 151645, 198]
-labels:
-def remove_Occ(s,ch): 
-    for i in range(len(s)): 
-        if (s[i] == ch): 
-            s = s[0 : i] + s[i + 1:] 
-            break
-    for i in range(len(s) - 1,-1,-1):  
-        if (s[i] == ch): 
-            s = s[0 : i] + s[i + 1:] 
-            break
-    return s<|im_end|>
-
-[INFO|2026-07-05 18:25:19] llamafactory.model.model_utils.quantization:144 >> Quantizing model to 4 bit with bitsandbytes.
-[INFO|2026-07-05 18:25:19] llamafactory.model.model_utils.kv_cache:144 >> KV cache is enabled for faster generation.
-[INFO|modeling_utils.py:748] 2026-07-05 18:25:22,072 >> loading weights file ./Qwen1.5-0.5B-Chat/model.safetensors
-[INFO|modeling_utils.py:821] 2026-07-05 18:25:22,072 >> Will use dtype=torch.bfloat16 as defined in model's config object
-[INFO|configuration_utils.py:1027] 2026-07-05 18:25:22,073 >> Generate config GenerationConfig {
-  "bos_token_id": 151643,
-  "eos_token_id": 151645,
-  "output_attentions": false,
-  "output_hidden_states": false,
-  "use_cache": true
-}
-
-Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   1%|▏         | 4/291 [00:00<00:08, 32.17it/s]Loading weights:  49%|████▉     | 144/291 [00:00<00:00, 759.78it/s]Loading weights: 100%|█████████▉| 290/291 [00:00<00:00, 1058.74it/s]Loading weights: 100%|██████████| 291/291 [00:00<00:00, 891.75it/s] 
-[INFO|configuration_utils.py:978] 2026-07-05 18:25:22,756 >> loading configuration file ./Qwen1.5-0.5B-Chat/generation_config.json
-[INFO|configuration_utils.py:1027] 2026-07-05 18:25:22,756 >> Generate config GenerationConfig {
-  "bos_token_id": 151643,
-  "do_sample": true,
-  "eos_token_id": [
-    151645,
-    151643
-  ],
-  "pad_token_id": 151643,
-  "repetition_penalty": 1.1,
-  "top_p": 0.8
-}
-
-[INFO|dynamic_module_utils.py:406] 2026-07-05 18:25:22,756 >> Could not locate the custom_generate/generate.py inside ./Qwen1.5-0.5B-Chat.
-[INFO|2026-07-05 18:25:22] llamafactory.model.model_utils.attention:144 >> Using torch SDPA for faster training and inference.
-[INFO|2026-07-05 18:25:22] llamafactory.model.adapter:144 >> Loaded adapter(s): ./sft/lora2_exp_cgh/outputs/r8_tqv_q4_epoch_5/model
-[INFO|2026-07-05 18:25:22] llamafactory.model.loader:144 >> all params: 464,774,144
-[WARNING|2026-07-05 18:25:22] llamafactory.train.sft.workflow:155 >> Batch generation can be very slow. Consider using `scripts/vllm_infer.py` instead.
-[INFO|trainer.py:2668] 2026-07-05 18:25:22,881 >> 
-***** Running Prediction *****
-[INFO|trainer.py:2670] 2026-07-05 18:25:22,881 >>   Num examples = 257
-[INFO|trainer.py:2673] 2026-07-05 18:25:22,882 >>   Batch size = 2
-[WARNING|logging.py:340] 2026-07-05 18:25:23,304 >> The following generation flags are not valid and may be ignored: ['temperature', 'top_p'].
-[INFO|logging.py:355] 2026-07-05 18:25:23,304 >> - `temperature`: `do_sample` is set not to set `True`. However, `temperature` is set to `0.95` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
-- `top_p`: `do_sample` is set not to set `True`. However, `top_p` is set to `0.7` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
-If you're using a pretrained model, note that some of these attributes may be set through the model's `generation_config.json` file.
-  0%|          | 0/129 [00:00<?, ?it/s][WARNING|utils.py:1621] 2026-07-05 18:25:32,356 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
-  2%|▏         | 2/129 [00:05<05:44,  2.72s/it][WARNING|utils.py:1621] 2026-07-05 18:25:37,786 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
-  2%|▏         | 3/129 [00:07<05:13,  2.49s/it][WARNING|utils.py:1621] 2026-07-05 18:25:39,962 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
-  3%|▎         | 4/129 [00:09<05:00,  2.41s/it][WARNING|utils.py:1621] 2026-07-05 18:25:42,226 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
-  4%|▍         | 5/129 [00:12<04:53,  2.37s/it][WARNING|utils.py:1621] 2026-07-05 18:25:44,528 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
-  5%|▍         | 6/129 [00:16<05:58,  2.91s/it][WARNING|utils.py:1621] 2026-07-05 18:25:48,528 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
-  5%|▌         | 7/129 [00:20<06:46,  3.33s/it][WARNING|utils.py:1621] 2026-07-05 18:25:52,742 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
-  6%|▌         | 8/129 [00:24<07:07,  3.53s/it][WARNING|utils.py:1621] 2026-07-05 18:25:56,721 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
-  7%|▋         | 9/129 [00:26<06:15,  3.13s/it][WARNING|utils.py:1621] 2026-07-05 18:25:58,959 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
-  8%|▊         | 10/129 [00:31<07:10,  3.62s/it][WARNING|utils.py:1621] 2026-07-05 18:26:03,684 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
-  9%|▊         | 11/129 [00:33<06:17,  3.20s/it][WARNING|utils.py:1621] 2026-07-05 18:26:05,918 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
-  9%|▉         | 12/129 [01:25<35:02, 17.97s/it][WARNING|utils.py:1621] 2026-07-05 18:26:57,796 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 10%|█         | 13/129 [01:30<26:59, 13.96s/it][WARNING|utils.py:1621] 2026-07-05 18:27:02,503 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 11%|█         | 14/129 [01:32<19:53, 10.38s/it][WARNING|utils.py:1621] 2026-07-05 18:27:04,602 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 12%|█▏        | 15/129 [02:24<43:33, 22.93s/it][WARNING|utils.py:1621] 2026-07-05 18:27:56,640 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 12%|█▏        | 16/129 [03:16<59:52, 31.80s/it][WARNING|utils.py:1621] 2026-07-05 18:28:49,051 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 13%|█▎        | 17/129 [03:20<43:42, 23.41s/it][WARNING|utils.py:1621] 2026-07-05 18:28:52,952 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 14%|█▍        | 18/129 [03:24<32:27, 17.54s/it][WARNING|utils.py:1621] 2026-07-05 18:28:56,834 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 15%|█▍        | 19/129 [03:28<24:28, 13.35s/it][WARNING|utils.py:1621] 2026-07-05 18:29:00,417 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 16%|█▌        | 20/129 [03:30<18:08,  9.99s/it][WARNING|utils.py:1621] 2026-07-05 18:29:02,554 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 16%|█▋        | 21/129 [03:32<14:03,  7.81s/it][WARNING|utils.py:1621] 2026-07-05 18:29:05,283 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 17%|█▋        | 22/129 [03:36<11:37,  6.52s/it][WARNING|utils.py:1621] 2026-07-05 18:29:08,784 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 18%|█▊        | 23/129 [03:40<10:03,  5.70s/it][WARNING|utils.py:1621] 2026-07-05 18:29:12,571 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 19%|█▊        | 24/129 [03:48<11:20,  6.48s/it][WARNING|utils.py:1621] 2026-07-05 18:29:20,893 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 19%|█▉        | 25/129 [03:52<09:45,  5.63s/it][WARNING|utils.py:1621] 2026-07-05 18:29:24,542 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 20%|██        | 26/129 [03:55<08:33,  4.98s/it][WARNING|utils.py:1621] 2026-07-05 18:29:28,010 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 21%|██        | 27/129 [04:00<08:22,  4.93s/it][WARNING|utils.py:1621] 2026-07-05 18:29:32,812 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 22%|██▏       | 28/129 [04:07<09:12,  5.47s/it][WARNING|utils.py:1621] 2026-07-05 18:29:39,551 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 22%|██▏       | 29/129 [04:17<11:27,  6.87s/it][WARNING|utils.py:1621] 2026-07-05 18:29:49,684 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 23%|██▎       | 30/129 [04:18<08:37,  5.23s/it][WARNING|utils.py:1621] 2026-07-05 18:29:51,070 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 24%|██▍       | 31/129 [04:20<06:38,  4.07s/it][WARNING|utils.py:1621] 2026-07-05 18:29:52,440 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 25%|██▍       | 32/129 [04:23<06:28,  4.01s/it][WARNING|utils.py:1621] 2026-07-05 18:29:56,313 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 26%|██▌       | 33/129 [04:26<05:49,  3.64s/it][WARNING|utils.py:1621] 2026-07-05 18:29:59,082 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 26%|██▋       | 34/129 [04:31<06:12,  3.92s/it][WARNING|utils.py:1621] 2026-07-05 18:30:03,667 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 27%|██▋       | 35/129 [04:33<05:21,  3.42s/it][WARNING|utils.py:1621] 2026-07-05 18:30:05,926 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 28%|██▊       | 36/129 [05:25<28:01, 18.08s/it][WARNING|utils.py:1621] 2026-07-05 18:30:58,215 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 29%|██▊       | 37/129 [05:28<20:39, 13.47s/it][WARNING|utils.py:1621] 2026-07-05 18:31:00,915 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 29%|██▉       | 38/129 [05:31<15:29, 10.21s/it][WARNING|utils.py:1621] 2026-07-05 18:31:03,526 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 30%|███       | 39/129 [05:36<13:19,  8.88s/it][WARNING|utils.py:1621] 2026-07-05 18:31:09,309 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 31%|███       | 40/129 [05:38<10:02,  6.77s/it][WARNING|utils.py:1621] 2026-07-05 18:31:11,162 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 32%|███▏      | 41/129 [05:43<08:58,  6.12s/it][WARNING|utils.py:1621] 2026-07-05 18:31:15,748 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 33%|███▎      | 42/129 [05:47<07:55,  5.46s/it][WARNING|utils.py:1621] 2026-07-05 18:31:19,686 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 33%|███▎      | 43/129 [06:39<27:57, 19.51s/it][WARNING|utils.py:1621] 2026-07-05 18:32:11,971 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 34%|███▍      | 44/129 [06:42<20:44, 14.64s/it][WARNING|utils.py:1621] 2026-07-05 18:32:15,249 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 35%|███▍      | 45/129 [06:46<15:50, 11.31s/it][WARNING|utils.py:1621] 2026-07-05 18:32:18,798 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 36%|███▌      | 46/129 [06:49<12:24,  8.97s/it][WARNING|utils.py:1621] 2026-07-05 18:32:22,307 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 36%|███▋      | 47/129 [06:52<09:32,  6.98s/it][WARNING|utils.py:1621] 2026-07-05 18:32:24,627 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 37%|███▋      | 48/129 [06:55<08:02,  5.96s/it][WARNING|utils.py:1621] 2026-07-05 18:32:28,202 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 38%|███▊      | 49/129 [07:48<26:32, 19.91s/it][WARNING|utils.py:1621] 2026-07-05 18:33:20,679 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 39%|███▉      | 50/129 [07:51<19:32, 14.84s/it][WARNING|utils.py:1621] 2026-07-05 18:33:23,697 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 40%|███▉      | 51/129 [07:54<14:38, 11.26s/it][WARNING|utils.py:1621] 2026-07-05 18:33:26,603 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 40%|████      | 52/129 [07:59<12:03,  9.40s/it][WARNING|utils.py:1621] 2026-07-05 18:33:31,650 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 41%|████      | 53/129 [08:04<10:24,  8.21s/it][WARNING|utils.py:1621] 2026-07-05 18:33:37,091 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 42%|████▏     | 54/129 [08:07<08:10,  6.55s/it][WARNING|utils.py:1621] 2026-07-05 18:33:39,750 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 43%|████▎     | 55/129 [08:11<07:04,  5.73s/it][WARNING|utils.py:1621] 2026-07-05 18:33:43,582 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 43%|████▎     | 56/129 [08:16<06:45,  5.56s/it][WARNING|utils.py:1621] 2026-07-05 18:33:48,742 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 44%|████▍     | 57/129 [08:19<05:55,  4.94s/it][WARNING|utils.py:1621] 2026-07-05 18:33:52,224 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 45%|████▍     | 58/129 [08:24<05:38,  4.77s/it][WARNING|utils.py:1621] 2026-07-05 18:33:56,590 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 46%|████▌     | 59/129 [08:32<06:46,  5.81s/it][WARNING|utils.py:1621] 2026-07-05 18:34:04,825 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 47%|████▋     | 60/129 [08:35<05:47,  5.04s/it][WARNING|utils.py:1621] 2026-07-05 18:34:08,079 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 47%|████▋     | 61/129 [08:45<07:09,  6.32s/it][WARNING|utils.py:1621] 2026-07-05 18:34:17,382 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 48%|████▊     | 62/129 [08:47<05:41,  5.10s/it][WARNING|utils.py:1621] 2026-07-05 18:34:19,628 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 49%|████▉     | 63/129 [08:51<05:15,  4.78s/it][WARNING|utils.py:1621] 2026-07-05 18:34:23,659 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 50%|████▉     | 64/129 [09:00<06:28,  5.97s/it][WARNING|utils.py:1621] 2026-07-05 18:34:32,423 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 50%|█████     | 65/129 [09:01<04:59,  4.68s/it][WARNING|utils.py:1621] 2026-07-05 18:34:34,090 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 51%|█████     | 66/129 [09:03<04:04,  3.88s/it][WARNING|utils.py:1621] 2026-07-05 18:34:36,111 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 52%|█████▏    | 67/129 [09:06<03:42,  3.59s/it][WARNING|utils.py:1621] 2026-07-05 18:34:39,013 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 53%|█████▎    | 68/129 [09:09<03:26,  3.38s/it][WARNING|utils.py:1621] 2026-07-05 18:34:41,905 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 53%|█████▎    | 69/129 [09:12<03:16,  3.27s/it][WARNING|utils.py:1621] 2026-07-05 18:34:44,913 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 54%|█████▍    | 70/129 [09:13<02:37,  2.68s/it][WARNING|utils.py:1621] 2026-07-05 18:34:46,208 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 55%|█████▌    | 71/129 [09:16<02:37,  2.72s/it][WARNING|utils.py:1621] 2026-07-05 18:34:49,039 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 56%|█████▌    | 72/129 [09:19<02:36,  2.75s/it][WARNING|utils.py:1621] 2026-07-05 18:34:51,853 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 57%|█████▋    | 73/129 [09:21<02:26,  2.62s/it][WARNING|utils.py:1621] 2026-07-05 18:34:54,171 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 57%|█████▋    | 74/129 [09:23<02:12,  2.41s/it][WARNING|utils.py:1621] 2026-07-05 18:34:56,086 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 58%|█████▊    | 75/129 [09:26<02:18,  2.57s/it][WARNING|utils.py:1621] 2026-07-05 18:34:59,044 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 59%|█████▉    | 76/129 [09:32<03:03,  3.46s/it][WARNING|utils.py:1621] 2026-07-05 18:35:04,556 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 60%|█████▉    | 77/129 [09:34<02:43,  3.14s/it][WARNING|utils.py:1621] 2026-07-05 18:35:06,956 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 60%|██████    | 78/129 [09:42<03:52,  4.55s/it][WARNING|utils.py:1621] 2026-07-05 18:35:14,816 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 61%|██████    | 79/129 [09:44<03:15,  3.92s/it][WARNING|utils.py:1621] 2026-07-05 18:35:17,248 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 62%|██████▏   | 80/129 [09:48<03:07,  3.84s/it][WARNING|utils.py:1621] 2026-07-05 18:35:20,890 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 63%|██████▎   | 81/129 [09:50<02:41,  3.36s/it][WARNING|utils.py:1621] 2026-07-05 18:35:23,151 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 64%|██████▎   | 82/129 [09:54<02:37,  3.34s/it][WARNING|utils.py:1621] 2026-07-05 18:35:26,447 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 64%|██████▍   | 83/129 [09:56<02:21,  3.08s/it][WARNING|utils.py:1621] 2026-07-05 18:35:28,906 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 65%|██████▌   | 84/129 [10:00<02:35,  3.45s/it][WARNING|utils.py:1621] 2026-07-05 18:35:33,239 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 66%|██████▌   | 85/129 [10:05<02:51,  3.91s/it][WARNING|utils.py:1621] 2026-07-05 18:35:38,198 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 67%|██████▋   | 86/129 [10:17<04:29,  6.26s/it][WARNING|utils.py:1621] 2026-07-05 18:35:49,944 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 67%|██████▋   | 87/129 [10:19<03:32,  5.07s/it][WARNING|utils.py:1621] 2026-07-05 18:35:52,245 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 68%|██████▊   | 88/129 [10:21<02:51,  4.18s/it][WARNING|utils.py:1621] 2026-07-05 18:35:54,353 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 69%|██████▉   | 89/129 [10:26<02:46,  4.16s/it][WARNING|utils.py:1621] 2026-07-05 18:35:58,453 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 70%|██████▉   | 90/129 [10:28<02:22,  3.65s/it][WARNING|utils.py:1621] 2026-07-05 18:36:00,929 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 71%|███████   | 91/129 [10:31<02:05,  3.31s/it][WARNING|utils.py:1621] 2026-07-05 18:36:03,425 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 71%|███████▏  | 92/129 [10:36<02:23,  3.89s/it][WARNING|utils.py:1621] 2026-07-05 18:36:08,674 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 72%|███████▏  | 93/129 [10:38<01:56,  3.25s/it][WARNING|utils.py:1621] 2026-07-05 18:36:10,429 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 73%|███████▎  | 94/129 [10:40<01:43,  2.94s/it][WARNING|utils.py:1621] 2026-07-05 18:36:12,658 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 74%|███████▎  | 95/129 [10:41<01:27,  2.57s/it][WARNING|utils.py:1621] 2026-07-05 18:36:14,354 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 74%|███████▍  | 96/129 [10:50<02:27,  4.45s/it][WARNING|utils.py:1621] 2026-07-05 18:36:23,209 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 75%|███████▌  | 97/129 [10:54<02:16,  4.27s/it][WARNING|utils.py:1621] 2026-07-05 18:36:27,055 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 76%|███████▌  | 98/129 [10:56<01:45,  3.41s/it][WARNING|utils.py:1621] 2026-07-05 18:36:28,447 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 77%|███████▋  | 99/129 [10:59<01:42,  3.43s/it][WARNING|utils.py:1621] 2026-07-05 18:36:31,939 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 78%|███████▊  | 100/129 [11:03<01:42,  3.55s/it][WARNING|utils.py:1621] 2026-07-05 18:36:35,753 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 78%|███████▊  | 101/129 [11:05<01:30,  3.25s/it][WARNING|utils.py:1621] 2026-07-05 18:36:38,307 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 79%|███████▉  | 102/129 [11:08<01:20,  2.99s/it][WARNING|utils.py:1621] 2026-07-05 18:36:40,691 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 80%|███████▉  | 103/129 [11:10<01:08,  2.65s/it][WARNING|utils.py:1621] 2026-07-05 18:36:42,547 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 81%|████████  | 104/129 [11:13<01:13,  2.92s/it][WARNING|utils.py:1621] 2026-07-05 18:36:46,107 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 81%|████████▏ | 105/129 [11:17<01:13,  3.08s/it][WARNING|utils.py:1621] 2026-07-05 18:36:49,553 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 82%|████████▏ | 106/129 [11:19<01:02,  2.70s/it][WARNING|utils.py:1621] 2026-07-05 18:36:51,369 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 83%|████████▎ | 107/129 [12:11<06:26, 17.57s/it][WARNING|utils.py:1621] 2026-07-05 18:37:43,644 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 84%|████████▎ | 108/129 [12:13<04:31, 12.91s/it][WARNING|utils.py:1621] 2026-07-05 18:37:45,669 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 84%|████████▍ | 109/129 [12:14<03:08,  9.41s/it][WARNING|utils.py:1621] 2026-07-05 18:37:46,925 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 85%|████████▌ | 110/129 [12:18<02:27,  7.77s/it][WARNING|utils.py:1621] 2026-07-05 18:37:50,855 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 86%|████████▌ | 111/129 [12:21<01:51,  6.21s/it][WARNING|utils.py:1621] 2026-07-05 18:37:53,418 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 87%|████████▋ | 112/129 [12:25<01:37,  5.73s/it][WARNING|utils.py:1621] 2026-07-05 18:37:58,028 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 88%|████████▊ | 113/129 [12:28<01:15,  4.73s/it][WARNING|utils.py:1621] 2026-07-05 18:38:00,441 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 88%|████████▊ | 114/129 [12:30<01:01,  4.10s/it][WARNING|utils.py:1621] 2026-07-05 18:38:03,078 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 89%|████████▉ | 115/129 [12:32<00:48,  3.49s/it][WARNING|utils.py:1621] 2026-07-05 18:38:05,137 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 90%|████████▉ | 116/129 [12:33<00:35,  2.76s/it][WARNING|utils.py:1621] 2026-07-05 18:38:06,182 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 91%|█████████ | 117/129 [12:36<00:33,  2.75s/it][WARNING|utils.py:1621] 2026-07-05 18:38:08,924 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 91%|█████████▏| 118/129 [12:55<01:22,  7.51s/it][WARNING|utils.py:1621] 2026-07-05 18:38:27,525 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 92%|█████████▏| 119/129 [12:58<01:03,  6.35s/it][WARNING|utils.py:1621] 2026-07-05 18:38:31,190 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 93%|█████████▎| 120/129 [12:59<00:42,  4.74s/it][WARNING|utils.py:1621] 2026-07-05 18:38:32,148 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 94%|█████████▍| 121/129 [13:01<00:29,  3.74s/it][WARNING|utils.py:1621] 2026-07-05 18:38:33,574 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 95%|█████████▍| 122/129 [13:06<00:29,  4.25s/it][WARNING|utils.py:1621] 2026-07-05 18:38:39,018 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 95%|█████████▌| 123/129 [13:08<00:21,  3.54s/it][WARNING|utils.py:1621] 2026-07-05 18:38:40,886 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 96%|█████████▌| 124/129 [13:12<00:18,  3.69s/it][WARNING|utils.py:1621] 2026-07-05 18:38:44,945 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 97%|█████████▋| 125/129 [13:14<00:12,  3.25s/it][WARNING|utils.py:1621] 2026-07-05 18:38:47,151 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 98%|█████████▊| 126/129 [13:18<00:09,  3.27s/it][WARNING|utils.py:1621] 2026-07-05 18:38:50,460 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 98%|█████████▊| 127/129 [13:22<00:07,  3.68s/it][WARNING|utils.py:1621] 2026-07-05 18:38:55,095 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
- 99%|█████████▉| 128/129 [13:23<00:02,  2.87s/it][WARNING|utils.py:1621] 2026-07-05 18:38:56,102 >> Both `max_new_tokens` (=768) and `max_length`(=20) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
-100%|██████████| 129/129 [13:24<00:00,  2.18s/it]Building prefix dict from the default dictionary ...
-Loading model from cache /tmp/jieba.cache
-Loading model cost 0.754 seconds.
-Prefix dict has been built successfully.
-100%|██████████| 129/129 [13:26<00:00,  6.25s/it]
-***** predict metrics *****
-  predict_bleu-4                 =    32.2238
-  predict_model_preparation_time =     0.0131
-  predict_rouge-1                =    62.0523
-  predict_rouge-2                =    24.5617
-  predict_rouge-l                =    40.7689
-  predict_runtime                = 0:13:35.58
-  predict_samples_per_second     =      0.315
-  predict_steps_per_second       =      0.158
-[INFO|2026-07-05 18:38:58] llamafactory.train.sft.trainer:144 >> Saving prediction results to ./sft/lora2_exp_cgh/outputs/r8_tqv_q4_epoch_5/predict/generated_predictions.jsonl
